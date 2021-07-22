@@ -8,7 +8,15 @@ namespace Entities
 {
     public class Question:BaseEntity
     {
-        
+        public Question(string text, string dateAdded, Guid? examId, Guid userId) : base()
+        {
+            Text = text;
+            DateAdded = dateAdded;
+            ExamId = examId;
+            UserId = userId;
+
+            Answers = new List<Answer>();
+        }
 
         public Guid? ExamId{ get; set; }
         public Guid UserId { get; set; }

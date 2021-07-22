@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExamManagement.Business\ExamManagement.Business.csproj" />
+    <ProjectReference Include="..\ExamManagement.DataAccess\ExamManagement.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

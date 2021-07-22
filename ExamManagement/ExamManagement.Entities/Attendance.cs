@@ -8,6 +8,14 @@ namespace Entities
 {
     public class Attendance : BaseEntity
     {
+
+        public Attendance(string date, string dateAdded, Guid studentId, Guid? examId):base()
+        {
+            Date = date;
+            DateAdded = dateAdded;
+            ExamId = examId;
+            StudentId = studentId;
+        }
         public Guid? ExamId
         {
             get; set;

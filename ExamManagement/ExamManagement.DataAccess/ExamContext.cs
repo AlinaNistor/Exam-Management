@@ -7,9 +7,9 @@ namespace DataAccess
 {
     public class ExamContext:DbContext
     {
-        public ExamContext()
+        public ExamContext(DbContextOptions<ExamContext> options)
         {
-
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

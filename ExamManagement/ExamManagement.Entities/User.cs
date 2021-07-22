@@ -8,13 +8,28 @@ namespace Entities
 {
     public class User:BaseEntity
     {
+
+        public User(string lastName, string firstName, string email, string password, int role, int yearOfStudy, int tax) : base()
+        {
+            LastName = lastName;
+            FirstName = firstName;
+            Email = email;
+            Password = password;
+            Role = role;
+            YearOfStudy = yearOfStudy;
+            Tax = tax;
+
+            Questions = new List<Question>();
+            Attendances = new List<Attendance>();
+            Answers = new List<Answer>();
+        }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
         public int YearOfStudy { get; set; }
-        public int Tax { get; set; }
+        public int Tax { get; set; }// should be a boolean
 
 
         public virtual ICollection<Question> Questions { get; set; }

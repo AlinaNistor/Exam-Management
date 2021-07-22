@@ -1,6 +1,8 @@
+using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,10 @@ namespace ExamManagement.WebApi
         {
 
             services.AddControllers();
+            services.AddDbContext<ExamContext>(config =>
+            {
+                config.UseSqlServer(Configuration.GetConnectionString("ExamConnection"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +50,9 @@ namespace ExamManagement.WebApi
             {
                 endpoints.MapControllers();
             });
+            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            var dbContext = serviceScope.ServiceProvider.GetService<ExamContext>();
+            dbContext.Database.EnsureCreated();
         }
     }
 }
