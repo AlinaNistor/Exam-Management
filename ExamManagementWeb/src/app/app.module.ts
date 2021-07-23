@@ -14,9 +14,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from './dashboard/header/header.component';
-import { SidenavComponent } from './dashboard/sidenav/sidenav.component';
-import { HomeComponent } from './dashboard/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomeComponent } from './dashboard/home/home.component';
     DashboardComponent,
     HeaderComponent,
     SidenavComponent,
-    HomeComponent,
+    UserLayoutComponent,
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,
