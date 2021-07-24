@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { UserLayoutRoutingModule } from './user-layout-routing.module';
-import { AdminLayoutRoutes } from './user-layout-routing.module';
+import { UserLayoutRoutes } from './user-layout-routing.module';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
   imports: [
     CommonModule,
     UserLayoutRoutingModule,
-    RouterModule.forChild(AdminLayoutRoutes),
+    RouterModule.forChild(UserLayoutRoutes),
   ]
 })
 export class UserLayoutModule { }

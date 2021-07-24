@@ -5,6 +5,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
  {
@@ -46,6 +47,17 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: '/dashboard',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/settings',
         pathMatch: 'full',
       },
     ],
