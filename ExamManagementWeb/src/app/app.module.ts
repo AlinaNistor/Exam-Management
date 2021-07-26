@@ -19,6 +19,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SettingsComponent } from './settings/settings.component';
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
