@@ -23,6 +23,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ExamsComponent } from './exams/exams.component';
 import { AboutComponent } from './about/about.component';
 import { ReactiveFormsModule} from '@angular/forms';
+import { ExamTileComponent } from './components/exam-tile/exam-tile.component';
+import { FindExamComponent } from './find-exam/find-exam.component';
+import { AddExamComponent } from './add-exam/add-exam.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { ReactiveFormsModule} from '@angular/forms';
     CalendarComponent,
     ExamsComponent,
     AboutComponent,
+    ExamTileComponent,
+    FindExamComponent,
+    AddExamComponent,
   ],
   imports: [
     BrowserModule,

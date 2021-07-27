@@ -7,6 +7,8 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ExamsComponent } from './exams/exams.component';
+import { FindExamComponent } from './find-exam/find-exam.component';
+import { AddExamComponent } from './add-exam/add-exam.component';
 
 const routes: Routes = [
   {
@@ -44,11 +46,18 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
-
   },
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'find-exam',
+    component: FindExamComponent,
+  },
+  {
+    path: 'add-exam',
+    component: AddExamComponent,
   },
 ];
 
