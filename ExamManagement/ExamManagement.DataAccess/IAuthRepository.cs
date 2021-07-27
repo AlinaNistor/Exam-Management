@@ -12,5 +12,7 @@ namespace ExamManagement.Persistence
         Task Register(User user);
 
         Task SaveChanges();
+
+        Task<User> Check(string email);
     }
 }

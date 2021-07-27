@@ -30,5 +30,12 @@ namespace ExamManagement.Business.Exam.Services
 
             return _mapper.Map<RegisterModel>(user);
         }
+
+        public async Task<RegisterModel> Check(string email)
+        {
+            var user = await _authRepository.Check(email);
+
+            return _mapper.Map<RegisterModel>(user);
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace ExamManagement.Business.Exam.Services
    public interface IRegisterService
     {
         Task<RegisterModel> Register(UpRegisterModel model);
+
+        Task<RegisterModel> Check(string email);
     }
 }

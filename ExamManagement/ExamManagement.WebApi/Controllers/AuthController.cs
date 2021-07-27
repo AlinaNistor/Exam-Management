@@ -1,5 +1,6 @@
 ﻿using ExamManagement.Business.Exam.Models;
 using ExamManagement.Business.Exam.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,14 @@ namespace ExamManagement.WebApi.Controllers
 
         // POST api/<AuthController>
         [HttpPost]
+        [Route("register")]
         public async Task<IActionResult> Register([FromBody] UpRegisterModel model)
         {
+            var userExists = _registerService.Check(model.Email);
+            if(userExists!=null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
+            }
             var result = await _registerService.Register(model);
 
             return Created(result.Id.ToString(), null);
