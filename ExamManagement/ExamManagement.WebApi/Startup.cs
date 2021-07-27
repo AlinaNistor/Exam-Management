@@ -1,16 +1,21 @@
 using DataAccess;
+using Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using ExamManagement.Persistence;
+using ExamManagement.Business.Exam.Services;
+using ExamManagement.Business;
 
 namespace ExamManagement.WebApi
 {
@@ -26,13 +31,23 @@ namespace ExamManagement.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();
             services.AddControllers();
+          
             services.AddDbContext<ExamContext>(config =>
             {
                 config.UseSqlServer(Configuration.GetConnectionString("ExamConnection"));
             });
+           
             services.AddSwaggerGen();
+            services.AddAutoMapper(config => { config.AddProfile<UsersMappingProfile>(); });
+            services
+                .AddScoped<IAuthRepository, AuthRepository>()
+                .AddScoped<IRegisterService, RegisterService>();
+
+
+            services
+                .AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,14 +64,16 @@ namespace ExamManagement.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Exam Management V1");
             });
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseCors(options => options
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader())
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers());
             using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
             var dbContext = serviceScope.ServiceProvider.GetService<ExamContext>();
             dbContext.Database.EnsureCreated();
