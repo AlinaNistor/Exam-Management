@@ -5,3 +5,18 @@
   min-height: 100vh;
   overflow: hidden;
 }
+
+@import "src/styles.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-drawer {
+  width: 260px;
+}
+mat-drawer-container {
+  height: 100%;
+}

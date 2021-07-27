@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-  settingsPath: string = 'user/settings';
 
   constructor(private router: Router) {}
 

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -14,11 +13,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatBadgeModule } from '@angular/material/badge';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ExamsComponent } from './exams/exams.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,10 @@ import { SettingsComponent } from './settings/settings.component';
     DashboardComponent,
     HeaderComponent,
     SidenavComponent,
-    UserLayoutComponent,
-    AdminLayoutComponent,
     SettingsComponent,
+    CalendarComponent,
+    ExamsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,9 @@ import { SettingsComponent } from './settings/settings.component';
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

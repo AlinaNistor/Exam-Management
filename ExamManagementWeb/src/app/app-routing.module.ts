@@ -1,21 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ExamsComponent } from './exams/exams.component';
 
 const routes: Routes = [
- {
-    path: 'user',
-    component: UserLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: () => import('./layouts/user-layout/user-layout.module').then(m => m.UserLayoutModule)
-    }]
-  },
   {
     path: '',
     redirectTo: '/authentication/login',
@@ -43,24 +36,19 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full',
-      },
-    ],
+  },
+  {
+    path: 'exams',
+    component: ExamsComponent,
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/settings',
-        pathMatch: 'full',
-      },
-    ],
+
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
   },
 ];
 
