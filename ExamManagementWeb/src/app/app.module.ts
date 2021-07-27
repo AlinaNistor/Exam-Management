@@ -22,6 +22,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ExamsComponent } from './exams/exams.component';
 import { AboutComponent } from './about/about.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AboutComponent } from './about/about.component';
     MatCardModule,
     MatDatepickerModule,
     MatBadgeModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

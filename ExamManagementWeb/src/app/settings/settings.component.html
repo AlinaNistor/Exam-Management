@@ -3,6 +3,94 @@
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-relative">
       Settings Content
+      <div class="col-md-6 offset-md-3">
+        <section class="registration">
+          <h2 class="text">Change Password</h2>
+          <div class="container">
+            <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+              <!--Curent Password-->
+              <input
+                type="password"
+                class="input"
+                #password1
+                placeholder="Current Password"
+                name="curentpassword"
+                formControlName="curentpassword"
+                [(ngModel)]="password"
+              />
+              <div
+                class="input-group-append-1"
+                (click)="changeType(password1, 1)"
+              >
+                <span class="input-group-text-1">
+                  <i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'">
+                  </i>
+                </span>
+              </div>
+              <div class="err" *ngIf="submitted && f.curentpassword.errors">
+                <div *ngIf="f.curentpassword.errors.required">
+                  Curent Password Is Required
+                </div>
+              </div>
+              <!--New Password-->
+              <input
+                type="password"
+                class="input"
+                #password2
+                placeholder="New Password"
+                name="newpassword"
+                formControlName="newpassword"
+              />
+              <div
+                class="input-group-append-2"
+                (click)="changeType(password2, 2)"
+              >
+                <span class="input-group-text-2">
+                  <i [ngClass]="toggle2 ? 'fas fa-eye' : 'fas fa-eye-slash'">
+                  </i>
+                </span>
+              </div>
+              <div class="err" *ngIf="submitted && f.newpassword.errors">
+                <div *ngIf="f.newpassword.errors.required">
+                  New Password Is Required
+                </div>
+                <div *ngIf="f.newpassword.errors.minlength">
+                  New Password At Least 8 Characters
+                </div>
+              </div>
+              <!--Confirm Password-->
+              <input
+                type="password"
+                class="input"
+                #password3
+                placeholder="Confirm Password"
+                name="confirmpassword"
+                formControlName="confirmpassword"
+              />
+              <div
+                class="input-group-append-3"
+                (click)="changeType(password3, 3)"
+              >
+                <span class="input-group-text-3">
+                  <i [ngClass]="toggle3 ? 'fas fa-eye' : 'fas fa-eye-slash'">
+                  </i>
+                </span>
+              </div>
+              <div class="err" *ngIf="submitted && f.confirmpassword.errors">
+                <div *ngIf="f.confirmpassword.errors.required">
+                  Confirm Password Is Required
+                </div>
+                <div *ngIf="f.confirmpassword.errors.MustMatch">
+                  Confirm Password Didn't Match
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </div>
