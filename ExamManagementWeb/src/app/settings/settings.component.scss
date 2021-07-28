@@ -1,13 +1,14 @@
 @import "../dashboard/dashboard.component.scss";
-.registration{
-  position: fixed;
-  width: 40%;
-  padding: 30px;
-  background: rgb(230, 227, 227);
-  border: 1px solid rgb(211,211,211);
-  top:50%;
+.registration {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  top: 260px;
   left: 50%;
-  transform: translate(-30%,-30%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background: white;
+  color: black;
 }
 
 h2.text{

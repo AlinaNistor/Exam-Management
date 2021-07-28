@@ -22,11 +22,10 @@ import { SettingsComponent } from './settings/settings.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ExamsComponent } from './exams/exams.component';
 import { AboutComponent } from './about/about.component';
-import { ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExamTileComponent } from './components/exam-tile/exam-tile.component';
 import { FindExamComponent } from './find-exam/find-exam.component';
 import { AddExamComponent } from './add-exam/add-exam.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +57,7 @@ import { AddExamComponent } from './add-exam/add-exam.component';
     MatDatepickerModule,
     MatBadgeModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

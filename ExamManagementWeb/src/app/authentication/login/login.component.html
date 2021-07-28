@@ -1,28 +1,47 @@
-<div class="container">
-  <div class="forms-container">
-    <div class="signin-signup">
+<div class="container-login">
+  <div class="forms-container-login">
+    <div class="signin-signup-login">
       <form action="#" class="sign-in-form">
         <h2 class="title">Sign in</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Username" />
+        <div class="input-field-login">
+          <i class="fas fa-envelope"></i>
+          <input type="text" placeholder="Email" />
         </div>
-        <div class="input-field">
+        <div class="input-field-login">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            #password1
+            class="col-md-9"
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+          <div
+            class="input-group-append-login"
+            (click)="changeType(password1, 1)"
+          >
+            <span class="input-group-text-login"
+              ><i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i
+            ></span>
+          </div>
         </div>
-        <input type="submit" value="Log in" class="btn solid" />
+        <input type="submit" value="Login" class="btn solid" />
       </form>
     </div>
   </div>
 </div>
 
-<div class="left-panel-img">
-  <img src="assets/img/undraw_Hello_re_3evm.svg" class="img" />
-</div>
-<div class="left-panel">
-  <h3>New here ?</h3>
-  <a routerLink="/authentication/register">
-  <button class="btn transparent" id="sign-up-btn">Sign up</button>
-  </a>
+<div class="panels-container-login">
+  <div class="panel-login left-panel-login">
+    <div class="content-login">
+      <h3>New here?</h3>
+      <p>alabala</p>
+      <a routerLink="/authentication/register">
+        <button class="btn transparent-login" id="sign-up-btn">Sign up</button>
+      </a>
+    </div>
+    <img src="assets/img/undraw_Hello_re_3evm.svg" class="image-login" />
+  </div>
 </div>

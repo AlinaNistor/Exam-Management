@@ -1,19 +1,39 @@
-<div class="container">
-  <div class="forms-container">
-    <div class="signin-signup">
+<div class="container-register">
+  <div class="forms-container-register">
+    <div class="signin-signup-register">
       <form action="#" class="sign-up-form">
         <h2 class="title">Sign up</h2>
-        <div class="input-field">
+        <div class="input-field-register">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Username" />
+          <input type="text" placeholder="Last Name" />
         </div>
-        <div class="input-field">
+        <div class="input-field-register">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="First Name" />
+        </div>
+        <div class="input-field-register">
           <i class="fas fa-envelope"></i>
           <input type="email" placeholder="Email" />
         </div>
-        <div class="input-field">
+        <div class="input-field-register">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            #password1
+            class="col-md-9"
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+          <div
+            class="input-group-append-register"
+            (click)="changeType(password1, 1)"
+          >
+            <span class="input-group-text-register"
+              ><i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i
+            ></span>
+          </div>
         </div>
         <input type="submit" class="btn" value="Sign up" />
       </form>
@@ -21,12 +41,20 @@
   </div>
 </div>
 
-<div class="right-panel-img">
-  <img src="assets/img/undraw_Shared_workspace_re_3gsu.svg" class="img" />
-</div>
-<div class="right-panel">
-  <h3>One of us?</h3>
-  <a routerLink="/authentication/login">
-  <button class="btn transparent" id="sign-up-btn">Log in</button>
-  </a>
+<div class="panels-container-register">
+  <div class="panel-register right-panel-register">
+    <div class="content-register">
+      <h3>One of us?</h3>
+      <p>portocala</p>
+      <a routerLink="/authentication/login">
+        <button class="btn transparent-register" id="sign-in-btn">
+          Sign in
+        </button>
+      </a>
+    </div>
+    <img
+      src="assets/img/undraw_Shared_workspace_re_3gsu.svg"
+      class="image-register"
+    />
+  </div>
 </div>
