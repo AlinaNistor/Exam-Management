@@ -1,4 +1,6 @@
-﻿using ExamManagement.Business.Exam.Models;
+﻿using CSharpFunctionalExtensions;
+using ExamManagement.Business.Exam.Models;
+using ExamManagement.Business.Exam.Models.Auth;
 using ExamManagement.Business.Exam.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +17,11 @@ namespace ExamManagement.WebApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IRegisterService _registerService;
+        private readonly IAuthService _authService;
 
-        public AuthController(IRegisterService registerService)
+        public AuthController(IAuthService authService)
         {
-            _registerService = registerService;
+            _authService = authService;
         }
         // GET: api/<AuthController>
         [HttpGet]
@@ -35,11 +37,23 @@ namespace ExamManagement.WebApi.Controllers
             return "value";
         }
 
+
+
         // POST api/<AuthController>
+        [HttpPost("login")]
+        public async Task<IActionResult> Authenticate([FromBody] LoginRequestModel modelRequest)
+        {
+            var (_, isFailure, value, error) = await _authService.Login(modelRequest);
+            if (isFailure)
+                return BadRequest(error);
+            return Ok(value);
+        }
+
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] UpRegisterModel model)
         {
+            /*
             var userExists = _registerService.Check(model.Email);
             if(userExists!=null)
             {
@@ -48,6 +62,12 @@ namespace ExamManagement.WebApi.Controllers
             var result = await _registerService.Register(model);
 
             return Created(result.Id.ToString(), null);
+            */
+
+            var (_, isFailure, value, error) = await _authService.Register(model);
+            if (isFailure)
+                return BadRequest(error);
+            return Created(value, null);
         }
 
         // PUT api/<AuthController>/5
