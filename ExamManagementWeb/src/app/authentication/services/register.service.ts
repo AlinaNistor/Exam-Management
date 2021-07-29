@@ -6,9 +6,9 @@ import { RegisterModel } from '../models/register.model';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class RegisterService {
   constructor(private readonly httpClient: HttpClient) {}
-  private url: string = 'https://localhoste:5000/authetication/register';
+  private url: string = 'https://localhost:5001/authetication/register';
 
   public register(data: RegisterModel): Observable<HttpResponse<any>> {
     return this.httpClient.post<HttpResponse<any>>(this.url, data, {

@@ -6,9 +6,9 @@ import { LoginModel } from '../models/login.model';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class LoginService {
   constructor(private readonly httpClient: HttpClient) {}
-  private url: string = 'https://localhoste:5000/authetication/login';
+  private url: string = 'https://localhost:5001/authetication/login';
 
   public login(data: LoginModel): Observable<HttpResponse<unknown>> {
     return this.httpClient.post(this.url, data, { observe: 'response' });

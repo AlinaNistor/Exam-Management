@@ -9,25 +9,14 @@
         </div>
         <div class="input-field-login">
           <i class="fas fa-lock"></i>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            #password1
-            class="col-md-9"
-            placeholder="Password"
-            [(ngModel)]="password"
-          />
-          <div
-            class="input-group-append-login"
-            (click)="changeType(password1, 1)"
-          >
-            <span class="input-group-text-login"
-              ><i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i
-            ></span>
+          <input type="password" name="password" id="password" #password1 class="col-md-9" placeholder="Password"
+            [(ngModel)]="password" />
+          <div class="input-group-append-login" (click)="changeType(password1, 1)">
+            <span class="input-group-text-login"><i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
           </div>
         </div>
-        <input type="submit" value="Login" class="btn solid" />
+        <input type="submit" value="Login" class="btn solid"  (click)="login()" />
+        <div id="error-list"></div>
       </form>
     </div>
   </div>
