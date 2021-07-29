@@ -20,6 +20,8 @@ using ExamManagement.Persistence.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ExamManagement.Business.Exam.Models.Auth;
 using Microsoft.IdentityModel.Tokens;
+using ExamManagement.Persistence.Exams;
+using ExamManagement.Business.Exam.Services.Exam;
 
 namespace ExamManagement.WebApi
 {
@@ -45,11 +47,18 @@ namespace ExamManagement.WebApi
             });
            
             services.AddSwaggerGen();
-            services.AddAutoMapper(config => { config.AddProfile<UsersMappingProfile>(); });
+
+            services.AddAutoMapper(config => {
+                config.AddProfile<UsersMappingProfile>();
+                config.AddProfile<ExamsMappingProfile>();
+            
+            });
             services
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IAuthService, AuthService>()
-                .AddScoped<IPasswordHasher, PasswordHasher>();
+                .AddScoped<IPasswordHasher, PasswordHasher>()
+                .AddScoped<IExamsRepository, ExamsRepository>()
+                .AddScoped<IExamService, ExamService>();
 
 
             services
