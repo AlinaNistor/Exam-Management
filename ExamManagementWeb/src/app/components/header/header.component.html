@@ -1,0 +1,73 @@
+<mat-toolbar>
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <a href="/about">Exam management</a>
+
+    <div class="row mr-2 ml-auto">
+      <div class="row m-0 align-items-center">
+
+        <div class="col">
+
+          <button mat-button [matMenuTriggerFor]="menu1" class="user mt-2 d-flex align-items-center">
+            <mat-icon matBadge="1" matBadgeColor="warn">notifications</mat-icon>
+            <span class="cdk-visually-hidden"> 15 </span>
+          </button>
+          <mat-menu #menu1="matMenu" class="notification-menu">
+
+            <ul>
+              <li>
+                <small class="text-muted">3 days ago</small>
+                <p>Some placeholder content in a paragraph.</p>
+              </li>
+
+              <li>
+                <small class="text-muted">3 days ago</small>
+                <p>Some placeholder content in a paragraph.</p>
+              </li>
+
+            </ul>
+
+          </mat-menu>
+        </div>
+
+        <div class="col">
+          <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
+            <img src="./assets/user.png" alt="" class="user-image mr-1 p-2" />
+            User Name
+            <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+
+            <!--
+              <form action="/settings">
+                <button mat-menu-item type="submit">
+                <mat-icon>settings</mat-icon>
+                Settings
+              </button>
+              </form>
+
+              <button mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>
+              Logout
+            </button>
+            -->
+
+            <a mat-menu-item href="/settings">
+              <mat-icon>settings</mat-icon>
+              Settings
+            </a>
+
+            <a mat-menu-item href="#">
+              <mat-icon>exit_to_app</mat-icon>
+              Logout
+            </a>
+
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

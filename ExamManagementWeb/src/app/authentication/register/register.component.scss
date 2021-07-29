@@ -1,3 +1,4 @@
+@import "src/styles.scss";
 form {
   display: flex;
   align-items: center;
@@ -14,11 +15,13 @@ form.sign-in-form {
   opacity: 0;
 }
 .title {
+  font-family: 'Lora', serif;
   font-size: 2.2rem;
+  font-weight: 600;
   color: #444;
   margin-bottom: 10px;
 }
-.input-field {
+.input-field-register {
   max-width: 380px;
   width: 100%;
   background-color: #f0f0f0;
@@ -26,18 +29,18 @@ form.sign-in-form {
   height: 55px;
   border-radius: 55px;
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 15% 70% 15%;
   padding: 0 0.4rem;
   position: relative;
 }
-.input-field i {
+.input-field-register i {
   text-align: center;
   line-height: 55px;
   color: #acacac;
   transition: 0.5s;
   font-size: 1.1rem;
 }
-.input-field input {
+.input-field-register input {
   background: none;
   outline: none;
   border: none;
@@ -46,7 +49,7 @@ form.sign-in-form {
   font-size: 1.1rem;
   color: #333;
 }
-.input-field input::placeholder {
+.input-field-register input::placeholder {
   color: #aaa;
   font-weight: 500;
 }
@@ -68,11 +71,11 @@ form.sign-in-form {
   background-color: #4d84e2;
 }
 
-.signin-signup {
+.signin-signup-register {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  left: 25%;
+  left: 20%;
   width: 50%;
   transition: 1s 0.7s ease-in-out;
   display: grid;
@@ -80,14 +83,14 @@ form.sign-in-form {
   z-index:5;
   overflow: hidden;
 }
-.container {
+.container-register {
   position: relative;
-  width: 100%;
+  width: 120%;
   background-color: #fff;
   min-height: 100vh;
   overflow: hidden;
 }
-.container::before{
+.container-register::before{
   content: '';
   position: absolute;
   width: 2000px;
@@ -95,10 +98,10 @@ form.sign-in-form {
   border-radius: 50%;
   background: linear-gradient(-45deg,#4481eb,#04befe);
   top: -10%;
-  left: 48%;
+  left: 40%;
   transform: translateY(-50%);
 }
-.forms-container {
+.forms-container-register {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -106,46 +109,49 @@ form.sign-in-form {
   left: 0;
 }
 
-.right-panel-img{
+.panels-container-register{
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0;
-  left:0;
+  top: 10px;
+  left: 750px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
 }
-.img{
-  position: absolute;
-  height: 850px;
-  width: 500px;
-  right: 45px;
+.panel-register{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
 }
-.right-panel{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top:0;
-  right:0;
+
+.right-panel-register{
+  padding: 3rem 12% 2rem 17%;
 }
-.right-panel h3{
+.panel .content-register{
+  color: #fff;
+
+}
+.panel-register h3{
   font-weight: 600;
   line-height: 1;
   font-size: 1.5rem;
-  position: absolute;
-  height: 850px;
-  width: 500px;
-  left: 1154px;
-  top: 70px;
+
 }
-.btn.transparent {
-  position: absolute;
-  width: 130px;
-  height: 41px;
-  left: 1140px;
-  top: 125px;
+.panel-register p{
+  font-size: 0.95rem;
+  padding: 0.7rem 0;
+}
+.btn.transparent-register{
   margin: 0;
   background: none;
   border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
 }
-
+.image-register{
+  width: 100%;
+}
