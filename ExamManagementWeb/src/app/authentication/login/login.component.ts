@@ -73,12 +73,9 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
     const data: LoginModel = this.formGroup.getRawValue();
-    console.log(this.formGroup.getRawValue());
-    console.log(data);
     this.subs.push(
       this.loginService.login(data).subscribe((data: HttpResponse<any>) => {
         if (data.status == 200) {
-          console.log('successsss');
           sessionStorage.setItem('userToken', data.body['token']);
           sessionStorage.setItem('identity', JSON.stringify(data.body));
           this.userService.username = data.body.username;

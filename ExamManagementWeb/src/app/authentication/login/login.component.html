@@ -1,11 +1,11 @@
 <div class="container-login">
   <div class="forms-container-login">
     <div class="signin-signup-login">
-      <form action="#" class="sign-in-form">
+      <form action="#" class="sign-in-form" [formGroup]="formGroup">
         <h2 class="title">Sign in</h2>
         <div class="input-field-login">
           <i class="fas fa-envelope"></i>
-          <input type="text" placeholder="Email" />
+          <input type="text" placeholder="Email" formControlName="email" />
         </div>
         <div class="input-field-login">
           <i class="fas fa-lock"></i>
@@ -17,6 +17,7 @@
             class="col-md-9"
             placeholder="Password"
             [(ngModel)]="password"
+            formControlName="password"
           />
           <div
             class="input-group-append-login"
@@ -27,7 +28,8 @@
             ></span>
           </div>
         </div>
-        <input type="submit" value="Sign In" class="btn solid" />
+        <input type="submit" value="Sign In" class="btn solid" (click)="login()"/>
+        <div id="errors"></div>
       </form>
     </div>
   </div>
