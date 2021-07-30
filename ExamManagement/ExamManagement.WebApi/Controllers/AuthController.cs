@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ExamManagement.WebApi.Controllers
 {
-    [Route("api/[auth]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {

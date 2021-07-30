@@ -22,6 +22,7 @@ using ExamManagement.Business.Exam.Models.Auth;
 using Microsoft.IdentityModel.Tokens;
 using ExamManagement.Persistence.Exams;
 using ExamManagement.Business.Exam.Services.Exam;
+using Microsoft.AspNetCore.Http;
 
 namespace ExamManagement.WebApi
 {
@@ -63,6 +64,8 @@ namespace ExamManagement.WebApi
 
             services
                 .AddMvc();
+            services.AddHttpContextAccessor();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

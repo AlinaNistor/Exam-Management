@@ -20,7 +20,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
         private readonly IHttpContextAccessor _accessor;
         private readonly IUserRepository _userRepository;
 
-        public ExamService(IExamsRepository examRepository, IMapper mapper, IHttpContextAccessor accessor, IUserRepository userRepository)
+        public ExamService(IExamsRepository examRepository, IMapper mapper, IHttpContextAccessor accessor,IUserRepository userRepository)
         {
             _examRepository = examRepository;
             _mapper = mapper;
@@ -36,12 +36,14 @@ namespace ExamManagement.Business.Exam.Services.Exam
         public async Task<Result<ExamModel>> Add(ExamModel model)
         {
             // Check authority
+            
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
             if (1 != user.Role)
             {
-                return Result.Failure<ExamModel>("Unauthorised");
+               return Result.Failure<ExamModel>("Unauthorised");
             }
+            
 
             //var examModel = await _examRepository.GetByName(model.Name);
            // if (examModel != null)
@@ -50,6 +52,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
            // }
 
             var examEntity = _mapper.Map<Entities.Exam>(model);
+            examEntity.DateAdded = DateTime.Now.ToString();
 
             await _examRepository.Add(examEntity);
             await _examRepository.SaveChanges();
