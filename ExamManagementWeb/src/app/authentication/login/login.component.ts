@@ -28,6 +28,14 @@ export class LoginComponent implements OnInit {
   private subs: Subscription[];
   public isSetRegistered: boolean = false;
 
+  changeType(input_field_password: { type: string }, num: number) {
+    if (input_field_password.type == 'password')
+      input_field_password.type = 'text';
+    else input_field_password.type = 'password';
+
+    if (num == 1) this.toggle1 = !this.toggle1;
+  }
+
   constructor(
     private readonly router: Router,
     private readonly loginService: LoginService,
@@ -63,14 +71,6 @@ export class LoginComponent implements OnInit {
     sessionStorage.clear();
   }
 
-  changeType(input_field_password: { type: string }, num: number) {
-    if (input_field_password.type == 'password')
-      input_field_password.type = 'text';
-    else input_field_password.type = 'password';
-
-    if (num == 1) this.toggle1 = !this.toggle1;
-  }
-
   public login(): void {
     const data: LoginModel = this.formGroup.getRawValue();
     console.log(this.formGroup.getRawValue());
@@ -78,27 +78,31 @@ export class LoginComponent implements OnInit {
     this.subs.push(
       this.loginService.login(data).subscribe((data: HttpResponse<any>) => {
         if (data.status == 200) {
-          console.log("successsss");
+          console.log('successsss');
           sessionStorage.setItem('userToken', data.body['token']);
           sessionStorage.setItem('identity', JSON.stringify(data.body));
           this.userService.username = data.body.username;
           this.router.navigate(['dashboard']);
         }
-      }, this.handleError)
+      }, this.handleErrors)
     );
   }
 
-  private handleError(responseError: HttpErrorResponse): void {
-    cleanErrorList();
+  private handleErrors(responseError: HttpErrorResponse): void {
+    cleanErrors();
     if (responseError.status == 400) {
-      console.log("error!!!!!!!!!!!");
+      var error = responseError.error;
+      var errorElement = document.createElement('div');
+      errorElement.className = 'alert alert-danger';
+      errorElement.innerHTML = error;
+      document.getElementById('errors')?.appendChild(errorElement);
     }
   }
 }
 
-function cleanErrorList(): void {
-  let errorList = document.getElementById('error-list')?.childNodes;
+function cleanErrors(): void {
+  let errorList = document.getElementById('errors')?.childNodes;
   errorList?.forEach((child) => {
-    document.getElementById('error-list')?.removeChild(child);
+    document.getElementById('errors')?.removeChild(child);
   });
 }

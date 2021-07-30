@@ -24,9 +24,17 @@ import { UserService } from '../../shared/services/user.service';
 export class RegisterComponent implements OnInit, OnDestroy {
   toggle1: boolean = false;
   password: string = '';
+
   public formGroup: FormGroup;
   private subs: Subscription[];
-  public isSetRegistered: boolean = false;
+
+  changeType(input_field_password: { type: string }, num: number) {
+    if (input_field_password.type == 'password')
+      input_field_password.type = 'text';
+    else input_field_password.type = 'password';
+
+    if (num == 1) this.toggle1 = !this.toggle1;
+  }
 
   constructor(
     private readonly router: Router,
@@ -49,10 +57,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
           Validators.maxLength(50),
         ],
       ],
-      role: [0, [Validators.required]],
       yearOfStudy: [1, [Validators.required]],
-      tax: [100, [Validators.required]],
     });
+
     this.subs = new Array<Subscription>();
     this.userService.username = '';
   }
@@ -67,40 +74,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     sessionStorage.clear();
   }
 
-  changeType(input_field_password: { type: string }, num: number) {
-    if (input_field_password.type == 'password')
-      input_field_password.type = 'text';
-    else input_field_password.type = 'password';
-
-    if (num == 1) this.toggle1 = !this.toggle1;
-  }
-
-  public setRegister(): void {
-    this.isSetRegistered = !this.isSetRegistered;
-    cleanErrorList();
-    if (!this.isSetRegistered) {
-      this.formGroup.markAsUntouched();
-      this.formGroup.setValue({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      });
-    }
-  }
-
-  public cleanRegister(): void {
-
-      this.formGroup.markAsUntouched();
-      this.formGroup.setValue({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      });
-
-  }
-
   public register(): void {
     const data: RegisterModel = this.formGroup.getRawValue();
     console.log(data);
@@ -112,38 +85,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
             console.log('registeer');
             this.router.navigate(['authentication/login']);
           }
-        }, this.handleError)
+        }, this.handleErrors)
     );
   }
 
-  public isInvalid(form: AbstractControl): boolean {
-    return form.invalid && form.touched && form.dirty;
-  }
-
-  private handleError(responseError: HttpErrorResponse): void {
-    cleanErrorList();
+  private handleErrors(responseError: HttpErrorResponse): void {
+    cleanErrors();
     if (responseError.status == 400) {
-      if ('errors' in responseError.error) {
-        let errorList: Array<string> = responseError.error.errors;
-        for (var error in errorList) {
-          var newError = document.createElement('div');
-          newError.className = 'error-item';
-          newError.innerHTML = errorList[error][0];
-          document.getElementById('error-list')?.appendChild(newError);
-        }
-      } else {
-        var newError = document.createElement('div');
-        newError.className = 'error-item';
-        newError.innerHTML = responseError.error.message;
-        document.getElementById('error-list')?.appendChild(newError);
-      }
+      var error = responseError.error;
+      var errorElement = document.createElement('div');
+      errorElement.className = 'alert alert-danger';
+      errorElement.innerHTML = error;
+      document.getElementById('errors')?.appendChild(errorElement);
     }
   }
 }
 
-function cleanErrorList(): void {
-  let errorList = document.getElementById('error-list')?.childNodes;
+function cleanErrors(): void {
+  let errorList = document.getElementById('errors')?.childNodes;
   errorList?.forEach((child) => {
-    document.getElementById('error-list')?.removeChild(child);
+    document.getElementById('errors')?.removeChild(child);
   });
 }
