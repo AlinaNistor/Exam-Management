@@ -1,0 +1,21 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">My exams</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-relative">
+
+      <div class="container">
+        <div class="row row-cols-3">
+
+          <app-exam-tile *ngFor="let exam of examsList"
+          title="{{ exam.title }}"
+          prof="{{ exam.prof }}"
+          date="{{exam.date }}"
+          description = "{{ exam.description }}"
+          link = "{{ exam.link }}"
+          ></app-exam-tile>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+@import "../dashboard/dashboard.component.scss";
+
+.registration {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  top: 260px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+
+  background: white;
+  color: black;
+}
+
+h2.text {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+.input {
+  display: inline-flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(211, 211, 211);
+  outline: none;
+}
+.input4 {
+  display: inline-flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(211, 211, 211);
+  outline: none;
+}
+.input-group-append-1 {
+  align-self: center;
+  display: inline;
+}
+
+.input-group-append-2 {
+  align-self: center;
+  display: inline;
+}
+
+.input-group-append-3 {
+  align-self: center;
+  display: inline;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 8px 30px;
+  background: $blue;
+  border-radius: 48px;
+  margin-top: 0;
+  color: white;
+  font-weight: 600;
+  transition: 0.4s ease;
+}
+.btn:hover {
+  background: $light-blue;
+}
+.err {
+  color: red;
+  font-size: 15px;
+}

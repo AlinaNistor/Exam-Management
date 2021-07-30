@@ -1,0 +1,103 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Add exam</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-relative">
+      <div class="container">
+        <div class="col-md-6 offset-md-3">
+          <section class="registration">
+            <h2 class="text">Add Exam</h2>
+            <div class="container">
+              <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+                <!--Title-->
+                <input
+                  type="text"
+                  class="input"
+                  #title1
+                  placeholder="Title"
+                  name="title"
+                  formControlName="title"
+                  [(ngModel)]="title"
+                />
+                <div
+                  class="input-group-append-1"
+                  (click)="changeType(title1, 1)"
+                >
+
+                </div>
+                <div class="err" *ngIf="submitted && f.title.errors">
+                  <div *ngIf="f.title.errors.required">Title Is Required</div>
+                </div>
+                <!--Professor-->
+                <input
+                  type="text"
+                  class="input"
+                  #professor2
+                  placeholder="Professor"
+                  name="professor"
+                  formControlName="professor"
+                />
+                <div
+                  class="input-group-append-2"
+                  (click)="changeType(professor2, 2)"
+                >
+
+                </div>
+                <div class="err" *ngIf="submitted && f.professor.errors">
+                  <div *ngIf="f.professor.errors.required">
+                    Professor Is Required
+                  </div>
+                </div>
+                <!--Date-->
+                <input
+                  type="date"
+                  class="input"
+                  #date3
+                  placeholder="Date"
+                  name="date"
+                  value="2021-01-10"
+                  formControlName="date"
+                />
+                <div
+                  class="input-group-append-3"
+                  (click)="changeType(date3, 3)"
+                >
+
+                </div>
+                <div class="err" *ngIf="submitted && f.date.errors">
+                  <div *ngIf="f.date.errors.required">Date Is Required</div>
+                </div>
+                <!--Description-->
+                <br />
+
+                <textarea
+                  rows="3"
+                  cols="20"
+                  class="input4"
+                  #description4
+                  placeholder="Description"
+                  name="description"
+                  formControlName="description"
+                >
+                </textarea>
+                <div
+                  class="input-group-append-2"
+                  (click)="changeType(description4, 4)"
+                >
+
+                </div>
+                <div class="err" *ngIf="submitted && f.description.errors">
+                  <div *ngIf="f.description.errors.required">
+                    Description Is Required
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn">Submit</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
