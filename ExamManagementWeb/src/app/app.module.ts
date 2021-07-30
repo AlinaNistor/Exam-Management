@@ -26,6 +26,9 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExamTileComponent } from './components/exam-tile/exam-tile.component';
 import { FindExamComponent } from './find-exam/find-exam.component';
 import { AddExamComponent } from './add-exam/add-exam.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +61,14 @@ import { AddExamComponent } from './add-exam/add-exam.component';
     MatBadgeModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => sessionStorage.getItem('userToken'),
+        allowedDomains: [],
+        disallowedRoutes: [],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

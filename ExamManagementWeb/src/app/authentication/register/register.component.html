@@ -17,25 +17,18 @@
         </div>
         <div class="input-field-register">
           <i class="fas fa-lock"></i>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            #password1
-            class="col-md-9"
-            placeholder="Password"
-            [(ngModel)]="password"
-          />
-          <div
-            class="input-group-append-register"
-            (click)="changeType(password1, 1)"
-          >
-            <span class="input-group-text-register"
-              ><i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i
-            ></span>
+          <input type="password" name="password" id="password" #password1 class="col-md-9" placeholder="Password"
+            [(ngModel)]="password" />
+          <div class="input-group-append-register" (click)="changeType(password1, 1)">
+            <span class="input-group-text-register"><i
+                [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
           </div>
         </div>
         <input type="submit" class="btn" value="Sign up" />
+
+        <div id="error-list"></div>
+        <div id="successful-register"></div>
+
       </form>
     </div>
   </div>
@@ -46,14 +39,11 @@
     <div class="content-register">
       <h3>One of us?</h3>
       <a routerLink="/authentication/login">
-        <button class="btn transparent-register" id="sign-in-btn">
+        <button class="btn transparent-register" id="sign-in-btn" (click)="register()">
           Sign in
         </button>
       </a>
     </div>
-    <img
-      src="assets/img/undraw_Shared_workspace_re_3gsu.svg"
-      class="image-register"
-    />
+    <img src="assets/img/undraw_Shared_workspace_re_3gsu.svg" class="image-register" />
   </div>
 </div>

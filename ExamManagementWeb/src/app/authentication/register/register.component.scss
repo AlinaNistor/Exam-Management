@@ -15,7 +15,7 @@ form.sign-in-form {
   opacity: 0;
 }
 .title {
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-size: 2.2rem;
   font-weight: 600;
   color: #444;
@@ -80,7 +80,7 @@ form.sign-in-form {
   transition: 1s 0.7s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
-  z-index:5;
+  z-index: 5;
   overflow: hidden;
 }
 .container-register {
@@ -90,13 +90,13 @@ form.sign-in-form {
   min-height: 100vh;
   overflow: hidden;
 }
-.container-register::before{
-  content: '';
+.container-register::before {
+  content: "";
   position: absolute;
   width: 2000px;
   height: 2000px;
   border-radius: 50%;
-  background: linear-gradient(-45deg,#4481eb,#04befe);
+  background: linear-gradient(-45deg, #4481eb, #04befe);
   top: -10%;
   left: 40%;
   transform: translateY(-50%);
@@ -109,16 +109,16 @@ form.sign-in-form {
   left: 0;
 }
 
-.panels-container-register{
+.panels-container-register {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 10px;
   left: 750px;
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
-.panel-register{
+.panel-register {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,24 +126,22 @@ form.sign-in-form {
   text-align: center;
 }
 
-.right-panel-register{
+.right-panel-register {
   padding: 3rem 12% 2rem 17%;
 }
-.panel .content-register{
+.panel .content-register {
   color: #fff;
-
 }
-.panel-register h3{
+.panel-register h3 {
   font-weight: 600;
   line-height: 1;
   font-size: 1.5rem;
-
 }
-.panel-register p{
+.panel-register p {
   font-size: 0.95rem;
   padding: 0.7rem 0;
 }
-.btn.transparent-register{
+.btn.transparent-register {
   margin: 0;
   background: none;
   border: 2px solid #fff;
@@ -152,6 +150,6 @@ form.sign-in-form {
   font-weight: 600;
   font-size: 0.8rem;
 }
-.image-register{
+.image-register {
   width: 100%;
 }

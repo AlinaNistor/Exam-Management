@@ -5,14 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
+
 export class AppComponent {
   title = 'Exam management';
 
+  isLogin = false;
   sideBarOpen = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
-
-  isLogin = true;
 }

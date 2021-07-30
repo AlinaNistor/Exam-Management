@@ -23,7 +23,7 @@ namespace ExamManagement.Business.Exam.Models
         public string Password { get; set; }
 
         public int YearOfStudy { get; set; }
-        public int Tax { get; set; }
+        
 
 
     }
