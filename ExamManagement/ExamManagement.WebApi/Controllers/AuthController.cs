@@ -23,21 +23,7 @@ namespace ExamManagement.WebApi.Controllers
         {
             _authService = authService;
         }
-        // GET: api/<AuthController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<AuthController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-
+        
 
         // POST api/<AuthController>
         [HttpPost("login")]
@@ -53,16 +39,6 @@ namespace ExamManagement.WebApi.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] UpRegisterModel model)
         {
-            /*
-            var userExists = _registerService.Check(model.Email);
-            if(userExists!=null)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
-            }
-            var result = await _registerService.Register(model);
-
-            return Created(result.Id.ToString(), null);
-            */
 
             var (_, isFailure, value, error) = await _authService.Register(model);
             if (isFailure)
@@ -70,16 +46,5 @@ namespace ExamManagement.WebApi.Controllers
             return Created(value, null);
         }
 
-        // PUT api/<AuthController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<AuthController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
