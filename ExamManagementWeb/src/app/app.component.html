@@ -1,4 +1,4 @@
-<mat-drawer-container *ngIf="isLogin; else authentication">
+<mat-drawer-container *ngIf="userService.username; else authentication">
 
   <mat-drawer mode="side" [opened]="sideBarOpen">
     <app-sidenav></app-sidenav>
