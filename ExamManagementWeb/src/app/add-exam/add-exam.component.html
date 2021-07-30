@@ -4,8 +4,9 @@
     <div class="page__content-data position-relative">
       <div class="container">
         <div class="col-md-6 offset-md-3">
+
           <section class="registration">
-            <h2 class="text">Add Exam</h2>
+          <h2 class="text">Add Exam</h2>
             <div class="container">
               <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
                 <!--Title-->
@@ -21,11 +22,9 @@
                 <div
                   class="input-group-append-1"
                   (click)="changeType(title1, 1)"
-                >
-
-                </div>
+                ></div>
                 <div class="err" *ngIf="submitted && f.title.errors">
-                  <div *ngIf="f.title.errors.required">Title Is Required</div>
+                  <div *ngIf="f.title.errors.required">Title Is Required *</div>
                 </div>
                 <!--Professor-->
                 <input
@@ -39,12 +38,10 @@
                 <div
                   class="input-group-append-2"
                   (click)="changeType(professor2, 2)"
-                >
-
-                </div>
+                ></div>
                 <div class="err" *ngIf="submitted && f.professor.errors">
                   <div *ngIf="f.professor.errors.required">
-                    Professor Is Required
+                    Professor Is Required *
                   </div>
                 </div>
                 <!--Date-->
@@ -60,15 +57,11 @@
                 <div
                   class="input-group-append-3"
                   (click)="changeType(date3, 3)"
-                >
-
-                </div>
+                ></div>
                 <div class="err" *ngIf="submitted && f.date.errors">
-                  <div *ngIf="f.date.errors.required">Date Is Required</div>
+                  <div *ngIf="f.date.errors.required">Date Is Required *</div>
                 </div>
                 <!--Description-->
-                <br />
-
                 <textarea
                   rows="3"
                   cols="20"
@@ -82,12 +75,10 @@
                 <div
                   class="input-group-append-2"
                   (click)="changeType(description4, 4)"
-                >
-
-                </div>
+                ></div>
                 <div class="err" *ngIf="submitted && f.description.errors">
                   <div *ngIf="f.description.errors.required">
-                    Description Is Required
+                    Description Is Required *
                   </div>
                 </div>
                 <div class="text-center">
