@@ -37,12 +37,13 @@ namespace ExamManagement.Business.Exam.Services.Exam
         {
             // Check authority
             
-            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+           /* var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
             if (1 != user.Role)
             {
                return Result.Failure<ExamModel>("Unauthorised");
             }
+           */
             
 
             //var examModel = await _examRepository.GetByName(model.Name);
