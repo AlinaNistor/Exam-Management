@@ -9,7 +9,7 @@ namespace Entities
     public class User:BaseEntity
     {
 
-        public User(string lastName, string firstName, string email, string password, int role, int yearOfStudy, int tax) : base()
+        public User(string lastName, string firstName, string email, string password, int role, int yearOfStudy) : base()
         {
             LastName = lastName;
             FirstName = firstName;
@@ -17,7 +17,7 @@ namespace Entities
             Password = password;
             Role = role;
             YearOfStudy = yearOfStudy;
-            Tax = tax;
+            
 
             Questions = new List<Question>();
             Attendances = new List<Attendance>();
@@ -29,7 +29,7 @@ namespace Entities
         public string Password { get; set; }
         public int Role { get; set; }
         public int YearOfStudy { get; set; }
-        public int Tax { get; set; }// should be a boolean
+    
 
 
         public virtual ICollection<Question> Questions { get; set; }

@@ -39,9 +39,7 @@ namespace DataAccess.Mappings
             modelBuilder.Entity<User>()
                       .Property(s => s.YearOfStudy)
                       .HasColumnName("YearOfStudy");
-            modelBuilder.Entity<User>()
-                  .Property(s => s.Tax)
-                  .HasColumnName("Tax");
+           
 
 
             modelBuilder.Entity<User>()
