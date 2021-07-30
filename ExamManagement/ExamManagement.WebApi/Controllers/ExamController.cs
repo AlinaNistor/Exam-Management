@@ -11,7 +11,7 @@ using CSharpFunctionalExtensions;
 
 namespace ExamManagement.WebApi.Controllers
 {
-    [Route("api/[exam]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ExamController : ControllerBase
     {

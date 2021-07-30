@@ -8,6 +8,10 @@ namespace Entities
 {
     public class Exam : BaseEntity
     {
+
+        public Exam() : base()
+        {
+        }
         public Exam(string faculty, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location, string dateAdded) : base()
         {
             Faculty = faculty;
@@ -25,7 +29,7 @@ namespace Entities
         }
         public string Faculty { get; set; }
         public int YearOfStudy { get; set; }
-        public int Mandatory { get; set; } // <- security flaw, to be addressed should be a boolean
+        public int Mandatory { get; set; } 
         public string Name { get; set; }
 
         public string HeadProfessor { get; set; }
