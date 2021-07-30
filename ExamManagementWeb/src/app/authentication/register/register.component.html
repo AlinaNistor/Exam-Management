@@ -1,30 +1,30 @@
 <div class="container-register">
   <div class="forms-container-register">
     <div class="signin-signup-register">
-      <form action="#" class="sign-up-form">
+      <form action="#" class="sign-up-form" [formGroup]="formGroup">
         <h2 class="title">Sign up</h2>
         <div class="input-field-register">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Last Name" />
+          <input type="text" placeholder="Last Name" formControlName="lastName" />
         </div>
         <div class="input-field-register">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="First Name" />
+          <input type="text" placeholder="First Name" formControlName="firstName" />
         </div>
         <div class="input-field-register">
           <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" />
+          <input type="email" placeholder="Email" formControlName="email" />
         </div>
         <div class="input-field-register">
           <i class="fas fa-lock"></i>
-          <input type="password" name="password" id="password" #password1 class="col-md-9" placeholder="Password"
+          <input type="password" name="password" id="password" #password1 class="col-md-9" placeholder="Password" formControlName="password"
             [(ngModel)]="password" />
           <div class="input-group-append-register" (click)="changeType(password1, 1)">
             <span class="input-group-text-register"><i
                 [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
           </div>
         </div>
-        <input type="submit" class="btn" value="Sign up" />
+        <input type="submit" class="btn" value="Sign up" (click)="register()" />
 
         <div id="error-list"></div>
         <div id="successful-register"></div>

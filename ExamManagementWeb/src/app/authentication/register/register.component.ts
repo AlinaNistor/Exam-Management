@@ -35,8 +35,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private readonly formBuilder: FormBuilder
   ) {
     this.formGroup = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.maxLength(150)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(100)],
@@ -49,6 +49,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
           Validators.maxLength(50),
         ],
       ],
+      role: [0, [Validators.required]],
+      yearOfStudy: [1, [Validators.required]],
+      tax: [100, [Validators.required]],
     });
     this.subs = new Array<Subscription>();
     this.userService.username = '';
@@ -86,17 +89,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
+  public cleanRegister(): void {
+
+      this.formGroup.markAsUntouched();
+      this.formGroup.setValue({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      });
+
+  }
+
   public register(): void {
     const data: RegisterModel = this.formGroup.getRawValue();
+    console.log(data);
     this.subs.push(
       this.registerService
         .register(data)
         .subscribe((data: HttpResponse<any>) => {
           if (data.status == 201) {
-            this.setRegister();
-            //document.getElementById('successful-register')!.innerHTML =
-            //  'Successful register user, please log in!';
-            console.log("registeer");
+            console.log('registeer');
+            this.router.navigate(['authentication/login']);
           }
         }, this.handleError)
     );

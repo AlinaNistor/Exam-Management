@@ -73,37 +73,25 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
     const data: LoginModel = this.formGroup.getRawValue();
+    console.log(this.formGroup.getRawValue());
+    console.log(data);
     this.subs.push(
-      this.loginService
-        .login(data)
-        .subscribe((data: HttpResponse<any>) => {
-          if (data.status == 200) {
-            sessionStorage.setItem('userToken', data.body['token']);
-            sessionStorage.setItem('identity', JSON.stringify(data.body));
-            this.userService.username = data.body.username;
-            this.router.navigate(['dashboard']);
-          }
-        }, this.handleError)
+      this.loginService.login(data).subscribe((data: HttpResponse<any>) => {
+        if (data.status == 200) {
+          console.log("successsss");
+          sessionStorage.setItem('userToken', data.body['token']);
+          sessionStorage.setItem('identity', JSON.stringify(data.body));
+          this.userService.username = data.body.username;
+          this.router.navigate(['dashboard']);
+        }
+      }, this.handleError)
     );
   }
 
   private handleError(responseError: HttpErrorResponse): void {
     cleanErrorList();
     if (responseError.status == 400) {
-      if ('errors' in responseError.error) {
-        let errorList: Array<string> = responseError.error.errors;
-        for (var error in errorList) {
-          var newError = document.createElement('div');
-          newError.className = 'error-item';
-          newError.innerHTML = errorList[error][0];
-          document.getElementById('error-list')?.appendChild(newError);
-        }
-      } else {
-        var newError = document.createElement('div');
-        newError.className = 'error-item';
-        newError.innerHTML = responseError.error.message;
-        document.getElementById('error-list')?.appendChild(newError);
-      }
+      console.log("error!!!!!!!!!!!");
     }
   }
 }

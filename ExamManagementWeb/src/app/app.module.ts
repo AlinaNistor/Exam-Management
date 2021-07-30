@@ -28,6 +28,7 @@ import { FindExamComponent } from './find-exam/find-exam.component';
 import { AddExamComponent } from './add-exam/add-exam.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     MatListModule,
     MatCardModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatBadgeModule,
     ReactiveFormsModule,
     FormsModule,
