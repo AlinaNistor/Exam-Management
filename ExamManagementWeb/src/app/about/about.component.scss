@@ -8,7 +8,9 @@ img {
   vertical-align: middle;
 }
 .container{
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 150px;
 }
 .col-8{
