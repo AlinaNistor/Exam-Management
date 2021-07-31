@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';

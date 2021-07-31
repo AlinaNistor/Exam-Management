@@ -29,6 +29,9 @@ import { AddExamComponent } from './add-exam/add-exam.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AuthGuard } from './shared/helpers/auth.guard';
+import { AdminGuard } from './shared/helpers/admin.guard';
+import { AuthorizationInterceptor } from './shared/helpers/authorization.interceptor';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,15 @@ import { MatNativeDateModule } from '@angular/material/core';
       },
     }),
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AdminGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
