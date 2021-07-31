@@ -83,13 +83,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public register(): void {
     const data: RegisterModel = this.formGroup.getRawValue();
-    console.log(data);
     this.subs.push(
       this.registerService
         .register(data)
         .subscribe((data: HttpResponse<any>) => {
           if (data.status == 201) {
-            console.log('registeer');
             this.router.navigate(['authentication/login']);
           }
         }, this.handleErrors)
