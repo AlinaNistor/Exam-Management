@@ -32,6 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AuthGuard } from './shared/helpers/auth.guard';
 import { AdminGuard } from './shared/helpers/admin.guard';
 import { AuthorizationInterceptor } from './shared/helpers/authorization.interceptor';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AuthorizationInterceptor } from './shared/helpers/authorization.interce
     MatDatepickerModule,
     MatNativeDateModule,
     MatBadgeModule,
+    MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

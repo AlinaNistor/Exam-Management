@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
   AbstractControl,
+
 } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -12,6 +13,8 @@ import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { FacultyModel } from 'src/app/shared/models/faculty.model';
+import { FacultyService } from 'src/app/shared/services/faculty.service';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +28,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public formGroup: FormGroup;
   private subs: Subscription[];
+  public faculties: FacultyModel[] = new Array<FacultyModel>();
 
   changeType(input_field_password: { type: string }, num: number) {
     if (input_field_password.type == 'password')
@@ -37,12 +41,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
     private readonly registerService: RegisterService,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly facultyService: FacultyService,
   ) {
     this.formGroup = this.formBuilder.group({
       lastName: ['', [Validators.required, Validators.maxLength(150)]],
       firstName: ['', [Validators.required, Validators.maxLength(50)]],
-      faculty: ['', [Validators.required]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(100)],
@@ -55,6 +59,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           Validators.maxLength(50),
         ],
       ],
+      facultyId: ['', [Validators.required]],
     });
 
     this.subs = new Array<Subscription>();
@@ -67,6 +72,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subs.push(
+      this.facultyService.getFaculties().subscribe((data: HttpResponse<any>) => {
+        this.faculties = data.body;
+        this.formGroup.get('facultyId')!.setValue(this.faculties[0].id);
+      })
+    );
     sessionStorage.clear();
   }
 
