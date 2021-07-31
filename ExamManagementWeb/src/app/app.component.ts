@@ -7,7 +7,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public username: string = '';
+  public user: string = '';
   title = 'Exam management';
   isLogin = true;
   sideBarOpen = true;
@@ -23,9 +23,9 @@ export class AppComponent implements OnInit {
 
   public getUserName(): void {
     if (sessionStorage.getItem('identity') != null)
-      this.userService.username = JSON.parse(
+      this.userService.email = JSON.parse(
         sessionStorage.getItem('identity')!.toString()
       )['email'];
-    this.username = this.userService.username;
+    this.user = this.userService.email;
   }
 }

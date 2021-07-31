@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.subs = new Array<Subscription>();
-    this.userService.username = '';
+    this.userService.email = '';
   }
 
   ngOnDestroy(): void {
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         if (data.status == 200) {
           sessionStorage.setItem('userToken', data.body['token']);
           sessionStorage.setItem('identity', JSON.stringify(data.body));
-          this.userService.username = data.body.username;
+          this.userService.email = data.body.email;
           this.router.navigate(['dashboard']);
         }
       }, this.handleErrors)

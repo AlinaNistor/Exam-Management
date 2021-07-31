@@ -12,7 +12,6 @@ import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +19,6 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./register.component.scss'],
   providers: [RegisterService],
 })
-
 export class RegisterComponent implements OnInit, OnDestroy {
   toggle1: boolean = false;
   password: string = '';
@@ -39,7 +37,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
     private readonly registerService: RegisterService,
-    private readonly userService: UserService,
     private readonly formBuilder: FormBuilder
   ) {
     this.formGroup = this.formBuilder.group({
@@ -61,7 +58,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
 
     this.subs = new Array<Subscription>();
-    this.userService.username = '';
   }
 
   ngOnDestroy(): void {
@@ -99,9 +95,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       document.getElementById('errors')?.appendChild(errorElement);
     }
   }
-
-
-
 }
 
 function cleanErrors(): void {
