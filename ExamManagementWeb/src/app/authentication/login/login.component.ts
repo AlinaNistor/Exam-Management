@@ -66,9 +66,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    sessionStorage.clear();
-  }
+  ngOnInit(): void {}
 
   public login(): void {
     const data: LoginModel = this.formGroup.getRawValue();

@@ -5,7 +5,6 @@ import {
   FormGroup,
   Validators,
   AbstractControl,
-
 } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -42,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly registerService: RegisterService,
     private readonly formBuilder: FormBuilder,
-    private readonly facultyService: FacultyService,
+    private readonly facultyService: FacultyService
   ) {
     this.formGroup = this.formBuilder.group({
       lastName: ['', [Validators.required, Validators.maxLength(150)]],
@@ -73,12 +72,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.push(
-      this.facultyService.getFaculties().subscribe((data: HttpResponse<any>) => {
-        this.faculties = data.body;
-        this.formGroup.get('facultyId')!.setValue(this.faculties[0].id);
-      })
+      this.facultyService
+        .getFaculties()
+        .subscribe((data: HttpResponse<any>) => {
+          this.faculties = data.body;
+          this.formGroup.get('facultyId')!.setValue(this.faculties[0].id);
+        })
     );
-    sessionStorage.clear();
   }
 
   public register(): void {
