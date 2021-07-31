@@ -14,8 +14,8 @@
           <button class="btn btn-primary">Find</button>
         </form>
         <div class="row row-cols-3">
-          <app-exam-tile *ngFor="let exam of examsList" title="{{ exam.title }}" prof="{{ exam.prof }}"
-            date="{{ exam.date }}" description="{{ exam.description }}" link="{{ exam.link }}"></app-exam-tile>
+          <app-exam-tile *ngFor="let exam of examsList" title="{{ exam.name }}" prof="{{ exam.headProfessor }}"
+            date="{{ exam.date }}" description="{{ exam.location }}" link="{{ 'exam/' + exam.id }}"></app-exam-tile>
         </div>
       </div>
     </div>
