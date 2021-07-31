@@ -21,6 +21,7 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./register.component.scss'],
   providers: [RegisterService],
 })
+
 export class RegisterComponent implements OnInit, OnDestroy {
   toggle1: boolean = false;
   password: string = '';
@@ -99,6 +100,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
       document.getElementById('errors')?.appendChild(errorElement);
     }
   }
+
+
+
 }
 
 function cleanErrors(): void {
