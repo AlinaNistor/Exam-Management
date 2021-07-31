@@ -20,7 +20,7 @@ namespace DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Modify connection string
-            string connectionString = @"Data source=DESKTOP-IEFR47L\SQLEXPRESS;Initial Catalog=ExamManager;Integrated Security=True";
+            string connectionString = @"Data source=localhost\SQLEXPRESS;Initial Catalog=ExamManager;Integrated Security=True";
 
             optionsBuilder.UseSqlServer(connectionString);
         }
