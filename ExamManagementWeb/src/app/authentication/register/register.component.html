@@ -5,15 +5,28 @@
         <h2 class="title">Sign up</h2>
         <div class="input-field-register">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Last Name" formControlName="lastName" />
+          <input
+            type="text"
+            placeholder="Last Name"
+            formControlName="lastName"
+          />
         </div>
         <div class="input-field-register">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="First Name" formControlName="firstName" />
+          <input
+            type="text"
+            placeholder="First Name"
+            formControlName="firstName"
+          />
         </div>
         <div class="input-field-register">
           <i class="fas fa-university"></i>
-          <input type="text" placeholder="Faculty" formControlName="faculty" />
+          <select name="faculty" id="faculty" placeholder="Faculty" formControlName="faculty">
+            <option value="">Please choose an option</option>
+            <option value="Gh. Asachi">AC</option>
+            <option value="Gh. Asachi">TCM</option>
+            <option value="AL.I.Cuza">Info</option>
+          </select>
         </div>
         <div class="input-field-register">
           <i class="fas fa-envelope"></i>
@@ -21,17 +34,28 @@
         </div>
         <div class="input-field-register">
           <i class="fas fa-lock"></i>
-          <input type="password" name="password" id="password" #password1 class="col-md-9" placeholder="Password" formControlName="password"
-            [(ngModel)]="password" />
-          <div class="input-group-append-register" (click)="changeType(password1, 1)">
-            <span class="input-group-text-register"><i
-                [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            #password1
+            class="col-md-9"
+            placeholder="Password"
+            formControlName="password"
+            [(ngModel)]="password"
+          />
+          <div
+            class="input-group-append-register"
+            (click)="changeType(password1, 1)"
+          >
+            <span class="input-group-text-register"
+              ><i [ngClass]="toggle1 ? 'fas fa-eye' : 'fas fa-eye-slash'"></i
+            ></span>
           </div>
         </div>
         <input type="submit" class="btn" value="Sign up" (click)="register()" />
 
         <div id="errors"></div>
-
       </form>
     </div>
   </div>
@@ -42,11 +66,18 @@
     <div class="content-register">
       <h3>One of us?</h3>
       <a routerLink="/authentication/login">
-        <button class="btn transparent-register" id="sign-in-btn" (click)="register()">
+        <button
+          class="btn transparent-register"
+          id="sign-in-btn"
+          (click)="register()"
+        >
           Sign in
         </button>
       </a>
     </div>
-    <img src="assets/img/undraw_Shared_workspace_re_3gsu.svg" class="image-register" />
+    <img
+      src="assets/img/undraw_Shared_workspace_re_3gsu.svg"
+      class="image-register"
+    />
   </div>
 </div>

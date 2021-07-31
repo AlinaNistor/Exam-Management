@@ -9,6 +9,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ExamsComponent } from './exams/exams.component';
 import { FindExamComponent } from './find-exam/find-exam.component';
 import { AddExamComponent } from './add-exam/add-exam.component';
+import { AuthGuard } from './shared/helpers/auth.guard';
+import { AdminGuard } from './shared/helpers/admin.guard';
 
 const routes: Routes = [
   {
@@ -38,26 +40,32 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'exams',
     component: ExamsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'about',
     component: AboutComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'find-exam',
     component: FindExamComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'add-exam',
     component: AddExamComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
 ];
 

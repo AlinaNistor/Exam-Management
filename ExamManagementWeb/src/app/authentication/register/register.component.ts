@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -21,6 +20,7 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./register.component.scss'],
   providers: [RegisterService],
 })
+
 export class RegisterComponent implements OnInit, OnDestroy {
   toggle1: boolean = false;
   password: string = '';
@@ -99,6 +99,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
       document.getElementById('errors')?.appendChild(errorElement);
     }
   }
+
+
+
 }
 
 function cleanErrors(): void {
