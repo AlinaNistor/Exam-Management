@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,14 @@ namespace Entities
     public class User:BaseEntity
     {
 
-        public User(string lastName, string firstName, string email, string password, int role, string faculty) : base()
+        public User(string lastName, string firstName, string email, string password, int role, Guid facultyId) : base()
         {
             LastName = lastName;
             FirstName = firstName;
             Email = email;
             Password = password;
             Role = role;
-            Faculty=faculty;
+            FacultyId=facultyId;
             
 
             Questions = new List<Question>();
@@ -28,13 +29,15 @@ namespace Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
-        public string Faculty { get; set; }
+        public Guid FacultyId { get; set; }
     
 
 
         public virtual ICollection<Question> Questions { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
+
+        public virtual Faculty Faculty { get; set; }
 
     }
 }

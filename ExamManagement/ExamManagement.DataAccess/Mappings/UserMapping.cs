@@ -36,11 +36,9 @@ namespace DataAccess.Mappings
                   .Property(s => s.Role)
                   .HasColumnName("Role")
                   .IsRequired();
-            modelBuilder.Entity<User>()
-                      .Property(s => s.Faculty)
-                      .HasColumnName("Faculty");
-           
+            
 
+           
 
             modelBuilder.Entity<User>()
                 .HasMany(s => s.Attendances)

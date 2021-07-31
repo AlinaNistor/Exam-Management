@@ -17,15 +17,7 @@ namespace DataAccess.Mappings
                            .HasColumnName("Id")
                            .IsRequired();
 
-            //modelBuilder.Entity<Question>()
-            //               .Property(s => s.ExamId)
-            //               .HasColumnName("ExamId")
-            //               ;
             
-            //modelBuilder.Entity<Question>()
-            //               .Property(s => s.UserId)
-            //               .HasColumnName("UserId")
-            //               .IsRequired();
 
             modelBuilder.Entity<Question>()
                            .Property(s => s.Text)
