@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.formGroup = this.formBuilder.group({
       lastName: ['', [Validators.required, Validators.maxLength(150)]],
       firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      faculty: ['', [Validators.required]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(100)],
@@ -57,7 +58,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
           Validators.maxLength(50),
         ],
       ],
-      yearOfStudy: [1, [Validators.required]],
     });
 
     this.subs = new Array<Subscription>();
