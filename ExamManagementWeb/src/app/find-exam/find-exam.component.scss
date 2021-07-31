@@ -13,9 +13,6 @@ app-exam-tile{
 
 form {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 15px;
   top: 15px;
   justify-content:flex-start;
 }
@@ -35,9 +32,9 @@ button {
 }
 
 #search{
-  width: 30%;
+  width: 40%;
 }
 
 #faculty{
-  width: 15%;
+  width: 30%;
 }
