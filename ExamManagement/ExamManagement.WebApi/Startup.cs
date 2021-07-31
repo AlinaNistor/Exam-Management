@@ -23,6 +23,8 @@ using Microsoft.IdentityModel.Tokens;
 using ExamManagement.Persistence.Exams;
 using ExamManagement.Business.Exam.Services.Exam;
 using Microsoft.AspNetCore.Http;
+using ExamManagement.Persistence.Faculty;
+using ExamManagement.Business.Exam.Services.Faculty;
 
 namespace ExamManagement.WebApi
 {
@@ -52,6 +54,7 @@ namespace ExamManagement.WebApi
             services.AddAutoMapper(config => {
                 config.AddProfile<UsersMappingProfile>();
                 config.AddProfile<ExamsMappingProfile>();
+                config.AddProfile<FacultyMappingProfile>();
             
             });
             services
@@ -59,7 +62,10 @@ namespace ExamManagement.WebApi
                 .AddScoped<IAuthService, AuthService>()
                 .AddScoped<IPasswordHasher, PasswordHasher>()
                 .AddScoped<IExamsRepository, ExamsRepository>()
-                .AddScoped<IExamService, ExamService>();
+                .AddScoped<IExamService, ExamService>()
+                .AddScoped<IFacultyRepository, FacultyRepository>()
+                .AddScoped<IFacultyService, FacultyService>();
+
 
 
             services

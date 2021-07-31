@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,10 @@ namespace ExamManagement.Persistence.Exams
         {
         }
 
-
+        public async Task<IList<Exam>> GetAll()
+           => await _context
+              .Exams
+              .ToListAsync();
 
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Entities;
 using DataAccess.Mappings;
+using ExamManagement.Persistence.Mappings;
 
 namespace DataAccess
 {
@@ -19,7 +20,7 @@ namespace DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Modify connection string
-            string connectionString = "Server=localhost\\SQLEXPRESS;Initial Catalog=ExamManager;Integrated Security=True";
+            string connectionString = @"Data source=DESKTOP-IEFR47L\SQLEXPRESS;Initial Catalog=ExamManager;Integrated Security=True";
 
             optionsBuilder.UseSqlServer(connectionString);
         }
@@ -32,6 +33,7 @@ namespace DataAccess
             ExamMapping.Map(modelBuilder);
             QuestionMapping.Map(modelBuilder);
             UserMapping.Map(modelBuilder);
+            FacultyMapping.Map(modelBuilder);
             
         }
 
@@ -42,6 +44,8 @@ namespace DataAccess
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> Questions { get; set; }
+
+        public DbSet<Faculty> Faculties { get; set; }
 
         //void Includes() {
         //    Users.Include<Exam>().ToListAsync();

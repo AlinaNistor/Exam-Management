@@ -17,5 +17,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
         public Task<Result<ExamModel>> Update(Guid examId);
 
         public Task<Result<ExamModel>> Delete(Guid examId);
+
+        public Task<Result<IList<ExamModel>>> GetAll();
     }
 }

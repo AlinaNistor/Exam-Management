@@ -12,12 +12,12 @@ namespace ExamManagement.Persistence.Mappings
     {
         internal static void Map(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Faculty>()
+            modelBuilder.Entity<Entities.Faculty>()
                             .Property(s => s.Id)
                             .HasColumnName("Id")
                             .IsRequired();
 
-            modelBuilder.Entity<Faculty>()
+            modelBuilder.Entity<Entities.Faculty>()
                 .HasMany(s => s.Students)
                 .WithOne(g => g.Faculty)
                 .HasForeignKey(s => s.FacultyId)

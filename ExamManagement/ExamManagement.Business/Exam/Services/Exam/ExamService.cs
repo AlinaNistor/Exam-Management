@@ -27,6 +27,8 @@ namespace ExamManagement.Business.Exam.Services.Exam
             _accessor = accessor;
             _userRepository = userRepository;
         }
+
+       
         public async Task<Result<ExamModel>> Get(Guid examId)
         {
             var exam = await _examRepository.GetById(examId);
@@ -69,6 +71,17 @@ namespace ExamManagement.Business.Exam.Services.Exam
         public Task<Result<ExamModel>> Delete(Guid examId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Result<IList<ExamModel>>> GetAll()
+        {
+            var examList = await _examRepository.GetAll();
+            var returnList = examList.OrderBy((a) => a.Name)
+                .Reverse()
+                .ToList()
+                .Select((exam) => new ExamModel(exam.Id, exam.Faculty,exam.YearOfStudy, exam.Mandatory,exam.Name,exam.HeadProfessor,exam.Date,exam.ExamType,exam.Location)).ToList();
+
+            return Result.Success<IList<ExamModel>>(returnList);
         }
     }
 }

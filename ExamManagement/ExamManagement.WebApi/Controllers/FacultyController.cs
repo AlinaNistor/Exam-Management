@@ -1,11 +1,11 @@
-﻿using ExamManagement.Business.Exam.Models.Exam;
-using ExamManagement.Business.Exam.Services.Exam;
+﻿using CSharpFunctionalExtensions;
+using ExamManagement.Business.Exam.Models.Faculty;
+using ExamManagement.Business.Exam.Services.Faculty;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CSharpFunctionalExtensions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,28 +13,28 @@ namespace ExamManagement.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExamController : ControllerBase
+    public class FacultyController : ControllerBase
     {
 
-        private readonly IExamService _examService;
+        private readonly IFacultyService _facultyService;
 
-        public ExamController(IExamService examService)
+        public FacultyController(IFacultyService facultyService)
         {
-            _examService = examService;
+            _facultyService = facultyService;
         }
-        // GET: api/<ExamController>
+        // GET: api/<FacultyController>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var (_, _, result, _) = await _examService.GetAll();
+            var (_, _, result, _) = await _facultyService.GetAll();
             return Ok(result);
         }
 
-        // GET api/<ExamController>/5
-        [HttpGet("{examId}")]
-        public async Task<IActionResult> Get([FromRoute] Guid examId)
+        // GET api/<FacultyController>/5
+        [HttpGet("{facultyId}")]
+        public async Task<IActionResult> Get([FromRoute] Guid facultyId)
         {
-            var (_, isFailure, result, error) = await _examService.Get(examId);
+            var (_, isFailure, result, error) = await _facultyService.Get(facultyId);
             if (isFailure)
             {
                 return BadRequest(error);
@@ -42,11 +42,11 @@ namespace ExamManagement.WebApi.Controllers
             return Ok(result);
         }
 
-        // POST api/<ExamController>
-        [HttpPost("")]
-        public async Task<IActionResult> Add([FromBody] ExamModel exam)
+        // POST api/<FacultyController>
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] FacultyModel faculty)
         {
-            var (_, isFailure, result, error) = await _examService.Add(exam);
+            var (_, isFailure, result, error) = await _facultyService.Add(faculty);
             if (isFailure)
             {
                 return BadRequest(error);
@@ -54,13 +54,13 @@ namespace ExamManagement.WebApi.Controllers
             return Created(result.Name.ToString(), result);
         }
 
-        // PUT api/<ExamController>/5
+        // PUT api/<FacultyController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ExamController>/5
+        // DELETE api/<FacultyController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

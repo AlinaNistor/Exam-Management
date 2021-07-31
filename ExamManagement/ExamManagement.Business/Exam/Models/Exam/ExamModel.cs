@@ -8,6 +8,20 @@ namespace ExamManagement.Business.Exam.Models.Exam
 {
     public sealed class ExamModel
     {
+        public ExamModel(Guid id, string faculty, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location)
+        {
+            Id = id;
+            Faculty = faculty;
+            YearOfStudy = yearOfStudy;
+            Mandatory = mandatory;
+            Name = name;
+            HeadProfessor = headProfessor;
+            Date = date;
+            ExamType = examType;
+            Location = location;
+
+        }
+        public Guid Id { get;  }
         public string Faculty { get; set; }
         public int YearOfStudy { get; set; }
         public int Mandatory { get; set; } 
