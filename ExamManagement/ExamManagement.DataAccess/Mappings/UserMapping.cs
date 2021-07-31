@@ -37,8 +37,8 @@ namespace DataAccess.Mappings
                   .HasColumnName("Role")
                   .IsRequired();
             modelBuilder.Entity<User>()
-                      .Property(s => s.YearOfStudy)
-                      .HasColumnName("YearOfStudy");
+                      .Property(s => s.Faculty)
+                      .HasColumnName("Faculty");
            
 
 

@@ -9,14 +9,14 @@ namespace Entities
     public class User:BaseEntity
     {
 
-        public User(string lastName, string firstName, string email, string password, int role, int yearOfStudy) : base()
+        public User(string lastName, string firstName, string email, string password, int role, string faculty) : base()
         {
             LastName = lastName;
             FirstName = firstName;
             Email = email;
             Password = password;
             Role = role;
-            YearOfStudy = yearOfStudy;
+            Faculty=faculty;
             
 
             Questions = new List<Question>();
@@ -28,7 +28,7 @@ namespace Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
-        public int YearOfStudy { get; set; }
+        public string Faculty { get; set; }
     
 
 

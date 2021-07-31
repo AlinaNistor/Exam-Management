@@ -22,7 +22,7 @@ namespace ExamManagement.Business.Exam.Models
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
-        public int YearOfStudy { get; set; }
+        public string Faculty { get; set; }
         
 
 

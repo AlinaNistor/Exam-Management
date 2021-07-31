@@ -64,7 +64,7 @@ namespace ExamManagement.Business.Exam.Services
                                     model.Email,
                                     _passwordHasher.CreateHash(model.Password),
                                     0,
-                                    model.YearOfStudy
+                                    model.Faculty
                                     );
 
             await _userRepository.Add(newUser);
