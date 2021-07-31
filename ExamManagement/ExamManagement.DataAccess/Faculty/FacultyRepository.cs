@@ -16,7 +16,7 @@ namespace ExamManagement.Persistence.Faculty
 
         public async Task<IList<Entities.Faculty>> GetAll()
            => await _context
-               .Faculties
+               .Faculty
                .ToListAsync();
     }
 }

@@ -45,7 +45,7 @@ namespace DataAccess
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> Questions { get; set; }
 
-        public DbSet<Faculty> Faculties { get; set; }
+        public DbSet<Faculty> Faculty { get; set; }
 
         //void Includes() {
         //    Users.Include<Exam>().ToListAsync();

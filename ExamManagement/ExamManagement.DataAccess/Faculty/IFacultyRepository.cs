@@ -9,6 +9,6 @@ namespace ExamManagement.Persistence.Faculty
     public interface IFacultyRepository:IExamRepository<Entities.Faculty>
     {
 
-        public Task<IList<Entities.Faculty>> GetAll();
+        Task<IList<Entities.Faculty>> GetAll();
     }
 }
