@@ -4,32 +4,21 @@
     <div class="page__content-data position-relative">
       <div class="container">
         <form id="form" role="search">
-          <input
-            type="search"
-            id="query"
-            name="q"
-            placeholder="Find Exam ..."
-            aria-label="Search through site content"
-          />
-          <select name="faculty" id="faculty" placeholder="Faculty">
-            <option value="">Search for ...</option>
+          <input type="search" id="search" class="form-control" placeholder="Find exams..." aria-label="Search">
+
+          <select name="faculty" id="faculty" placeholder="Faculty" class="form-select" >
+            <option selected>Search for ...</option>
             <option value="Title">Title</option>
             <option value="Teacher">Teacher</option>
             <option value="Date">Date</option>
           </select>
           <!--&nbsp; make space between search and button-->
           <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <button>Find</button>
+          <button class="btn btn-primary">Find</button>
         </form>
         <div class="row row-cols-3">
-          <app-exam-tile
-            *ngFor="let exam of examsList"
-            title="{{ exam.title }}"
-            prof="{{ exam.prof }}"
-            date="{{ exam.date }}"
-            description="{{ exam.description }}"
-            link="{{ exam.link }}"
-          ></app-exam-tile>
+          <app-exam-tile *ngFor="let exam of examsList" title="{{ exam.title }}" prof="{{ exam.prof }}"
+            date="{{ exam.date }}" description="{{ exam.description }}" link="{{ exam.link }}"></app-exam-tile>
         </div>
       </div>
     </div>

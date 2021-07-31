@@ -1,14 +1,12 @@
 @import "../dashboard/dashboard.component.scss";
-.container{
-  background-color: #4481eb;
-}
 
 app-exam-tile{
-  background-color: #04befe;
   position: relative;
-  margin: 10px;
-  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid $blue;
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }

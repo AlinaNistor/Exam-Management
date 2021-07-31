@@ -1,60 +1,43 @@
 @import "../dashboard/dashboard.component.scss";
-.container{
-  // Here you can change background color #ddd8d8 is that light gray color
-  background-color: white;
-  margin: 15px;
-}
+
 app-exam-tile{
-  background-color:white;
   position: relative;
-  margin: 20px;
-  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid $blue;
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
+
 form {
-  background-color: white;
-  width: 500px;
-  height: 44px;
-  border-radius: 5px;
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 15px;
   top: 15px;
-  justify-content: space-evenly;
-}
-select{
-  background: none;
-  outline: none;
-  border: none;
-  line-height: 1;
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: rgb(0, 0, 0);
-  width: 200px;
-}
-input {
-  all: unset;
-  top: 15px;
-  font: 16px system-ui;
-  color: rgb(0, 0, 0);
-  height: 100%;
-  width: 100%;
-  padding: 6px 10px;
-}
-::placeholder {
-  color: rgb(0, 0, 0);
-  font-size: 20px;
-  //opacity: 0.7;
-}
-button {
-  border-color: black;
-  cursor: pointer;
-  width: 100px;
-  border-radius: 40px;
-  font-size: small;
+  justify-content:flex-start;
 }
 
+select{
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+button {
+  cursor: pointer;
+  width: 100px;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#search{
+  width: 30%;
+}
+
+#faculty{
+  width: 15%;
+}
