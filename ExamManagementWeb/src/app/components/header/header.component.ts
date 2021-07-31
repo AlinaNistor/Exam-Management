@@ -16,4 +16,9 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+
+  public logout(): void {
+    sessionStorage.clear();
+    this.router.navigate(['authentication']);
+  }
 }
