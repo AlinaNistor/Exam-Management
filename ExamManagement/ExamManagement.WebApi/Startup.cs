@@ -25,6 +25,8 @@ using ExamManagement.Business.Exam.Services.Exam;
 using Microsoft.AspNetCore.Http;
 using ExamManagement.Persistence.Faculty;
 using ExamManagement.Business.Exam.Services.Faculty;
+using ExamManagement.Persistence.Repositories.Attendances;
+using ExamManagement.Business.Exam.Services.Attendance;
 
 namespace ExamManagement.WebApi
 {
@@ -55,6 +57,7 @@ namespace ExamManagement.WebApi
                 config.AddProfile<UsersMappingProfile>();
                 config.AddProfile<ExamsMappingProfile>();
                 config.AddProfile<FacultyMappingProfile>();
+                config.AddProfile<AttendancesMappingProfile>();
             
             });
             services
@@ -64,7 +67,9 @@ namespace ExamManagement.WebApi
                 .AddScoped<IExamsRepository, ExamsRepository>()
                 .AddScoped<IExamService, ExamService>()
                 .AddScoped<IFacultyRepository, FacultyRepository>()
-                .AddScoped<IFacultyService, FacultyService>();
+                .AddScoped<IFacultyService, FacultyService>()
+                .AddScoped<IAttendancesRepository, AttendanceRepository>()
+                .AddScoped<IAttendanceService, AttendanceService>();
 
 
 
