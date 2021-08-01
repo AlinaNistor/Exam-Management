@@ -11,6 +11,7 @@ import { FindExamComponent } from './find-exam/find-exam.component';
 import { AddExamComponent } from './add-exam/add-exam.component';
 import { AuthGuard } from './shared/helpers/auth.guard';
 import { AdminGuard } from './shared/helpers/admin.guard';
+import { ExamDetailsComponent } from './exams/exam-details/exam-details.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,11 @@ const routes: Routes = [
     path: 'add-exam',
     component: AddExamComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'details/:id',
+    pathMatch: 'full',
+    component: ExamDetailsComponent,
   },
 ];
 

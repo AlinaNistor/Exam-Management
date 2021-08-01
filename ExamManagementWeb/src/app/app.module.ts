@@ -33,6 +33,7 @@ import { AuthGuard } from './shared/helpers/auth.guard';
 import { AdminGuard } from './shared/helpers/admin.guard';
 import { AuthorizationInterceptor } from './shared/helpers/authorization.interceptor';
 import {MatSelectModule} from '@angular/material/select';
+import { ExamDetailsComponent } from './exams/exam-details/exam-details.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {MatSelectModule} from '@angular/material/select';
     ExamTileComponent,
     FindExamComponent,
     AddExamComponent,
+    ExamDetailsComponent,
   ],
   imports: [
     BrowserModule,
