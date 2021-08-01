@@ -79,7 +79,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
             var returnList = examList.OrderBy((a) => a.Name)
                 .Reverse()
                 .ToList()
-                .Select((exam) => new ExamModel(exam.Id, exam.Faculty,exam.YearOfStudy, exam.Mandatory,exam.Name,exam.HeadProfessor,exam.Date,exam.ExamType,exam.Location)).ToList();
+                .Select((exam) => new ExamModel(exam.Id, exam.FacultyId,exam.YearOfStudy, exam.Mandatory,exam.Name,exam.HeadProfessor,exam.Date,exam.ExamType,exam.Location)).ToList();
 
             return Result.Success<IList<ExamModel>>(returnList);
         }
