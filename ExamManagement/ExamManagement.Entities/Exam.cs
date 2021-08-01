@@ -25,7 +25,7 @@ namespace Entities
             DateAdded = dateAdded;
             Details = details;
 
-            Questions = new List<Question>();
+            Comments= new List<Comment>();
             Attendances = new List<Attendance>();
         }
         public Guid FacultyId { get; set; }
@@ -43,7 +43,7 @@ namespace Entities
 
         public string Details { get; set; }
 
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
         public virtual Faculty Faculty { get; set; }
     }
