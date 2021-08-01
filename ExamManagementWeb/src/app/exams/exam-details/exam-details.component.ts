@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ExamService } from 'src/app/shared/services/exam.service';
+import { ExamModel } from 'src/app/shared/models/exam.model';
 
 @Component({
   selector: 'app-exam-details',
@@ -14,7 +15,7 @@ import { ExamService } from 'src/app/shared/services/exam.service';
 export class ExamDetailsComponent implements OnInit, OnDestroy {
   private userId: string = '';
   private routeSub: Subscription = new Subscription();
-  private exam: any;
+  public exam!: ExamModel;
 
   constructor(
     private formBuilder: FormBuilder,

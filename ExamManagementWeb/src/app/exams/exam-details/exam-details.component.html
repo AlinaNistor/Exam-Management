@@ -1,8 +1,40 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Exam title</div>
+  <div class="d-flex page__box p-3 mt-2">{{exam.name}}</div>
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-relative">
       <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <dl>
+
+              <dt>Faculty:</dt>
+              <dd>{{exam.facultyId}}</dd>
+
+              <dt>Profesor:</dt>
+              <dd>{{exam.headProfessor}}</dd>
+
+              <dt>Year of study: <span id = "yearOfStudy"> {{exam.yearOfStudy}} </span> </dt>
+              <dd></dd>
+
+              <dt>Date of exam:</dt>
+              <dd>{{exam.date}}</dd>
+
+              <dt>Location:</dt>
+              <dd>{{exam.location}}</dd>
+
+              <dt>Is mandatory?</dt>
+
+              <dt>Exam type:</dt>
+
+            </dl>
+          </div>
+
+          <div class="col-4">
+            <img src="./assets/questions.svg" alt="Questions" />
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>

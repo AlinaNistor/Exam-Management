@@ -1,6 +1,6 @@
 export type ExamModel ={
   id:string;
-  faculty:string;
+  facultyId:string;
   yearOfStudy: number,
   mandatory: number,
   name: string,

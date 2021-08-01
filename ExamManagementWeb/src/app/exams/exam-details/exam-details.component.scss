@@ -1,1 +1,26 @@
 @import "../../dashboard/dashboard.component.scss";
+
+#yearOfStudy {
+  padding-left: 5px;
+  font-weight: normal;
+}
+
+img {
+  width: 100%;
+}
+
+.col-4 {
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.col-8 {
+  font-size: 20px;
+  text-align: center;
+}
