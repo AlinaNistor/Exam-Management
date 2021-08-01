@@ -18,11 +18,6 @@ namespace DataAccess.Mappings
                             .IsRequired();
 
             modelBuilder.Entity<Exam>()
-                            .Property(s => s.Faculty)
-                            .HasColumnName("Faculty")
-                            .IsRequired();
-
-            modelBuilder.Entity<Exam>()
                             .Property(s => s.YearOfStudy)
                             .HasColumnName("YearOfStudy")
                             .IsRequired();
@@ -43,6 +38,10 @@ namespace DataAccess.Mappings
                             .HasColumnName("HeadProfessor")
                             .HasMaxLength(30)
                             .IsRequired();
+            modelBuilder.Entity<Exam>()
+                            .Property(s => s.Details)
+                            .HasColumnName("Details")
+                            .HasMaxLength(500);
 
             modelBuilder.Entity<Exam>()
                             .Property(s => s.Date)
@@ -58,6 +57,7 @@ namespace DataAccess.Mappings
                             .Property(s => s.Location)
                             .HasColumnName("Location")
                             .HasMaxLength(50);
+           
             modelBuilder.Entity<Exam>()
                 .Property(s => s.DateAdded)
                 .HasColumnName("DateAdded")
@@ -76,6 +76,12 @@ namespace DataAccess.Mappings
                .WithOne(g => g.Exam)
                .HasForeignKey(s => s.ExamId)
                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Exam>()
+                .HasOne(s => s.Faculty)
+                .WithMany(g => g.Exams)
+                .HasForeignKey(s => s.FacultyId)
+                   .OnDelete(DeleteBehavior.Restrict);
 
 
         }

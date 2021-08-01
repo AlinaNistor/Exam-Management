@@ -21,10 +21,10 @@ namespace ExamManagement.Persistence.Mappings
                 .HasMany(s => s.Students)
                 .WithOne(g => g.Faculty)
                 .HasForeignKey(s => s.FacultyId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Restrict);
 
+            
 
-                
 
         }
     }

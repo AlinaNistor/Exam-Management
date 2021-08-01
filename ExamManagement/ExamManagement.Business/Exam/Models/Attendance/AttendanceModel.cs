@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace ExamManagement.Business.Exam.Models.Attendance
 {
-    public class Attendance : BaseEntity
+   public class AttendanceModel
     {
-        public Attendance():base()
-        {
 
-        }
-        public Attendance(string date, string dateAdded, Guid studentId, Guid? examId):base()
+        public AttendanceModel(string date,  Guid studentId, Guid? examId, Guid id)
         {
             Date = date;
-            DateAdded = dateAdded;
+            
             ExamId = examId;
             StudentId = studentId;
+            Id = id;
         }
+
+        public Guid Id { get; }
         public Guid? ExamId
         {
             get; set;
@@ -29,12 +29,8 @@ namespace Entities
         }
         public string Date
         {
-            get;set;
+            get; set;
         }
-        public string DateAdded { get; set; }
-
-        public virtual User Student { get; set; }
-        public virtual Exam Exam { get; set; }
-
+        
     }
 }

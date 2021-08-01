@@ -15,6 +15,8 @@ namespace DataAccess
         public ExamContext(DbContextOptions<ExamContext> options)
         {
             Database.Migrate();
+
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
