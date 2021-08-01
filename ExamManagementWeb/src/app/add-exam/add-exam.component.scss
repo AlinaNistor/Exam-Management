@@ -11,9 +11,6 @@ form{
   background-color: #f0f0f0;
   color: blue;
 }
-.container .input4{
-  background-color: #f0f0f0;
-}
 h2.text {
   justify-content: space-around;
   text-align: center;
@@ -34,14 +31,6 @@ h2.text {
   border-radius: 48px;
 }
 
-.input4 {
-  overflow-y: scroll;
-  width: 100%;
-  height: 100px;
-  border: 1px solid rgb(211, 211, 211);
-  border-radius: 10px;
-
-}
 
 textarea {
   resize: none;
@@ -84,7 +73,47 @@ textarea {
   color: red;
   font-size: small;
   opacity: 1;
-
 }
 
+@media (max-width: 570px){
+  .container input{
+    font-size: medium;
+  }
 
+  .container .input{
+    background-color: #f0f0f0;
+    color: blue;
+  }
+
+  .btn {
+    padding: 8px 30px;
+    background: $blue;
+    border-radius: 48px;
+    margin-top: 15px;
+    color: white;
+    font-weight: 400;
+    transition: 0.4s ease;
+  }
+
+  .btn:hover {
+    background: $light-blue;
+  }
+
+  .err{
+    color: red;
+    font-size: 12px;
+    opacity: 1;
+  }
+
+  .select{
+    font-weight: 400;
+  }
+
+  h2.text {
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+}
