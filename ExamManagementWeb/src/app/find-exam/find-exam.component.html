@@ -5,7 +5,7 @@
       <div class="container">
         <form id="form" role="search">
           <input type="search" id="search" class="form-control" placeholder="Find exams..." aria-label="Search">
-          <select name="faculty" id="faculty" placeholder="Faculty" class="form-select" >
+          <select name="faculty" id="faculty" placeholder="Faculty" class="form-select">
             <option selected>Search for ...</option>
             <option value="Title">Title</option>
             <option value="Teacher">Teacher</option>
@@ -15,7 +15,7 @@
         </form>
         <div class="row row-cols-3">
           <app-exam-tile *ngFor="let exam of examsList" title="{{ exam.name }}" prof="{{ exam.headProfessor }}"
-            date="{{ exam.date }}" description="{{ exam.location }}" link="{{ 'exam/' + exam.id }}"></app-exam-tile>
+            date="{{ exam.date }}" description="{{ exam.location }}" link="{{ 'details/' + exam.id }}"></app-exam-tile>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { ExamModel } from '../shared/models/exam.model';
 import { ExamService } from '../shared/services/exam.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-exam',
@@ -13,7 +14,8 @@ export class FindExamComponent implements OnInit, OnDestroy {
   public examsList: ExamModel[] = new Array<ExamModel>();
   private subs: Subscription[];
 
-  constructor(private readonly examService: ExamService) {
+  constructor(private readonly examService: ExamService,
+    private router: Router) {
     this.subs = new Array<Subscription>();
   }
 
@@ -29,5 +31,9 @@ export class FindExamComponent implements OnInit, OnDestroy {
     this.subs.forEach((sub) => {
       sub.unsubscribe();
     });
+  }
+
+  goToExam(id: string): void {
+    this.router.navigate([`/exam/details/${id}`]);
   }
 }
