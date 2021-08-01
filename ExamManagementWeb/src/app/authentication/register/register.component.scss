@@ -246,25 +246,19 @@ form.sign-in-form {
 @media (max-width: 570px) {
 
   .panels-container-register{
-    grid-template-columns: 1fr;
-    width: 430px;
+    width: 336px;
+    margin-top: 0;
   }
   .signin-signup-register{
     width: 75%;
     left: 50%;
-    top: 90%;
+    top: 85%;
     transform: translate(-50%,-100%);
     font-size: 0.4rem;
   }
   .panel-register{
+    justify-content: flex-start;
     flex-direction: column;
-    margin-top: 70px;
-  }
-  .panel-register .content-register {
-    padding: 0.1rem 1rem;
-  }
-  .container-register {
-    padding: 0.5rem;
   }
   .container-register::before {
     bottom: 5%;
@@ -300,6 +294,18 @@ form.sign-in-form {
     font-weight: 600;
     color: #000;
     margin-bottom: 10px;
+  }
+  .input-field-register {
+    max-width: 380px;
+    width: 250px;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    padding: 0 0.4rem;
+    position: relative;
   }
 }
 

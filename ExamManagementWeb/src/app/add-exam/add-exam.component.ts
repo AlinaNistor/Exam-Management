@@ -21,6 +21,8 @@ export class AddExamComponent implements OnInit {
   toggle2: boolean = false;
   toggle3: boolean = false;
   toggle4: boolean = false;
+  toggle5: boolean = false;
+  toggle6: boolean = false;
   title: string = '';
   formGroup: FormGroup;
   submitted: boolean = false;
@@ -34,7 +36,9 @@ export class AddExamComponent implements OnInit {
       title: new FormControl(null, [Validators.required]),
       professor: new FormControl(null, [Validators.required]),
       date: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
+      location: new FormControl(null, [Validators.required]),
+      faculty: new FormControl(null, [Validators.required]),
+      year: new FormControl(null, [Validators.required])
     });
 
     this.subs = new Array<Subscription>();
@@ -60,6 +64,8 @@ export class AddExamComponent implements OnInit {
     if (num == 2) this.toggle2 = !this.toggle2;
     if (num == 3) this.toggle3 = !this.toggle3;
     if (num == 4) this.toggle4 = !this.toggle4;
+    if (num == 5) this.toggle5 = !this.toggle5;
+    if (num == 6) this.toggle6 = !this.toggle6;
   }
 
   ngOnInit(): void {
