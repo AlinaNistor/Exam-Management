@@ -10,3 +10,8 @@ app-exam-tile{
   margin-top: 1%;
   margin-bottom: 1%;
 }
+@media (max-width: 570px){
+  .d-flex{
+    font-size: 25px;
+  }
+}
