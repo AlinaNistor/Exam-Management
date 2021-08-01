@@ -14,10 +14,12 @@ namespace Entities
             Name = name;
 
             Students = new List<User>();
+            Exams = new List<Exam>();
         }
 
         public string Name { get; set; }
        
         public virtual ICollection<User> Students { get; set; }
+        public virtual ICollection<Exam> Exams { get; set; }
     }
 }

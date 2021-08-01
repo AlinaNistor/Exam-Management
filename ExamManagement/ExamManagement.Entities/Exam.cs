@@ -12,9 +12,9 @@ namespace Entities
         public Exam() : base()
         {
         }
-        public Exam(string faculty, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location, string dateAdded) : base()
+        public Exam(Guid facultyId, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location, string dateAdded,string details) : base()
         {
-            Faculty = faculty;
+            FacultyId = facultyId;
             YearOfStudy = yearOfStudy;
             Mandatory = mandatory;
             Name = name;
@@ -23,11 +23,12 @@ namespace Entities
             ExamType = examType;
             Location = location;
             DateAdded = dateAdded;
+            Details = details;
 
             Questions = new List<Question>();
             Attendances = new List<Attendance>();
         }
-        public string Faculty { get; set; }
+        public Guid FacultyId { get; set; }
         public int YearOfStudy { get; set; }
         public int Mandatory { get; set; } 
         public string Name { get; set; }
@@ -40,8 +41,10 @@ namespace Entities
 
         public string DateAdded { get; set; }
 
+        public string Details { get; set; }
+
         public virtual ICollection<Question> Questions { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
-
+        public virtual Faculty Faculty { get; set; }
     }
 }
