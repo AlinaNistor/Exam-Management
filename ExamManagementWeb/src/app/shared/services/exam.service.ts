@@ -19,4 +19,10 @@ export class ExamService {
   public getUserExams(userId: string): Observable<HttpResponse<unknown>> {
     throw 'TODO';
   }
+
+  public getExam(id: string): Observable<HttpResponse<unknown>> {
+    return this.httpClient.get<HttpResponse<unknown>>(this.url + '/' + id, {
+      observe: 'response',
+    });
+  }
 }
