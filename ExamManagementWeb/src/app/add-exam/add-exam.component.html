@@ -6,85 +6,89 @@
         <div class="col-md-6 offset-md-3">
 
           <section class="registration">
-          <h2 class="text">Add Exam</h2>
+            <h2 class="text">Add Exam</h2>
             <div class="container">
-              <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+              <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
                 <!--Title-->
-                <input
-                  type="text"
-                  class="input"
-                  #title1
-                  placeholder="Title"
-                  name="title"
-                  formControlName="title"
-                  [(ngModel)]="title"
-                />
-                <div
-                  class="input-group-append-1"
-                  (click)="changeType(title1, 1)"
-                ></div>
+                <input type="text" class="input" #title1 placeholder="Name" name="title" formControlName="name"
+                  [(ngModel)]="title" />
+                <div class="input-group-append-1" (click)="changeType(title1, 1)"></div>
                 <div class="err" *ngIf="submitted && f.title.errors">
                   <div *ngIf="f.title.errors.required">Title Is Required *</div>
                 </div>
                 <!--Professor-->
-                <input
-                  type="text"
-                  class="input"
-                  #professor2
-                  placeholder="Professor"
-                  name="professor"
-                  formControlName="professor"
-                />
-                <div
-                  class="input-group-append-2"
-                  (click)="changeType(professor2, 2)"
-                ></div>
+                <input type="text" class="input" #professor2 placeholder="Professor" name="professor"
+                  formControlName="headProfessor" />
+                <div class="input-group-append-2" (click)="changeType(professor2, 2)"></div>
                 <div class="err" *ngIf="submitted && f.professor.errors">
                   <div *ngIf="f.professor.errors.required">
                     Professor Is Required *
                   </div>
                 </div>
                 <!--Date-->
-                <input
-                  type="date"
-                  class="input"
-                  #date3
-                  placeholder="Date"
-                  name="date"
-                  value="2021-01-10"
-                  formControlName="date"
-                />
-                <div
-                  class="input-group-append-3"
-                  (click)="changeType(date3, 3)"
-                ></div>
+                <input type="date" class="input" #date3 placeholder="Date" name="date" value="2021-01-10"
+                  formControlName="date" />
+                <div class="input-group-append-3" (click)="changeType(date3, 3)"></div>
                 <div class="err" *ngIf="submitted && f.date.errors">
                   <div *ngIf="f.date.errors.required">Date Is Required *</div>
                 </div>
+
+
+                <!--Location-->
+
+                <input type="text" class="input" #professor2 placeholder="Location" name="location"
+                  formControlName="location" />
+                <div class="input-group-append-2" (click)="changeType(professor2, 2)"></div>
+                <div class="err" *ngIf="submitted && f.professor.errors">
+                  <div *ngIf="f.professor.errors.required">
+                    Location Is Required *
+                  </div>
+                </div>
+
                 <!--Description-->
-                <textarea
-                  rows="3"
-                  cols="20"
-                  class="input4"
-                  #description4
-                  placeholder="Description"
-                  name="description"
-                  formControlName="description"
-                >
-                </textarea>
-                <div
-                  class="input-group-append-2"
-                  (click)="changeType(description4, 4)"
-                ></div>
+                <div class="input-field-register">
+                  <select name="faculty" id="faculty" placeholder="Faculty" formControlName="facultyId">
+                    <option *ngFor="let faculty of faculties" [value]="faculty.id">{{
+                      faculty.name
+                      }}
+                    </option>
+                  </select>
+                </div>
+
                 <div class="err" *ngIf="submitted && f.description.errors">
                   <div *ngIf="f.description.errors.required">
                     Description Is Required *
                   </div>
                 </div>
+
+                <select class="form-select" size="2">
+                  <option value="0" selected>Mandatory</option>
+                  <option value="1">Not Mandatory</option>
+                </select>
+
+                <select class="form-select" size="3">
+                  <option value="0" selected>Essay exams</option>
+                  <option value="1">Oral exam</option>
+                  <option value="2">Practical exam</option>
+                </select>
+
+                <label>Year of study: </label>
+                <select class="form-select">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+
                 <div class="text-center">
                   <button type="submit" class="btn">Submit</button>
                 </div>
+
               </form>
+
+
             </div>
           </section>
         </div>

@@ -65,7 +65,7 @@ const routes: Routes = [
   {
     path: 'add-exam',
     component: AddExamComponent,
-    canActivate: [AuthGuard, AdminGuard],
+    canActivate: [AuthGuard],
   },
 ];
 
