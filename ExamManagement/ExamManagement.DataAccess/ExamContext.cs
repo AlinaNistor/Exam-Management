@@ -17,7 +17,7 @@ namespace DataAccess
             Database.Migrate();
 
             Database.BeginTransaction();
-            Database.ExecuteSqlRaw("INSERT into Faculty (Id,Name) values ('58369ae7-b517-4c5a-96a3-6b098e2f8581','Arhitectură G.M. Cantacuzino' ");
+            Database.ExecuteSqlRaw("INSERT into Faculty (Id,Name) values ('58369ae7-b517-4c5a-96a3-6b098e2f8581','Arhitectură G.M. Cantacuzino') ");
             Database.CommitTransaction();
         }
 
