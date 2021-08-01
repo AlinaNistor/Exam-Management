@@ -99,7 +99,7 @@ namespace ExamManagement.Business.Exam.Services
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 
-            return new LoginResponseModel(user.FirstName, user.LastName, user.Email, new JwtSecurityTokenHandler().WriteToken(token));
+            return new LoginResponseModel(user.FirstName, user.LastName, user.Email, new JwtSecurityTokenHandler().WriteToken(token),user.Id);
         }
         /*
         public async Task<RegisterModel> Check(string email)
