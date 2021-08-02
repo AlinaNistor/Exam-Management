@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
 using ExamManagement.Business.Exam.Models.Comment;
+using ExamManagement.Persistence;
 using ExamManagement.Persistence.Auth;
+using ExamManagement.Persistence.Exams;
 using ExamManagement.Persistence.Repositories.Comments;
 using System;
 using System.Collections.Generic;
@@ -16,16 +18,21 @@ namespace ExamManagement.Business.Exam.Services.Comment
 
         private readonly ICommentRepository _commentRepository;
         private readonly IMapper _mapper;
-        private readonly IUserRepository _userRepository;
+        private readonly IExamsRepository _examRepository;
 
-        public CommentService(ICommentRepository commentRepository, IMapper mapper, IUserRepository userRepository)
+        public CommentService(ICommentRepository commentRepository, IMapper mapper, IExamsRepository examRepository)
         {
             _commentRepository = commentRepository;
             _mapper = mapper;
-            _userRepository = userRepository;
+            _examRepository = examRepository;
         }
         public async Task<Result<CommentModel>> Add(CommentModel model)
         {
+            var exam = await _examRepository.GetById(model.ExamId);
+            if (exam.AcceptsCommentaries == 1)
+            {
+                return Result.Failure<CommentModel>("Exam is not accepting comments !");
+            }
             var commentEntity = _mapper.Map<Entities.Comment>(model);
             commentEntity.DateAdded = DateTime.Now.ToString();
 
@@ -48,6 +55,7 @@ namespace ExamManagement.Business.Exam.Services.Comment
 
         public async Task<Result<IList<CommentModel>>> GetByExamId(Guid examId)
         {
+           
             var commentList = await _commentRepository.GetByExamId(examId);
             var returnList = commentList.OrderBy((a) => a.ParentId)
                 .Reverse()
