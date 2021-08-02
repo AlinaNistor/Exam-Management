@@ -19,6 +19,8 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription = new Subscription();
   public exam!: ExamModel;
   public faculty!: FacultyModel;
+  public isMandatory!: string;
+  public examType!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,9 +46,10 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
               this.faculty = faculties.body.find((c:FacultyModel) => c.id == this.exam.facultyId).name;
             });
 
+            this.isMandatory = this.examService.getIsMandatory(this.exam.mandatory);
+            this.examType = this.examService.getExamType(this.exam.examType);
         });
     });
-
     //this.userId = jwt_decode(sessionStorage.getItem('userToken')!).userId;
   }
 }

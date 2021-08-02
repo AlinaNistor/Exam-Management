@@ -7,7 +7,8 @@ export type ExamModel ={
   headProfessor: string,
   date: string,
   examType: number,
-  location: string
+  location: string,
+  details: string
 };
 
 export * from "./exam.model";

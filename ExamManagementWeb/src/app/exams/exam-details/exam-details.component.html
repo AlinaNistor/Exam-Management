@@ -5,37 +5,58 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <dl>
 
-              <dt>Faculty:</dt>
-              <dd>{{faculty}}</dd>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <tbody>
+                  <tr>
+                    <th>Faculty:</th>
+                    <td>{{faculty}}</td>
+                  </tr>
 
-              <dt>Profesor:</dt>
-              <dd>{{exam.headProfessor}}</dd>
+                  <tr>
+                    <th>Profesor:</th>
+                    <td>{{exam.headProfessor}}</td>
+                  </tr>
 
-              <dt>Year of study: <span id = "yearOfStudy"> {{exam.yearOfStudy}} </span> </dt>
-              <dd></dd>
+                  <tr>
+                    <th>Year of study: </th>
+                    <td>{{exam.yearOfStudy}}</td>
+                  </tr>
 
-              <dt>Date of exam:</dt>
-              <dd>{{exam.date}}</dd>
+                  <tr>
+                    <th>Date of exam:</th>
+                    <td>{{exam.date}}</td>
+                  </tr>
 
-              <dt>Location:</dt>
-              <dd>{{exam.location}}</dd>
+                  <tr>
+                    <th>Description:</th>
+                    <td>{{exam.details}}</td>
+                  </tr>
 
-              <dt>Is mandatory?</dt>
-              <dd></dd>
+                  <tr>
+                    <th>Location:</th>
+                    <td>{{exam.location}}</td>
+                  </tr>
 
-              <dt>Exam type:</dt>
-              <dd></dd>
+                  <tr>
+                    <th>Is mandatory?</th>
+                    <td>{{isMandatory}}</td>
+                  </tr>
 
-              <dt>Description:</dt>
-              <dd></dd>
+                  <tr>
+                    <th>Exam type:</th>
+                    <td>{{examType}}</td>
+                  </tr>
 
-            </dl>
+                </tbody>
+              </table>
+            </div>
+
           </div>
 
           <div class="col">
-            <img class="img-fluid" src="./assets/exam.svg" alt="Questions" />
+            <img class="img-fluid" src="./assets/exam.svg" alt="Exam" />
           </div>
 
         </div>

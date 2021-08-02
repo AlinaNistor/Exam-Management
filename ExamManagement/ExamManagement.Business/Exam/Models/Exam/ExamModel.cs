@@ -8,7 +8,7 @@ namespace ExamManagement.Business.Exam.Models.Exam
 {
     public sealed class ExamModel
     {
-        public ExamModel(Guid id, Guid facultyId, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location)
+        public ExamModel(Guid id, Guid facultyId, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location, string details)
         {
             Id = id;
             FacultyId = facultyId;
@@ -19,8 +19,9 @@ namespace ExamManagement.Business.Exam.Models.Exam
             Date = date;
             ExamType = examType;
             Location = location;
+            Details = details;
 
-        }
+    }
         public Guid Id { get;  }
         public Guid FacultyId { get; set; }
         public int YearOfStudy { get; set; }
@@ -33,7 +34,9 @@ namespace ExamManagement.Business.Exam.Models.Exam
         public int ExamType { get; set; }    //restanta,normal,restanta1,restanta2 etc
         public string Location { get; set; }    //fizic,online
 
-       // public string DateAdded { get; set; }
+        public string Details { get; set; }
+
+        // public string DateAdded { get; set; }
 
     }
 }
