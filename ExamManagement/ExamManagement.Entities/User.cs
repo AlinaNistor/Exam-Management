@@ -20,9 +20,9 @@ namespace Entities
             FacultyId=facultyId;
             
 
-            Questions = new List<Question>();
+            Comments = new List<Comment>();
             Attendances = new List<Attendance>();
-            Answers = new List<Answer>();
+            
         }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -33,8 +33,8 @@ namespace Entities
     
 
 
-        public virtual ICollection<Question> Questions { get; set; }
-        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        
         public virtual ICollection<Attendance> Attendances { get; set; }
 
         public virtual Faculty Faculty { get; set; }

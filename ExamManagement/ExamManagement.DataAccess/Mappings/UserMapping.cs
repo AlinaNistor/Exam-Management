@@ -47,16 +47,12 @@ namespace DataAccess.Mappings
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>()
-                .HasMany(s => s.Questions)
+                .HasMany(s => s.Comments)
                 .WithOne(g => g.User)
                 .HasForeignKey(s => s.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<User>()
-                .HasMany(s => s.Answers)
-                .WithOne(g => g.User)
-                .HasForeignKey(s => s.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+            
     }
     }
 }

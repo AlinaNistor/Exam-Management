@@ -66,10 +66,10 @@ namespace DataAccess.Mappings
 
 
             modelBuilder.Entity<Exam>()
-                .HasMany(s => s.Questions)
+                .HasMany(s => s.Comments)
                 .WithOne(g => g.Exam)
                 .HasForeignKey(s => s.ExamId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Exam>()
                .HasMany(s => s.Attendances)
