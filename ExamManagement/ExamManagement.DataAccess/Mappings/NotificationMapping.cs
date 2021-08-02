@@ -17,6 +17,8 @@ namespace ExamManagement.Persistence.Mappings
                                         .Property(s => s.Id)
                                         .HasColumnName("Id")
                                         .IsRequired();
+
+            
             modelBuilder.Entity<Notification>()
                 .Property(s => s.NotifyNoOfDaysPrior)
                 .HasColumnName("NotifyNoOfDaysPrior");
@@ -27,10 +29,11 @@ namespace ExamManagement.Persistence.Mappings
                 .HasMaxLength(50)
                 .IsRequired();
 
-            modelBuilder.Entity<Exam>()
-                .HasOne(s => s.Notification)
-                .WithOne(g => g.Exam)
-                .HasForeignKey("ExamId");
-           }
+            modelBuilder.Entity<Notification>()
+                .HasOne(s => s.Exam)
+                .WithOne(b=>b.Notification)
+                .HasForeignKey<Notification>(b => b.ExamId);
+            
+        }
     }
 }

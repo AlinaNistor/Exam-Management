@@ -20,8 +20,6 @@ namespace Entities
             NotifyNoOfDaysPrior = notifyNoOfDaysPrior;
 
         }
-
-
         public Guid ExamId { get; set; }
         public virtual Exam Exam { get; set; }
         public string DateAdded { get; set; }
