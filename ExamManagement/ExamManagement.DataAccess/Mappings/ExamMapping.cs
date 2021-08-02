@@ -57,7 +57,11 @@ namespace DataAccess.Mappings
                             .Property(s => s.Location)
                             .HasColumnName("Location")
                             .HasMaxLength(50);
-           
+            modelBuilder.Entity<Exam>()
+                            .Property(s => s.AcceptsCommentaries)
+                            .HasColumnName("AcceptsCommentaries")
+                            .IsRequired();
+
             modelBuilder.Entity<Exam>()
                 .Property(s => s.DateAdded)
                 .HasColumnName("DateAdded")
