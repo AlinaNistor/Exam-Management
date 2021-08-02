@@ -32,4 +32,31 @@ export class ExamService {
       observe: 'response',
     });
   }
+
+  public getExamType(examType: number): string {
+    switch (examType) {
+      case 0: {
+        return 'Essay exam';
+      }
+      case 1: {
+        return 'Oral exam';
+      }
+      case 2: {
+        return 'Practical exam';
+      }
+    }
+    return 'error';
+  }
+
+  public getIsMandatory(examType: number): string {
+    switch (examType) {
+      case 0: {
+        return 'No';
+      }
+      case 1: {
+        return 'Yes';
+      }
+    }
+    return 'error';
+  }
 }
