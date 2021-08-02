@@ -97,7 +97,7 @@ export class AddExamComponent implements OnInit {
 
   public addExam() {
     const examModel: ExamModel = this.formGroup.getRawValue();
-    console.log(examModel);
+
     this.subs.push(
       this.examService.post(examModel).subscribe(
         (res: HttpResponse<any>) => {

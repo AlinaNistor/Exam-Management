@@ -3,7 +3,6 @@ export type AttendanceModel = {
   examId: string;
   studentId: string;
   date: string;
-  dateAdded: string;
 };
 
 export * from './attendance.model';
