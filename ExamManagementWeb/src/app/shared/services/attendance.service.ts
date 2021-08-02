@@ -24,4 +24,11 @@ export class AttendanceService {
       observe: 'response',
     });
   }
+
+  public delete(id: string)
+  : Observable<HttpResponse<unknown>> {
+    return this.httpClient.delete<HttpResponse<unknown>>(this.url + "/" + id, {
+      observe: 'response',
+    });
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpResponse, HttpClient } from '@angular/common/http';
-import jwt_decode from 'jwt-decode';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ExamService } from 'src/app/shared/services/exam.service';
@@ -29,6 +28,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
   public faculty!: FacultyModel;
   public isMandatory!: string;
   public examType!: string;
+  public attendanceId: string = '';
   formGroup: FormGroup;
 
   constructor(
@@ -36,14 +36,13 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private examService: ExamService,
     private facultyService: FacultyService,
-    private attendanceService:AttendanceService
+    private attendanceService: AttendanceService
   ) {
     this.userId = JSON.parse(sessionStorage.getItem('identity')!)['id'];
 
     this.formGroup = this.formBuilder.group({
       examId: ['', Validators.required],
       studentId: [this.userId, Validators.required],
-      date: [new Date(), Validators.required],
     });
   }
 
@@ -52,43 +51,85 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.examService
         .getExam(params['id'])
         .subscribe((data: HttpResponse<any>) => {
           this.exam = data.body;
-
           this.formGroup.get('examId')?.patchValue(this.exam.id);
 
           this.facultyService
             .getFaculties()
             .subscribe((faculties: HttpResponse<any>) => {
-              this.faculty = faculties.body.find((c:FacultyModel) => c.id == this.exam.facultyId).name;
+              this.faculty = faculties.body.find(
+                (c: FacultyModel) => c.id == this.exam.facultyId
+              ).name;
             });
 
-            this.isMandatory = this.examService.getIsMandatory(this.exam.mandatory);
-            this.examType = this.examService.getExamType(this.exam.examType);
+          this.isMandatory = this.examService.getIsMandatory(
+            this.exam.mandatory
+          );
+          this.examType = this.examService.getExamType(this.exam.examType);
+        });
+        this.getAttendanceId();
+    });
+  }
+
+  public attendToExam() {
+    const attendanceModel: AttendanceModel = this.formGroup.getRawValue();
+    this.attendanceService.postAttendance(attendanceModel).subscribe(
+      (res: HttpResponse<any>) => {
+        console.log(res.statusText);
+        if (res.status == 201) {
+          alert('Attendance saved!');
+          window.location.reload();
+        }
+      },
+      () => {
+        alert('Error! Try Again!');
+      }
+    );
+  }
+
+  public getAttendanceId(){
+    this.routeSub = this.activatedRoute.params.subscribe((params) => {
+      this.attendanceService
+        .getAllAttendance()
+        .subscribe((data: HttpResponse<any>) => {
+          let attendance: AttendanceModel = data.body.find(
+            (c: AttendanceModel) =>
+              c.examId == this.exam?.id && c.studentId == this.userId
+          );
+          this.attendanceId = attendance?.id;
         });
     });
   }
 
-  public attendToExam(){
-    const attendanceModel: AttendanceModel = this.formGroup.getRawValue();
-      this.attendanceService.postAttendance(attendanceModel).subscribe(
-        (res: HttpResponse<any>) => {
-          console.log(res.statusText);
-          if (res.status == 201) {
-            alert('Attendance saved!');
-            window.location.reload();
-          }
-        },
-        () => {
-          alert('Error! Try Again!');
-        }
-      )
-  }
+  public deleteAttendance() {
+    this.routeSub = this.activatedRoute.params.subscribe((params) => {
+      this.attendanceService
+        .getAllAttendance()
+        .subscribe((data: HttpResponse<any>) => {
+          let attendanceList = data.body.filter(
+            (c: AttendanceModel) =>
+              c.examId == this.exam.id && c.studentId == this.userId
+          );
 
-  public deleteAttendance(){
-
+          attendanceList.forEach((c: AttendanceModel) =>
+            this.attendanceService
+              .delete(c.id)
+              .subscribe((data: HttpResponse<any>) => {
+                if (data.status == 200) {
+                  alert('Attendance deleted!');
+                  window.location.reload();
+                } else {
+                  alert('Error!');
+                  window.location.reload();
+                }
+              })
+          );
+        });
+    });
   }
 }
