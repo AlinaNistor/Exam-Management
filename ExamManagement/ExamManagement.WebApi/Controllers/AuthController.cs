@@ -46,5 +46,15 @@ namespace ExamManagement.WebApi.Controllers
             return Created(value, null);
         }
 
+        [HttpPut("change-password")]
+       
+        public async Task<IActionResult> ChangePassword([FromBody] NewPasswordRequestModel modelRequest)
+        {
+            var (_, isFailure, value, error) = await _authService.ChangePassword(modelRequest);
+            if (isFailure)
+                return BadRequest(error);
+            return Ok(new { value });
+        }
+
     }
 }

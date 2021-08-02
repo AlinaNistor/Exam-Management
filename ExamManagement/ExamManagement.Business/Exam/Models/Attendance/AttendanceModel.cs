@@ -9,13 +9,14 @@ namespace ExamManagement.Business.Exam.Models.Attendance
    public class AttendanceModel
     {
 
-        public AttendanceModel(string date,  Guid studentId, Guid? examId, Guid id)
+        public AttendanceModel(string date,  Guid studentId, Guid? examId, Guid id, string dateAdded)
         {
             Date = date;
             
             ExamId = examId;
             StudentId = studentId;
             Id = id;
+            DateAdded = dateAdded;
         }
 
         public Guid Id { get; }
@@ -31,6 +32,8 @@ namespace ExamManagement.Business.Exam.Models.Attendance
         {
             get; set;
         }
-        
+
+        public string DateAdded { get;}
+
     }
 }
