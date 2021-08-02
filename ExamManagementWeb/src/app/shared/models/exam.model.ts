@@ -10,3 +10,4 @@ export type ExamModel ={
   location: string
 };
 
+export * from "./exam.model";
