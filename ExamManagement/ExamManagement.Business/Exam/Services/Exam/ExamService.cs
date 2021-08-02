@@ -55,7 +55,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
            // }
 
             var examEntity = _mapper.Map<Entities.Exam>(model);
-            examEntity.DateAdded = DateTime.Now.ToShortDateString();
+            examEntity.DateAdded = DateTime.Now.ToString();
 
             await _examRepository.Add(examEntity);
             await _examRepository.SaveChanges();

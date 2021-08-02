@@ -34,7 +34,7 @@ namespace ExamManagement.Business.Exam.Services.Comment
                 return Result.Failure<CommentModel>("Exam is not accepting comments !");
             }
             var commentEntity = _mapper.Map<Entities.Comment>(model);
-            commentEntity.DateAdded = DateTime.Now.ToShortDateString();
+            commentEntity.DateAdded = DateTime.Now.ToString();
 
             await _commentRepository.Add(commentEntity);
             await _commentRepository.SaveChanges();
