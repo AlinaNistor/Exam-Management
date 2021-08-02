@@ -30,7 +30,7 @@ namespace ExamManagement.Business.Exam.Models.Attendance
         }
        
 
-        public string DateAdded { get;}
+        public string DateAdded { get; }
 
     }
 }

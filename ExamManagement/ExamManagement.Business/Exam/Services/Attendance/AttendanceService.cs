@@ -28,7 +28,7 @@ namespace ExamManagement.Business.Exam.Services.Attendance
         public async Task<Result<AttendanceModel>> Add(AttendanceModel model)
         {
             var attendanceEntity = _mapper.Map<Entities.Attendance>(model);
-            attendanceEntity.DateAdded = DateTime.Now.ToString();
+            attendanceEntity.DateAdded = DateTime.Now.ToShortDateString();
 
             await _attendancesRepository.Add(attendanceEntity);
             await _attendancesRepository.SaveChanges();
