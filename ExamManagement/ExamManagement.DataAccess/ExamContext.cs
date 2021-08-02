@@ -36,6 +36,7 @@ namespace DataAccess
             
             UserMapping.Map(modelBuilder);
             FacultyMapping.Map(modelBuilder);
+            NotificationMapping.Map(modelBuilder);
             
         }
 

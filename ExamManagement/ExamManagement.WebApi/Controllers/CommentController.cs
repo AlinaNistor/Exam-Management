@@ -53,16 +53,18 @@ namespace ExamManagement.WebApi.Controllers
             return Created(result.Id.ToString(), result);
         }
 
-        // PUT api/<CommentController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+
 
         // DELETE api/<CommentController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{commentId}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid commentId)
         {
+            var (_, isFailure, result, error) = await _commentSErvice.Delete(commentId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+            return Ok(result);
         }
     }
 }

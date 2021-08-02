@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ExamContext))]
-    partial class ExamContextModelSnapshot : ModelSnapshot
+    [Migration("20210802195903_ChangedLengthForDateAdded")]
+    partial class ChangedLengthForDateAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,9 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DateAdded")
                         .IsRequired()
@@ -167,29 +172,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Faculty");
                 });
 
-            modelBuilder.Entity("Entities.Notification", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DateAdded")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ExamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("NotifyNoOfDaysPrior")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExamId")
-                        .IsUnique();
-
-                    b.ToTable("Notification");
-                });
-
             modelBuilder.Entity("Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -288,17 +270,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Faculty");
                 });
 
-            modelBuilder.Entity("Entities.Notification", b =>
-                {
-                    b.HasOne("Entities.Exam", "Exam")
-                        .WithOne("Notification")
-                        .HasForeignKey("Entities.Notification", "ExamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exam");
-                });
-
             modelBuilder.Entity("Entities.User", b =>
                 {
                     b.HasOne("Entities.Faculty", "Faculty")
@@ -315,8 +286,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Attendances");
 
                     b.Navigation("Comments");
-
-                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("Entities.Faculty", b =>

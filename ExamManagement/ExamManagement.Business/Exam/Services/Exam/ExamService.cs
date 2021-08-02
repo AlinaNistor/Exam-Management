@@ -68,9 +68,18 @@ namespace ExamManagement.Business.Exam.Services.Exam
             throw new NotImplementedException();
         }
 
-        public Task<Result<ExamModel>> Delete(Guid examId)
+        public async Task<Result<ExamModel>> Delete(Guid examId)
         {
-            throw new NotImplementedException();
+            var exam = await _examRepository.GetById(examId);
+            if (exam == null)
+            {
+                return Result.Failure<ExamModel>("Unavailable");
+            }
+
+            _examRepository.Delete(exam);
+            await _examRepository.SaveChanges();
+
+            return _mapper.Map<ExamModel>(exam);
         }
 
         public async Task<Result<IList<ExamModel>>> GetAll()
