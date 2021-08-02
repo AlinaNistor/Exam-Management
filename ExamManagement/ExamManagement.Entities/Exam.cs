@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace Entities
             Attendances = new List<Attendance>();
         }
         public Guid FacultyId { get; set; }
+
         public int YearOfStudy { get; set; }
         public int Mandatory { get; set; } 
         public string Name { get; set; }
@@ -47,5 +49,8 @@ namespace Entities
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
         public virtual Faculty Faculty { get; set; }
+        
+        public virtual Notification Notification { get; set; }
+
     }
 }
