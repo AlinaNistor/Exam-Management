@@ -15,5 +15,7 @@ namespace ExamManagement.Business.Exam.Services
 
         Task<Result<LoginResponseModel>> Login(LoginRequestModel loginModelRequest);
 
+        Task<Result<string>> ChangePassword(NewPasswordRequestModel model);
+
     }
 }

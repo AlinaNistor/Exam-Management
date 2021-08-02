@@ -12,9 +12,9 @@ namespace Entities
         {
 
         }
-        public Attendance(string date, string dateAdded, Guid studentId, Guid? examId):base()
+        public Attendance( string dateAdded, Guid studentId, Guid? examId):base()
         {
-            Date = date;
+            
             DateAdded = dateAdded;
             ExamId = examId;
             StudentId = studentId;
@@ -26,10 +26,6 @@ namespace Entities
         public Guid StudentId
         {
             get; set;
-        }
-        public string Date
-        {
-            get;set;
         }
         public string DateAdded { get; set; }
 

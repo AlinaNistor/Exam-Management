@@ -54,16 +54,5 @@ namespace ExamManagement.WebApi.Controllers
             return Created(result.Name.ToString(), result);
         }
 
-        // PUT api/<FacultyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<FacultyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

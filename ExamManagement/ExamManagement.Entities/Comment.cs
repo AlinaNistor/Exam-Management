@@ -8,6 +8,10 @@ namespace Entities
 {
     public class Comment:BaseEntity
     {
+        public Comment():base()
+        {
+
+        }
         public Comment(string text, string dateAdded, Guid? parentId , Guid userId , Guid examId):base()
         {
             Text = text;

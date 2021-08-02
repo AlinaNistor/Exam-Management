@@ -101,13 +101,23 @@ namespace ExamManagement.Business.Exam.Services
 
             return new LoginResponseModel(user.FirstName, user.LastName, user.Email, new JwtSecurityTokenHandler().WriteToken(token),user.Id);
         }
-        /*
-        public async Task<RegisterModel> Check(string email)
+        public async Task<Result<string>> ChangePassword(NewPasswordRequestModel model)
         {
-            var user = await _authRepository.Check(email);
+            
+            var user = await _userRepository.GetById(model.Id);
+            if (user == null)
+                return Result.Failure<string>("User does not exist!");
+            var samePassword = _passwordHasher.Check(user.Password, model.NewPassword);
+            if (samePassword)
+            {
+                return Result.Failure<string>("Same password");
+            }
+            user.Password=_passwordHasher.CreateHash(model.NewPassword);
 
-            return _mapper.Map<RegisterModel>(user);
+            _userRepository.Update(user);
+            await _userRepository.SaveChanges();
+
+            return Result.Success<string>("Password changed!");
         }
-        */
     }
 }

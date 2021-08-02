@@ -55,7 +55,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
            // }
 
             var examEntity = _mapper.Map<Entities.Exam>(model);
-            examEntity.DateAdded = DateTime.Now.ToString();
+            examEntity.DateAdded = DateTime.Now.ToShortDateString();
 
             await _examRepository.Add(examEntity);
             await _examRepository.SaveChanges();
@@ -68,9 +68,18 @@ namespace ExamManagement.Business.Exam.Services.Exam
             throw new NotImplementedException();
         }
 
-        public Task<Result<ExamModel>> Delete(Guid examId)
+        public async Task<Result<ExamModel>> Delete(Guid examId)
         {
-            throw new NotImplementedException();
+            var exam = await _examRepository.GetById(examId);
+            if (exam == null)
+            {
+                return Result.Failure<ExamModel>("Unavailable");
+            }
+
+            _examRepository.Delete(exam);
+            await _examRepository.SaveChanges();
+
+            return _mapper.Map<ExamModel>(exam);
         }
 
         public async Task<Result<IList<ExamModel>>> GetAll()
@@ -79,7 +88,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
             var returnList = examList.OrderBy((a) => a.Name)
                 .Reverse()
                 .ToList()
-                .Select((exam) => new ExamModel(exam.Id, exam.FacultyId,exam.YearOfStudy, exam.Mandatory,exam.Name,exam.HeadProfessor,exam.Date,exam.ExamType,exam.Location, exam.Details)).ToList();
+                .Select((exam) => new ExamModel(exam.Id, exam.FacultyId,exam.YearOfStudy, exam.Mandatory,exam.Name,exam.HeadProfessor,exam.Date,exam.ExamType,exam.Location, exam.Details, exam.DateAdded, exam.AcceptsCommentaries)).ToList();
 
             return Result.Success<IList<ExamModel>>(returnList);
         }
