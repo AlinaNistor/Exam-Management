@@ -36,9 +36,18 @@ namespace ExamManagement.Business.Exam.Services.Attendance
             return _mapper.Map<AttendanceModel>(attendanceEntity);
         }
 
-        public Task<Result<AttendanceModel>> Delete(Guid attendanceId)
+        public async Task<Result<AttendanceModel>> Delete(Guid attendanceId)
         {
-            throw new NotImplementedException();
+            var attendance = await _attendancesRepository.GetById(attendanceId);
+            if (attendance == null)
+            {
+                return Result.Failure<AttendanceModel>("Unavailable");
+            }
+
+            _attendancesRepository.Delete(attendance);
+            await _attendancesRepository.SaveChanges();
+
+            return _mapper.Map<AttendanceModel>(attendance);
         }
 
         public async Task<Result<AttendanceModel>> Get(Guid attendanceId)

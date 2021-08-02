@@ -54,16 +54,18 @@ namespace ExamManagement.WebApi.Controllers
             return Created(result.Date.ToString(), result);
         }
 
-        // PUT api/<AttendanceController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        
 
         // DELETE api/<AttendanceController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{attendanceId}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid attendanceId)
         {
+            var (_, isFailure, result, error) = await _attendanceService.Delete(attendanceId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+            return Ok(result);
         }
     }
 }

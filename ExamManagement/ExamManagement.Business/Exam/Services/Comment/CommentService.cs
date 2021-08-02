@@ -42,9 +42,18 @@ namespace ExamManagement.Business.Exam.Services.Comment
             return _mapper.Map<CommentModel>(commentEntity);
         }
 
-        public Task<Result<CommentModel>> Delete(Guid commentId)
+        public async Task<Result<CommentModel>> Delete(Guid commentId)
         {
-            throw new NotImplementedException();
+            var comment = await _commentRepository.GetById(commentId);
+            if (comment == null)
+            {
+                return Result.Failure<CommentModel>("Unavailable");
+            }
+
+            _commentRepository.Delete(comment);
+            await _commentRepository.SaveChanges();
+
+            return _mapper.Map<CommentModel>(comment);
         }
 
         public async Task<Result<CommentModel>> Get(Guid commentId)
