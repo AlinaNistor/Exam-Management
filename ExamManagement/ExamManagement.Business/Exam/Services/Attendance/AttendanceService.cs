@@ -62,7 +62,7 @@ namespace ExamManagement.Business.Exam.Services.Attendance
             var returnList = attendanceList.OrderBy((a) => a.Student)
                 .Reverse()
                 .ToList()
-                .Select((attendance) => new AttendanceModel(attendance.Date,  attendance.StudentId, attendance.ExamId, attendance.Id,attendance.DateAdded)).ToList();
+                .Select((attendance) => new AttendanceModel(attendance.StudentId, attendance.ExamId, attendance.Id,attendance.DateAdded)).ToList();
 
             return Result.Success<IList<AttendanceModel>>(returnList);
         }

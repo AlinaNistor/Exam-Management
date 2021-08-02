@@ -51,7 +51,7 @@ namespace ExamManagement.WebApi.Controllers
             {
                 return BadRequest(error);
             }
-            return Created(result.Date.ToString(), result);
+            return Created(result.ExamId.ToString(), result);
         }
 
         
