@@ -16,20 +16,11 @@ namespace DataAccess.Mappings
                             .Property(s => s.Id)
                             .HasColumnName("Id")
                             .IsRequired();
-            //modelBuilder.Entity<Attendance>()
-            //                .Property(s => s.ExamId)
-            //                .HasColumnName("ExamId")
-            //                ;
-
-            //modelBuilder.Entity<Attendance>()
-            //                .Property(s => s.StudentId)
-            //                .HasColumnName("StudentId")
-            //                .IsRequired();
-
+          
             modelBuilder.Entity<Attendance>()
                 .Property(s => s.DateAdded)
                 .HasColumnName("DateAdded")
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsRequired();
         }
     }

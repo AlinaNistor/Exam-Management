@@ -65,7 +65,7 @@ namespace DataAccess.Mappings
             modelBuilder.Entity<Exam>()
                 .Property(s => s.DateAdded)
                 .HasColumnName("DateAdded")
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsRequired();
 
 
