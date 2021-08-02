@@ -5,10 +5,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+
 import { FacultyModel } from 'src/app/shared/models/faculty.model';
 import { FacultyService } from 'src/app/shared/services/faculty.service';
 import { Subscription } from 'rxjs';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { ExamService } from '../shared/services/exam.service';
+import { ExamModel } from '../shared/models/exam.model';
 
 @Component({
   selector: 'app-add-exam',
@@ -17,6 +20,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
   encapsulation: ViewEncapsulation.None,
 })
 export class AddExamComponent implements OnInit {
+  /*
   toggle1: boolean = false;
   toggle2: boolean = false;
   toggle3: boolean = false;
@@ -24,25 +28,33 @@ export class AddExamComponent implements OnInit {
   toggle5: boolean = false;
   toggle6: boolean = false;
   title: string = '';
-  formGroup: FormGroup;
   submitted: boolean = false;
+*/
 
+  formGroup: FormGroup;
   private subs: Subscription[];
   public faculties: FacultyModel[] = new Array<FacultyModel>();
 
-  constructor(private formBuilder: FormBuilder,
-    private readonly facultyService: FacultyService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly facultyService: FacultyService,
+    private readonly examService: ExamService
+  ) {
     this.formGroup = this.formBuilder.group({
-      title: new FormControl(null, [Validators.required]),
-      professor: new FormControl(null, [Validators.required]),
-      date: new FormControl(null, [Validators.required]),
-      location: new FormControl(null, [Validators.required]),
-      faculty: new FormControl(null, [Validators.required]),
-      year: new FormControl(null, [Validators.required])
+      facultyId: ['', Validators.required],
+      yearOfStudy: ['', [Validators.required]],
+      mandatory: [1, [Validators.required]],
+      name: ['', [Validators.required]],
+      headProfessor: ['', [Validators.required]],
+      date: [null, [Validators.required]],
+      examType: [0, [Validators.required]],
+      location: ['', [Validators.required]],
     });
 
     this.subs = new Array<Subscription>();
   }
+
+  /*
 
   get f() {
     return this.formGroup.controls;
@@ -54,6 +66,8 @@ export class AddExamComponent implements OnInit {
       return;
     }
   }
+
+
 
   changeType(input_field_password: { type: string }, num: number) {
     if (input_field_password.type == 'title')
@@ -68,6 +82,8 @@ export class AddExamComponent implements OnInit {
     if (num == 6) this.toggle6 = !this.toggle6;
   }
 
+  */
+
   ngOnInit(): void {
     this.subs.push(
       this.facultyService
@@ -76,6 +92,25 @@ export class AddExamComponent implements OnInit {
           this.faculties = data.body;
           this.formGroup.get('facultyId')!.setValue(this.faculties[0].id);
         })
+    );
+  }
+
+  public addExam() {
+    const examModel: ExamModel = this.formGroup.getRawValue();
+    console.log(examModel);
+    this.subs.push(
+      this.examService.post(examModel).subscribe(
+        (res: HttpResponse<any>) => {
+          console.log(res.statusText);
+          if (res.status == 201) {
+            alert('Exam added successfuly!');
+            window.location.reload();
+          }
+        },
+        () => {
+          alert('Error! Try Again!');
+        }
+      )
     );
   }
 }
