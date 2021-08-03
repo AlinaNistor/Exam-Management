@@ -91,5 +91,11 @@ namespace ExamManagement.Business.Exam.Services.Exam
 
             return Result.Success<IList<ExamModel>>(returnList);
         }
+
+        public async Task<Result<ExamModel>> GetByDate(string date)
+        {
+            var exam = await _examRepository.GetByDate(date);
+            return exam == null ? Result.Failure<ExamModel>("Unavailable exam") : _mapper.Map<ExamModel>(exam);
+        }
     }
 }

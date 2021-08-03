@@ -41,7 +41,17 @@ namespace ExamManagement.WebApi.Controllers
             }
             return Ok(result);
         }
-
+        [HttpGet]
+        [Route("Date")]
+        public async Task<IActionResult> GetByDate( string examDate )
+        {
+            var (_, isFailure, result, error) = await _examService.GetByDate(examDate);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+            return Ok(result);
+        }
         // POST api/<ExamController>
         [HttpPost("")]
         public async Task<IActionResult> Add([FromBody] ExamModel exam)

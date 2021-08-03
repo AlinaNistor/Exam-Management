@@ -20,5 +20,11 @@ namespace ExamManagement.Persistence.Exams
               .Exams
               .ToListAsync();
 
+
+        public async Task<Exam> GetByDate(string date)
+            => await _context
+                .Exams
+                .Where(exam => exam.Date == date)
+                .FirstOrDefaultAsync();
     }
 }
