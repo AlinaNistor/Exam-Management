@@ -7,8 +7,10 @@
         <section class="registration">
           <h2 class="text">Change Password</h2>
           <div class="container">
-            <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
-              <!--Curent Password-->
+            <form [formGroup]="formGroup">
+              <!--
+
+                Curent Password
               <input
                 type="password"
                 class="input"
@@ -27,19 +29,22 @@
                   </i>
                 </span>
               </div>
+
               <div class="err" *ngIf="submitted && f.curentpassword.errors">
                 <div *ngIf="f.curentpassword.errors.required">
                   Curent Password Is Required
                 </div>
               </div>
+              -->
+
               <!--New Password-->
               <input
                 type="password"
                 class="input"
                 #password2
                 placeholder="New Password"
-                name="newpassword"
-                formControlName="newpassword"
+                name="newPassword"
+                formControlName="newPassword"
               />
               <div
                 class="input-group-append-2"
@@ -50,22 +55,23 @@
                   </i>
                 </span>
               </div>
-              <div class="err" *ngIf="submitted && f.newpassword.errors">
-                <div *ngIf="f.newpassword.errors.required">
+              <div class="err" *ngIf="submitted && f.newPassword.errors">
+                <div *ngIf="f.newPassword.errors.required">
                   New Password Is Required
                 </div>
-                <div *ngIf="f.newpassword.errors.minlength">
+                <div *ngIf="f.newPassword.errors.minlength">
                   New Password At Least 8 Characters
                 </div>
               </div>
+
               <!--Confirm Password-->
               <input
                 type="password"
                 class="input"
                 #password3
                 placeholder="Confirm Password"
-                name="confirmpassword"
-                formControlName="confirmpassword"
+                name="confirmPassword"
+                formControlName="confirmPassword"
               />
               <div
                 class="input-group-append-3"
@@ -76,17 +82,21 @@
                   </i>
                 </span>
               </div>
-              <div class="err" *ngIf="submitted && f.confirmpassword.errors">
-                <div *ngIf="f.confirmpassword.errors.required">
+              <div class="err" *ngIf="submitted && f.confirmPassword.errors">
+                <div *ngIf="f.confirmPassword.errors.required">
                   Confirm Password Is Required
                 </div>
-                <div *ngIf="f.confirmpassword.errors.MustMatch">
+                <div *ngIf="f.confirmPassword.errors.MustMatch">
                   Confirm Password Didn't Match
                 </div>
               </div>
+
               <div class="text-center">
-                <button type="submit" class="btn">Submit</button>
+                <button type="submit" class="btn btn-primary" (click)="changePassword()">Submit</button>
               </div>
+
+              <div id="response"></div>
+
             </form>
           </div>
         </section>
