@@ -14,7 +14,7 @@
   <a mat-list-item routerLinkActive="list-item-active" routerLink="./find-exam">
     <mat-icon>search</mat-icon> Find exam
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="./add-exam">
+  <a mat-list-item routerLinkActive="list-item-active" *ngIf="isAdmin()" routerLink="./add-exam">
     <mat-icon>library_add</mat-icon> Add exam
   </a>
 </mat-nav-list>

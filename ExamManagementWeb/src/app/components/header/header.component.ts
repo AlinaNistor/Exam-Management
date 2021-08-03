@@ -15,14 +15,20 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public readonly userService: UserService
+    public readonly userService: UserService,
   ) {}
 
   ngOnInit(): void {
     if (sessionStorage.getItem('identity') != null) {
-      this.firstName =  titleCaseWord(JSON.parse(sessionStorage.getItem('identity')!)['firstName']);
-      this.lastName =  titleCaseWord(JSON.parse(sessionStorage.getItem('identity')!)['lastName']);
-      this.user =  titleCaseWord(JSON.parse(sessionStorage.getItem('identity')!)['email']);
+      this.firstName = titleCaseWord(
+        JSON.parse(sessionStorage.getItem('identity')!)['firstName']
+      );
+      this.lastName = titleCaseWord(
+        JSON.parse(sessionStorage.getItem('identity')!)['lastName']
+      );
+      this.user = titleCaseWord(
+        JSON.parse(sessionStorage.getItem('identity')!)['email']
+      );
     }
   }
 
