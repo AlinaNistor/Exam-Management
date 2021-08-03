@@ -11,7 +11,7 @@ namespace DataAccess.Migrations
 {
     [DbContext(typeof(ExamContext))]
     [Migration("20210801221632_HardcodedExams")]
-    partial class HardcodedExams
+    partial class HardcodedExamsUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
