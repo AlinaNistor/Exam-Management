@@ -26,7 +26,7 @@ export class AdminGuard implements CanActivate {
         return true;
       }
     }
-    this.router.navigate(['authentication']);
+    this.router.navigate(['404']);
     return false;
   }
 }
