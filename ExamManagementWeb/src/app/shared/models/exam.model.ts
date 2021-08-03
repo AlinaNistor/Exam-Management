@@ -8,7 +8,8 @@ export type ExamModel ={
   date: string,
   examType: number,
   location: string,
-  details: string
+  details: string,
+  acceptsCommentaries: number
 };
 
 export * from "./exam.model";

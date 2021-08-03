@@ -15,6 +15,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AttendanceService } from 'src/app/shared/services/attendance.service';
+import { CommentModel } from 'src/app/shared/models/comment.model';
+import { CommentService } from 'src/app/shared/services/comment.service';
 
 @Component({
   selector: 'app-exam-details',
@@ -22,27 +24,37 @@ import { AttendanceService } from 'src/app/shared/services/attendance.service';
   styleUrls: ['./exam-details.component.scss'],
 })
 export class ExamDetailsComponent implements OnInit, OnDestroy {
-  private userId: string;
+  public userId: string;
   private routeSub: Subscription = new Subscription();
   public exam!: ExamModel;
   public faculty!: FacultyModel;
   public isMandatory!: string;
   public examType!: string;
   public attendanceId: string = '';
+  public comments!: CommentModel[];
+
   formGroup: FormGroup;
+  commentForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private examService: ExamService,
     private facultyService: FacultyService,
-    private attendanceService: AttendanceService
+    private attendanceService: AttendanceService,
+    private commentService: CommentService
   ) {
     this.userId = JSON.parse(sessionStorage.getItem('identity')!)['id'];
 
     this.formGroup = this.formBuilder.group({
       examId: ['', Validators.required],
       studentId: [this.userId, Validators.required],
+    });
+
+    this.commentForm = this.formBuilder.group({
+      userId: [this.userId, Validators.required],
+      examId: ['' , Validators.required],
+      text: ['',  Validators.required],
     });
   }
 
@@ -57,7 +69,9 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
         .getExam(params['id'])
         .subscribe((data: HttpResponse<any>) => {
           this.exam = data.body;
+          this.getComments();
           this.formGroup.get('examId')?.patchValue(this.exam.id);
+          this.commentForm.get('examId')?.patchValue(this.exam.id);
 
           this.facultyService
             .getFaculties()
@@ -73,6 +87,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
           this.examType = this.examService.getExamType(this.exam.examType);
         });
         this.getAttendanceId();
+
     });
   }
 
@@ -102,6 +117,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
               c.examId == this.exam?.id && c.studentId == this.userId
           );
           this.attendanceId = attendance?.id;
+          console.log(this.attendanceId);
         });
     });
   }
@@ -130,6 +146,37 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
               })
           );
         });
+    });
+  }
+
+  public addComment()
+  {
+    const commentModel: CommentModel = this.commentForm.getRawValue();
+
+    this.commentService.postAttendance(commentModel).subscribe(
+      (res: HttpResponse<any>) => {
+        console.log(res.statusText);
+        if (res.status == 201) {
+          alert('Comment send');
+          window.location.reload();
+        }
+      },
+      () => {
+        alert('Error! Try Again!');
+      }
+    );
+
+  }
+
+  public deleteComment(commentId: string){
+    this.commentService.delete(commentId).subscribe((data: HttpResponse<any>) => {
+      window.location.reload();
+    });
+  }
+
+  private getComments() {
+    this.commentService.getAllComments(this.exam.id).subscribe((data: HttpResponse<any>) => {
+      this.comments = data.body;
     });
   }
 }
