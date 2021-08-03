@@ -8,6 +8,7 @@ namespace ExamManagement.Business.Exam.Models.Auth
 {
     public sealed class NewPasswordRequestModel
     {
+        public string OldPassword { get; set; }
         public string NewPassword { get; set; }
         public Guid Id { get; set; }
     }
