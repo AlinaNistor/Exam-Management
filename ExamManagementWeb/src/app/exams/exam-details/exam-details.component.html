@@ -71,7 +71,7 @@
 
         <br />
 
-        <div class="row" id="comments-row">
+        <div class="row" id="comments-row" *ngIf="exam.acceptsCommentaries == 0">
           <div class="comments">
 
             <label class="comments-title"><b>Comments</b></label>
