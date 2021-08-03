@@ -3,10 +3,124 @@ using System;
 
 namespace DataAccess.Migrations
 {
-    public partial class HardcodedExams : Migration
+    public partial class HardcodedExamsUsers : Migration
     {
+
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
+            //Users
+            //Adding students
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[]
+                {
+                    "Id",
+            "LastName",
+            "FirstName",
+            "Email" ,
+            "Password" ,    
+            "Role" ,        //0 student 1 prof
+            "FacultyId"
+        },
+                values: new object[]{
+                    Guid.Parse("09d55ac9-894b-4443-98f6-d6519b0b7fe5"),
+            "Student",
+            "Student",
+            "student@email.com" ,
+            "Student" ,
+            0,
+            Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[]
+                {
+                    "Id",
+            "LastName",
+            "FirstName",
+            "Email" ,
+            "Password" ,
+            "Role" ,        //0 student 1 prof
+            "FacultyId"
+        },
+                values: new object[]{
+                    Guid.Parse("09d55ac9-894b-4443-98f6-d6519b0b7fe6"),
+            "Student2",
+            "Student2",
+            "student2@email.com" ,
+            "Student" ,
+            0,
+            Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[]
+                {
+                    "Id",
+            "LastName",
+            "FirstName",
+            "Email" ,
+            "Password" ,
+            "Role" ,        //0 student 1 prof
+            "FacultyId"
+        },
+                values: new object[]{
+                    Guid.Parse("09d55ac9-894b-4443-98f6-d6519b0b7fe7"),
+            "Professor",
+            "Admin",
+            "professor@email.com" ,
+            "Professor" ,
+            0,
+            Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
+                });
+            migrationBuilder.InsertData(
+                    table: "Users",
+                    columns: new[]
+                    {
+                    "Id",
+            "LastName",
+            "FirstName",
+            "Email" ,
+            "Password" ,
+            "Role" ,        //0 student 1 prof
+            "FacultyId"
+            },
+                    values: new object[]{
+                    Guid.Parse("09d55ac9-894b-4443-98f6-d6519b0b7fe8"),
+            "Professor1",
+            "Admin",
+            "professor1@email.com" ,
+            "Professor1" ,
+            0,
+            Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
+                    });
+            migrationBuilder.InsertData(
+                    table: "Users",
+                    columns: new[]
+                    {
+                    "Id",
+            "LastName",
+            "FirstName",
+            "Email" ,
+            "Password" ,
+            "Role" ,        //0 student 1 prof
+            "FacultyId"
+            },
+                    values: new object[]{
+                    Guid.Parse("09d55ac9-894b-4443-98f6-d6519b0b7fe9"),
+            "Professor2",
+            "Admin",
+            "professor2@email.com" ,
+            "Professor2" ,
+            0,
+            Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
+                    });
+
+            //Exams
             migrationBuilder.InsertData(
                table: "Exams",
                columns: new[] { "Id"
@@ -24,7 +138,7 @@ namespace DataAccess.Migrations
                    1,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Metode Numerice",
-               "Doamna Profesor",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe9",
                "25/06/2021",
                0,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -51,7 +165,7 @@ namespace DataAccess.Migrations
                    3,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Sisteme Distribuite",
-               "Doamnul Profesor 2",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe7",
                "15/06/2021",
                2,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -78,7 +192,7 @@ namespace DataAccess.Migrations
                    2,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Paoo ",
-               "Doamnul Profesor 3",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe9",
                "25/06/2021",
                2,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -105,7 +219,7 @@ namespace DataAccess.Migrations
                    1,
                    0, //conventia e 0 Not mandatory 1 Mandatory
                "Alcaline Cred ",
-               "Doamna Profesor 3",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe8",
                "20/06/2021",
                1,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -132,7 +246,7 @@ namespace DataAccess.Migrations
                    1,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Examen la telecomunicatii ",
-               "Doamna Profesor",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe7",
                "25/06/2021",
                1,   //0 essay 1 oral  2 practical
                "Online",
@@ -159,7 +273,7 @@ namespace DataAccess.Migrations
                    1,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Materiale de constructie ",
-               "Doamna Profesor F",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe8",
                "20/05/2021",
                2,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -187,7 +301,7 @@ namespace DataAccess.Migrations
                    1,
                    0, //conventia e 0 Not mandatory 1 Mandatory
                "Engleza ",
-               "Doamna Profesor",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe9",
                "25/06/2021",
                1,   //0 essay 1 oral  2 practical
                "Online",
@@ -208,6 +322,22 @@ namespace DataAccess.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DeleteData(
+           table: "User",
+           keyColumn: "FirstName",
+           keyValue: "Student");
+            migrationBuilder.DeleteData(
+           table: "User",
+           keyColumn: "FirstName",
+           keyValue: "Student2");
+            migrationBuilder.DeleteData(
+           table: "User",
+           keyColumn: "FirstName",
+           keyValue: "Admin");
+
+
+
+
             migrationBuilder.DeleteData(
            table: "Faculty",
            keyColumn: "Name",
