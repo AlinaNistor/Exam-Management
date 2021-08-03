@@ -30,6 +30,8 @@ using ExamManagement.Business.Exam.Services.Attendance;
 using ExamManagement.Persistence.Repositories.Comments;
 using ExamManagement.Business.Exam.Services.Comment;
 using ExamManagement.Business.Exam.Services.Admin;
+using ExamManagement.Persistence.Repositories.Notifications;
+using ExamManagement.Business.Exam.Services.Notification;
 
 namespace ExamManagement.WebApi
 {
@@ -62,6 +64,7 @@ namespace ExamManagement.WebApi
                 config.AddProfile<FacultyMappingProfile>();
                 config.AddProfile<AttendancesMappingProfile>();
                 config.AddProfile<CommentMappingProfile>();
+                config.AddProfile<NotificationMappingProfile>();
             
             });
             services
@@ -76,7 +79,9 @@ namespace ExamManagement.WebApi
                 .AddScoped<IAttendanceService, AttendanceService>()
                 .AddScoped<ICommentRepository, CommentRepository>()
                 .AddScoped<ICommentService, CommentService>()
-                .AddScoped<IAdminService, AdminService>();
+                .AddScoped<IAdminService, AdminService>()
+                .AddScoped<INotificationRepository, NotificationRepository>()
+                .AddScoped<INotificationService, NotificationService>();
 
 
 

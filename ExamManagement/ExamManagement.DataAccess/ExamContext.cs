@@ -48,6 +48,7 @@ namespace DataAccess
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Faculty> Faculty { get; set; }
+        public DbSet<Notification> Notification { get; set; }
 
         //void Includes() {
         //    Users.Include<Exam>().ToListAsync();

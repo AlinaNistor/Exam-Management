@@ -14,7 +14,6 @@ namespace ExamManagement.Business.Exam.Services.Attendance
 
         public Task<Result<AttendanceModel>> Add(AttendanceModel model);
 
-        public Task<Result<AttendanceModel>> Update(Guid attendanceId);
 
         public Task<Result<AttendanceModel>> Delete(Guid attendanceId);
 
