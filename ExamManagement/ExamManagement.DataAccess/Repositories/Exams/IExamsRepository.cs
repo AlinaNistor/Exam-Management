@@ -10,5 +10,7 @@ namespace ExamManagement.Persistence.Exams
     public interface IExamsRepository : IExamRepository<Exam>
     {
         public Task<IList<Exam>> GetAll();
+
+        public Task<Exam> GetByDate(string date);
     }
 }

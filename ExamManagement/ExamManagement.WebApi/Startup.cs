@@ -29,6 +29,7 @@ using ExamManagement.Persistence.Repositories.Attendances;
 using ExamManagement.Business.Exam.Services.Attendance;
 using ExamManagement.Persistence.Repositories.Comments;
 using ExamManagement.Business.Exam.Services.Comment;
+using ExamManagement.Business.Exam.Services.Admin;
 
 namespace ExamManagement.WebApi
 {
@@ -74,7 +75,8 @@ namespace ExamManagement.WebApi
                 .AddScoped<IAttendancesRepository, AttendanceRepository>()
                 .AddScoped<IAttendanceService, AttendanceService>()
                 .AddScoped<ICommentRepository, CommentRepository>()
-                .AddScoped<ICommentService, CommentService>();
+                .AddScoped<ICommentService, CommentService>()
+                .AddScoped<IAdminService, AdminService>();
 
 
 

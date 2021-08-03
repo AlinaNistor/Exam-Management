@@ -85,12 +85,17 @@ namespace ExamManagement.Business.Exam.Services.Exam
         public async Task<Result<IList<ExamModel>>> GetAll()
         {
             var examList = await _examRepository.GetAll();
-            var returnList = examList.OrderBy((a) => a.Name)
-                .Reverse()
+            var returnList = examList.OrderBy((a) => a.Date)
                 .ToList()
                 .Select((exam) => new ExamModel(exam.Id, exam.FacultyId,exam.YearOfStudy, exam.Mandatory,exam.Name,exam.HeadProfessor,exam.Date,exam.ExamType,exam.Location, exam.Details, exam.DateAdded, exam.AcceptsCommentaries)).ToList();
 
             return Result.Success<IList<ExamModel>>(returnList);
+        }
+
+        public async Task<Result<ExamModel>> GetByDate(string date)
+        {
+            var exam = await _examRepository.GetByDate(date);
+            return exam == null ? Result.Failure<ExamModel>("Unavailable exam") : _mapper.Map<ExamModel>(exam);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace DataAccess.Mappings
             modelBuilder.Entity<Exam>()
                             .Property(s => s.HeadProfessor)
                             .HasColumnName("HeadProfessor")
-                            .HasMaxLength(30)
+                            .HasMaxLength(50)
                             .IsRequired();
             modelBuilder.Entity<Exam>()
                             .Property(s => s.Details)

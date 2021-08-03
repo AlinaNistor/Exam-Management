@@ -74,7 +74,7 @@ namespace DataAccess.Migrations
             "Admin",
             "professor@email.com" ,
             "Professor" ,
-            0,
+            1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                 });
             migrationBuilder.InsertData(
@@ -95,7 +95,7 @@ namespace DataAccess.Migrations
             "Admin",
             "professor1@email.com" ,
             "Professor1" ,
-            0,
+            1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                     });
             migrationBuilder.InsertData(
@@ -116,7 +116,7 @@ namespace DataAccess.Migrations
             "Admin",
             "professor2@email.com" ,
             "Professor2" ,
-            0,
+            1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                     });
 
@@ -165,7 +165,7 @@ namespace DataAccess.Migrations
                    3,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Sisteme Distribuite",
-               "09d55ac9-894b-4443-98f6-d6519b0b7fe7",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe8",
                "15/06/2021",
                2,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -219,7 +219,7 @@ namespace DataAccess.Migrations
                    1,
                    0, //conventia e 0 Not mandatory 1 Mandatory
                "Alcaline Cred ",
-               "09d55ac9-894b-4443-98f6-d6519b0b7fe8",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe7",
                "20/06/2021",
                1,   //0 essay 1 oral  2 practical
                "Facultate",
@@ -246,7 +246,7 @@ namespace DataAccess.Migrations
                    1,
                    1, //conventia e 0 Not mandatory 1 Mandatory
                "Examen la telecomunicatii ",
-               "09d55ac9-894b-4443-98f6-d6519b0b7fe7",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe9",
                "25/06/2021",
                1,   //0 essay 1 oral  2 practical
                "Online",
@@ -301,7 +301,7 @@ namespace DataAccess.Migrations
                    1,
                    0, //conventia e 0 Not mandatory 1 Mandatory
                "Engleza ",
-               "09d55ac9-894b-4443-98f6-d6519b0b7fe9",
+               "09d55ac9-894b-4443-98f6-d6519b0b7fe7",
                "25/06/2021",
                1,   //0 essay 1 oral  2 practical
                "Online",
