@@ -12,6 +12,7 @@ export class UserService {
   public email: string = '';
 
   private url: string = 'https://localhost:5000/api/Auth/change-password';
+  private userUrl: string = 'https://localhost:5000/api/Admin/';
 
   constructor(private readonly httpClient: HttpClient) {}
 
@@ -23,8 +24,9 @@ export class UserService {
     });
   }
 
-
-  public getUser(){
-
+  public getUser(id: string): Observable<HttpResponse<unknown>> {
+    return this.httpClient.put<HttpResponse<unknown>>(this.userUrl + id, {
+      observe: 'response',
+    });
   }
 }
