@@ -50,7 +50,7 @@ namespace ExamManagement.Business.Exam.Services.Admin
             var returnList = userList.OrderBy((a) => a.LastName)
                 .Reverse()
                 .ToList()
-                .Select((user) => new UserModel(user.LastName, user.FirstName, user.Email, user.Password, user.Role, user.FacultyId)).ToList();
+                .Select((user) => new UserModel(user.Id, user.LastName, user.FirstName, user.Email, user.Password, user.Role, user.FacultyId)).ToList();
 
             return Result.Success<IList<UserModel>>(returnList);
         }

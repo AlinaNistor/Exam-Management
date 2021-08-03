@@ -9,17 +9,15 @@ namespace ExamManagement.Business.Exam.Models.Admin
     public class UserModel
     {
 
-        public UserModel(string lastName, string firstName, string email, string password, int role, Guid facultyId)
+        public UserModel(Guid id, string lastName, string firstName, string email, string password, int role, Guid facultyId)
         {
+            Id = id;
             LastName = lastName;
             FirstName = firstName;
             Email = email;
             Password = password;
             Role = role;
             FacultyId = facultyId;
-
-
-           
 
         }
         public Guid Id { get;}
