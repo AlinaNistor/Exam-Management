@@ -1,4 +1,3 @@
 <mat-card class="demo-inline-calendar-card">
-  <mat-calendar (selectedChange)="selected = $event"></mat-calendar>
+  <mat-calendar [dateClass]="dateClass" #picker panelClass="endDate" ></mat-calendar>
 </mat-card>
-<p><br>Selected date: <br><br> {{selected}}</p>
