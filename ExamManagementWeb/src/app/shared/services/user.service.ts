@@ -22,4 +22,9 @@ export class UserService {
       observe: 'response',
     });
   }
+
+
+  public getUser(){
+
+  }
 }

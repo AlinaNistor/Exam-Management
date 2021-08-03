@@ -3,9 +3,9 @@
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-relative">
       <div class="container">
+
         <div class="row">
           <div class="col">
-
             <div class="table-responsive">
               <table class="table align-middle">
                 <tbody>
@@ -53,10 +53,12 @@
               </table>
             </div>
 
-            <div class = "row">
-              <button *ngIf="!attendanceId" type="button" class="btn btn-primary" (click)="attendToExam()">Attend Exam</button>
+            <div class="row">
+              <button *ngIf="!attendanceId" type="button" class="btn btn-primary" (click)="attendToExam()">Attend
+                Exam</button>
 
-              <button *ngIf="attendanceId" type="button" class="btn btn-danger" (click)="deleteAttendance()">Delete attendance</button>
+              <button *ngIf="attendanceId" type="button" class="btn btn-danger" (click)="deleteAttendance()">Delete
+                attendance</button>
             </div>
 
           </div>
@@ -65,6 +67,44 @@
             <img class="img-fluid" src="./assets/exam.svg" alt="Exam" />
           </div>
 
+        </div>
+
+        <br />
+
+        <div class="row" id="comments-row">
+          <div class="comments">
+
+            <label class="comments-title"><b>Comments</b></label>
+
+            <div class="comment-button">
+              <form [formGroup]="commentForm">
+                <textarea class="add-comment" contenteditable="true" required formControlName="text"></textarea>
+                <br />
+                <button class="btn btn-primary" (click)="addComment()"> Add comment </button>
+              </form>
+            </div>
+
+            <div class="comments-list">
+              <mat-list>
+                <div class="card" *ngFor="let comment of comments">
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{ comment.userId }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ comment.dateAdded }}</h6>
+                    <p class="card-text">{{ comment.text }}</p>
+
+                    <div *ngIf="comment.userId == userId">
+                      <button mat-mini-fab color="primary" (click)="deleteComment(comment.id)" matLine>
+                        <mat-icon matListIcon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </mat-list>
+            </div>
+
+          </div>
         </div>
 
       </div>
