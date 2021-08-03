@@ -66,7 +66,7 @@ namespace ExamManagement.Business.Exam.Services.Comment
         {
            
             var commentList = await _commentRepository.GetByExamId(examId);
-            var returnList = commentList.OrderBy((a) => a.ParentId)
+            var returnList = commentList.OrderBy((a) => a.DateAdded)
                 .Reverse()
                 .ToList()
                 .Select((comment) => new CommentModel( comment.Id, comment.ParentId, comment.UserId, comment.ExamId, comment.Text, comment.DateAdded)).ToList();
