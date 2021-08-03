@@ -12,6 +12,8 @@ namespace ExamManagement.Business.Exam.Services.Exam
     {
         public Task<Result<ExamModel>> Get(Guid examId);
 
+        public Task<Result<ExamModel>> GetByDate(string date);
+
         public Task<Result<ExamModel>> Add(ExamModel model);
 
         public Task<Result<ExamModel>> Update(Guid examId);

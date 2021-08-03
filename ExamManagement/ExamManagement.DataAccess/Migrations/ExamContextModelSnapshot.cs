@@ -19,40 +19,6 @@ namespace DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Entities.Answer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
-
-                    b.Property<string>("DateAdded")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasColumnName("DateAdded");
-
-                    b.Property<Guid?>("QuestionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Answers");
-                });
-
             modelBuilder.Entity("Entities.Attendance", b =>
                 {
                     b.Property<Guid>("Id")
@@ -60,13 +26,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DateAdded")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("DateAdded");
 
                     b.Property<Guid?>("ExamId")
@@ -84,6 +47,46 @@ namespace DataAccess.Migrations
                     b.ToTable("Attendances");
                 });
 
+            modelBuilder.Entity("Entities.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("DateAdded")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("DateAdded");
+
+                    b.Property<Guid>("ExamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("ParentId");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("Text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Entities.Exam", b =>
                 {
                     b.Property<Guid>("Id")
@@ -91,14 +94,18 @@ namespace DataAccess.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
+                    b.Property<int>("AcceptsCommentaries")
+                        .HasColumnType("int")
+                        .HasColumnName("AcceptsCommentaries");
+
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Date");
 
                     b.Property<string>("DateAdded")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("DateAdded");
 
                     b.Property<string>("Details")
@@ -160,7 +167,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Faculty");
                 });
 
-            modelBuilder.Entity("Entities.Question", b =>
+            modelBuilder.Entity("Entities.Notification", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,29 +176,23 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("DateAdded")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("DateAdded");
 
-                    b.Property<Guid?>("ExamId")
+                    b.Property<Guid>("ExamId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("NotifyNoOfDaysPrior")
+                        .HasColumnType("int")
+                        .HasColumnName("NotifyNoOfDaysPrior");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExamId");
+                    b.HasIndex("ExamId")
+                        .IsUnique();
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Questions");
+                    b.ToTable("Notification");
                 });
 
             modelBuilder.Entity("Entities.User", b =>
@@ -238,24 +239,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Entities.Answer", b =>
-                {
-                    b.HasOne("Entities.Question", "Question")
-                        .WithMany("Answers")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("Entities.User", "User")
-                        .WithMany("Answers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Entities.Attendance", b =>
                 {
                     b.HasOne("Entities.Exam", "Exam")
@@ -274,6 +257,31 @@ namespace DataAccess.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Entities.Comment", b =>
+                {
+                    b.HasOne("Entities.Exam", "Exam")
+                        .WithMany("Comments")
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Comment", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.HasOne("Entities.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Exam", b =>
                 {
                     b.HasOne("Entities.Faculty", "Faculty")
@@ -285,22 +293,15 @@ namespace DataAccess.Migrations
                     b.Navigation("Faculty");
                 });
 
-            modelBuilder.Entity("Entities.Question", b =>
+            modelBuilder.Entity("Entities.Notification", b =>
                 {
                     b.HasOne("Entities.Exam", "Exam")
-                        .WithMany("Questions")
-                        .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Entities.User", "User")
-                        .WithMany("Questions")
-                        .HasForeignKey("UserId")
+                        .WithOne("Notification")
+                        .HasForeignKey("Entities.Notification", "ExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Exam");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.User", b =>
@@ -318,7 +319,9 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("Attendances");
 
-                    b.Navigation("Questions");
+                    b.Navigation("Comments");
+
+                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("Entities.Faculty", b =>
@@ -328,18 +331,11 @@ namespace DataAccess.Migrations
                     b.Navigation("Students");
                 });
 
-            modelBuilder.Entity("Entities.Question", b =>
-                {
-                    b.Navigation("Answers");
-                });
-
             modelBuilder.Entity("Entities.User", b =>
                 {
-                    b.Navigation("Answers");
-
                     b.Navigation("Attendances");
 
-                    b.Navigation("Questions");
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

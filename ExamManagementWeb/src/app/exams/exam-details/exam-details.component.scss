@@ -1,1 +1,47 @@
 @import "../../dashboard/dashboard.component.scss";
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.col-4 {
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.container {
+  margin-top: 10px;
+}
+.col-8 {
+  font-size: 20px;
+  text-align: center;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 50% ;
+  font-size: 18px;
+}
+
+dt {
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
+}
+
+.add-comment{
+  width: 100%;
+  height: 100px;
+}
+
+#comments-row{
+  width: 100%;
+}
+
+.card{
+  width: 100% !important;
+}

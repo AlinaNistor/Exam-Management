@@ -30,12 +30,13 @@ namespace DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            AnswerMapping.Map(modelBuilder);
+            CommentMapping.Map(modelBuilder);
             AttendanceMapping.Map(modelBuilder);
             ExamMapping.Map(modelBuilder);
-            QuestionMapping.Map(modelBuilder);
+            
             UserMapping.Map(modelBuilder);
             FacultyMapping.Map(modelBuilder);
+            NotificationMapping.Map(modelBuilder);
             
         }
 
@@ -44,8 +45,7 @@ namespace DataAccess
         public DbSet<User> Users { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
-        public DbSet<Answer> Answers { get; set; }
-        public DbSet<Question> Questions { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Faculty> Faculty { get; set; }
 

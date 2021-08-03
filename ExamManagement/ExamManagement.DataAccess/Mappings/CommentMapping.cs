@@ -8,32 +8,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Mappings
 {
-    internal abstract class AnswerMapping
+    internal abstract class CommentMapping
     {
         internal static void Map(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Answer>()
+            modelBuilder.Entity<Comment>()
                             .Property(s => s.Id)
                             .HasColumnName("Id")
                             .IsRequired();
 
-            //modelBuilder.Entity<Answer>()
-            //                .Property(s => s.QuestionId)
-            //                .HasColumnName("QuestionId")
-            //                ;
-            //modelBuilder.Entity<Answer>()
-            //                .Property(s => s.UserId)
-            //                .HasColumnName("UserId")
-            //                .IsRequired();
-            modelBuilder.Entity<Answer>()
+            modelBuilder.Entity<Comment>()
+                .Property(s => s.ParentId)
+                .HasColumnName("ParentId");
+
+
+            modelBuilder.Entity<Comment>()
                             .Property(s => s.Text)
                             .HasColumnName("Text")
                             .HasMaxLength(255)
                             .IsRequired();
-            modelBuilder.Entity<Answer>()
+
+
+            modelBuilder.Entity<Comment>()
                 .Property(s => s.DateAdded)
                 .HasColumnName("DateAdded")
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsRequired();
 
 

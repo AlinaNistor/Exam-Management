@@ -16,7 +16,7 @@ namespace DataAccess.Migrations
                     YearOfStudy = table.Column<int>(type: "int", nullable: false),
                     Mandatory = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    HeadProfessor = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    HeadProfessor = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExamType = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),

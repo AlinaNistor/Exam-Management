@@ -36,7 +36,7 @@ namespace DataAccess.Mappings
             modelBuilder.Entity<Exam>()
                             .Property(s => s.HeadProfessor)
                             .HasColumnName("HeadProfessor")
-                            .HasMaxLength(30)
+                            .HasMaxLength(50)
                             .IsRequired();
             modelBuilder.Entity<Exam>()
                             .Property(s => s.Details)
@@ -57,19 +57,23 @@ namespace DataAccess.Mappings
                             .Property(s => s.Location)
                             .HasColumnName("Location")
                             .HasMaxLength(50);
-           
+            modelBuilder.Entity<Exam>()
+                            .Property(s => s.AcceptsCommentaries)
+                            .HasColumnName("AcceptsCommentaries")
+                            .IsRequired();
+
             modelBuilder.Entity<Exam>()
                 .Property(s => s.DateAdded)
                 .HasColumnName("DateAdded")
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsRequired();
 
 
             modelBuilder.Entity<Exam>()
-                .HasMany(s => s.Questions)
+                .HasMany(s => s.Comments)
                 .WithOne(g => g.Exam)
                 .HasForeignKey(s => s.ExamId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Exam>()
                .HasMany(s => s.Attendances)
@@ -82,6 +86,9 @@ namespace DataAccess.Mappings
                 .WithMany(g => g.Exams)
                 .HasForeignKey(s => s.FacultyId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+
+            
 
 
         }

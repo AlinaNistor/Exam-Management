@@ -1,32 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ExamModel } from '../shared/models/exam.model';
+import { ExamService } from '../shared/services/exam.service';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { FacultyService } from 'src/app/shared/services/faculty.service';
+import { FacultyModel } from 'src/app/shared/models/faculty.model';
+import { AttendanceModel } from '../shared/models/attendance.model';
+import { AttendanceService } from '../shared/services/attendance.service';
 
 @Component({
   selector: 'app-exams',
   templateUrl: './exams.component.html',
   styleUrls: ['./exams.component.scss'],
 })
-export class ExamsComponent implements OnInit {
-  constructor() {}
+export class ExamsComponent implements OnInit, OnDestroy {
+  public examsList: ExamModel[] = new Array<ExamModel>();
+  public attendanceList!: AttendanceModel[];
+  public faculties!: FacultyModel[];
+  private subs: Subscription[];
+  private userId!: string;
 
-  public examsList = [
-    {
-      title: 'Title1',
-      prof: 'Prof1',
-      date: 'Date1',
-      description:
-        'Description1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam velit nisi, tristique sed erat ac,scelerisque tempor metus. Curabitur mi velit, pharetra in lacinia tristique, commodo ac enim. Integer rutrum varius elit ut ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      link: 'link1',
-    },
+  constructor(
+    private readonly examService: ExamService,
+    private readonly facultyService: FacultyService,
+    private readonly attendanceService: AttendanceService,
+    private readonly router: Router
+  ) {
+    this.subs = new Array<Subscription>();
+  }
 
-    {
-      title: 'Title2',
-      prof: 'Prof2',
-      date: 'Date2',
-      description:
-        'Description2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam velit nisi, tristique sed erat ac,scelerisque tempor metus. Curabitur mi velit, pharetra in lacinia tristique, commodo ac enim. Integer rutrum varius elit ut ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      link: 'link2',
-    },
-  ];
+  ngOnInit(): void {
+    if (sessionStorage.getItem('identity') != null) {
+      this.userId = JSON.parse(sessionStorage.getItem('identity')!)['id'];
+      console.log(this.userId);
 
-  ngOnInit(): void {}
+      this.subs.push(
+        this.attendanceService
+          .getAllAttendance()
+          .subscribe((data: HttpResponse<any>) => {
+            this.attendanceList = data.body.filter(
+              (c: AttendanceModel) => c.studentId == this.userId
+            );
+
+            this.attendanceList.forEach((c: AttendanceModel) =>
+              this.examService.getExam(c.examId).subscribe((data: HttpResponse<any>) => {
+                this.examsList.push(data.body);
+              }));
+
+              this.facultyService
+              .getFaculties()
+              .subscribe((faculties: HttpResponse<any>) => {
+                this.faculties = faculties.body;
+              });
+            console.log(this.examsList);
+          })
+      );
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach((sub) => {
+      sub.unsubscribe();
+    });
+  }
+
+  public getFacultyName(facultyId: string) {
+    return this.faculties.find((c: FacultyModel) => c.id == facultyId)?.name;
+  }
 }

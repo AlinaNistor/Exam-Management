@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Entities
         public Exam() : base()
         {
         }
-        public Exam(Guid facultyId, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location, string dateAdded,string details) : base()
+        public Exam(Guid facultyId, int yearOfStudy, int mandatory, string name, string headProfessor, string date, int examType, string location, string dateAdded,string details,int acceptsCommentaries) : base()
         {
             FacultyId = facultyId;
             YearOfStudy = yearOfStudy;
@@ -24,11 +25,12 @@ namespace Entities
             Location = location;
             DateAdded = dateAdded;
             Details = details;
-
-            Questions = new List<Question>();
+            AcceptsCommentaries = acceptsCommentaries;
+            Comments= new List<Comment>();
             Attendances = new List<Attendance>();
         }
         public Guid FacultyId { get; set; }
+
         public int YearOfStudy { get; set; }
         public int Mandatory { get; set; } 
         public string Name { get; set; }
@@ -43,8 +45,12 @@ namespace Entities
 
         public string Details { get; set; }
 
-        public virtual ICollection<Question> Questions { get; set; }
+        public int AcceptsCommentaries { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
         public virtual Faculty Faculty { get; set; }
+        
+        public virtual Notification Notification { get; set; }
+
     }
 }

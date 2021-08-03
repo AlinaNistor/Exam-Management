@@ -6,22 +6,29 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Answer:BaseEntity
+    public class Comment:BaseEntity
     {
-        public Answer(string text, string dateAdded, Guid? questionId , Guid userId):base()
+        public Comment():base()
+        {
+
+        }
+        public Comment(string text, string dateAdded, Guid? parentId , Guid userId , Guid examId):base()
         {
             Text = text;
             DateAdded = dateAdded;
-            QuestionId = questionId;
+            ParentId = parentId;
             UserId = userId;
+            ExamId = examId;
         }
-        public Guid? QuestionId { get; set; }
+        public Guid? ParentId { get; set; }
         public Guid UserId { get; set; }
+        public Guid ExamId { get; set; }
         public string Text { get; set; }
 
         public string DateAdded { get; set; }
 
-        public virtual Question Question { get; set; }
+        public virtual Comment Parent { get; set; }
         public virtual User User { get; set; }
+        public virtual Exam Exam { get; set; }
     }
 }
