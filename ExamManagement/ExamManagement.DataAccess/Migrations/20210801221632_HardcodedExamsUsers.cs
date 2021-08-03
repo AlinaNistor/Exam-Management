@@ -29,7 +29,7 @@ namespace DataAccess.Migrations
             "Student",
             "Student",
             "student@email.com" ,
-            "Student" ,
+            "IbE4jkIaKSXq+PxHg1M9EA==.59K5QUpGFikh+rbjs7y91zYxdi7OKFprgpo4TZ19cN0=" ,
             0,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                 });
@@ -51,7 +51,7 @@ namespace DataAccess.Migrations
             "Student2",
             "Student2",
             "student2@email.com" ,
-            "Student" ,
+            "20T9uonr+mSgbmSmyAYCvQ==.ZQKk2yWHznYKi0nksRE8DGUF+IB5AV9uf6MOYcRJM+4=" ,
             0,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                 });
@@ -73,7 +73,7 @@ namespace DataAccess.Migrations
             "Professor",
             "Admin",
             "professor@email.com" ,
-            "Professor" ,
+            "laYXGMfsghvyyK/bCAdIzQ==.iCScQvSWUg442LPiTKyVBJ0D7R559/mPVgerpHUimKI=" ,
             1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                 });
@@ -94,7 +94,7 @@ namespace DataAccess.Migrations
             "Professor1",
             "Admin",
             "professor1@email.com" ,
-            "Professor1" ,
+            "IoAU2Aoat7UD19s794jpTA==.P/zNvlIMf3qUUuFjK2xEULYId7S86bmaZVbNnMPhWvY=" ,
             1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                     });
@@ -115,7 +115,7 @@ namespace DataAccess.Migrations
             "Professor2",
             "Admin",
             "professor2@email.com" ,
-            "Professor2" ,
+            "XBPeaBc/jBG5XsHqlkVdHQ==.8c8RbeMu6ucFrDot2ScfabR8rl5MVpo4ZtYol4cdoJo=" ,
             1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                     });
