@@ -74,7 +74,7 @@ namespace DataAccess.Migrations
             "Admin",
             "professor@email.com" ,
             "Professor" ,
-            0,
+            1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                 });
             migrationBuilder.InsertData(
@@ -95,7 +95,7 @@ namespace DataAccess.Migrations
             "Admin",
             "professor1@email.com" ,
             "Professor1" ,
-            0,
+            1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                     });
             migrationBuilder.InsertData(
@@ -116,7 +116,7 @@ namespace DataAccess.Migrations
             "Admin",
             "professor2@email.com" ,
             "Professor2" ,
-            0,
+            1,
             Guid.Parse("B3FA4F8A-23BC-4839-898C-438608A0328F")
                     });
 
