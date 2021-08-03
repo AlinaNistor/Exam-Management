@@ -67,9 +67,5 @@ namespace ExamManagement.Business.Exam.Services.Attendance
             return Result.Success<IList<AttendanceModel>>(returnList);
         }
 
-        public Task<Result<AttendanceModel>> Update(Guid attendanceId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

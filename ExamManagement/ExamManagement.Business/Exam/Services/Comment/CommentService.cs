@@ -74,9 +74,6 @@ namespace ExamManagement.Business.Exam.Services.Comment
             return Result.Success<IList<CommentModel>>(returnList);
         }
 
-        public Task<Result<CommentModel>> Update(Guid commentId)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
