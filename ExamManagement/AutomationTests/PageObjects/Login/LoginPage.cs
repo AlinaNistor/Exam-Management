@@ -16,17 +16,17 @@ namespace AutomationTests.PageObjects
 
         #region Login section
 
-        [FindsBy(How = How.Name, Using = "email")]
+        [FindsBy(How = How.CssSelector, Using = "[formcontrolname='email']")]
         public IWebElement TxtUsername { get; set; }
 
 
-        [FindsBy(How = How.Name, Using = "password")]
+        [FindsBy(How = How.CssSelector, Using = "[formcontrolname='password']")]
         public IWebElement TxtPassword { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[type='submit']")]
         public IWebElement BtnLogin { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".alert-danger")]
+        [FindsBy(How = How.CssSelector, Using = "[id='errors']")]
         public IWebElement ErrInvalidCred { get; set; }
         #endregion
 
