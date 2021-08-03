@@ -13,16 +13,16 @@ namespace AutomationTests.Tests
 
         public LoginTests() : base()
         {
-            Driver.Navigate().GoToUrl("http://localhost:4200/authentication");
+            Driver.Navigate().GoToUrl("http://localhost:4200/authentication/login/");
             loginPage = new LoginPage(Driver);
         }
 
         [Fact]
         public void Login_With_Valid_Credentials()
         {
-            loginPage.Login("admin@gmail.com", "passwordAdmin");
+            loginPage.Login("ana-maria.atasiei@student.tuiasi.ro", "atasiei");
             dashboardPage = new DashboardPage(Driver);
-            dashboardPage.WaitForPageToLoad("[label='Your list']");
+            dashboardPage.WaitForPageToLoad("app-dashboard");
             Assert.True(dashboardPage.ContainerDashboard.Displayed);
         }
 
@@ -31,7 +31,7 @@ namespace AutomationTests.Tests
         {
             loginPage.Login("Admin@gmail.com", "12345678");
             dashboardPage = new DashboardPage(Driver);
-            dashboardPage.WaitForPageToLoad("[class='error-item']");
+            dashboardPage.WaitForPageToLoad("[id='errors']");
             Assert.True(loginPage.ErrInvalidCred.Displayed);
         }
 
