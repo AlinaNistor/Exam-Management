@@ -12,6 +12,11 @@
 
                 <input type="text" class="input" #title1 placeholder="Name" formControlName="name" />
 
+                <div *ngIf="isInvalid(formGroup.get('name')!)" class="error-alert">
+                  Invalid Name (name must be at least 2 characters)
+                </div>
+
+
                 <!--
                   <div class="input-group-append-1" (click)="changeType(title1, 1)"></div>
                   <div class="err" *ngIf="submitted && f.title.errors">
@@ -19,13 +24,13 @@
                   </div>
                 -->
 
-
+                <!--
                 Professor
 
                 <input type="text" class="input" #professor2 placeholder="Professor" name="professor"
                   formControlName="headProfessor" />
 
-                  <!--
+
                     <div class="input-group-append-2" (click)="changeType(professor2, 2)"></div>
                   <div class="err" *ngIf="submitted && f.professor.errors">
                     <div *ngIf="f.professor.errors.required">
@@ -36,7 +41,7 @@
 
                 <!--Date-->
 
-                <input type="date" class="input" #date3 placeholder="Date" name="date" value="2021-01-10"
+                <input type="date" id="date" class="input" #date3 placeholder="Date" name="date" value="2021-01-10"
                   formControlName="date" />
 
                 <!--
@@ -50,6 +55,11 @@
 
                 <input type="text" class="input" #location4 placeholder="Location" name="location"
                   formControlName="location" />
+
+                  <div *ngIf="isInvalid(formGroup.get('location')!)" class="error-alert">
+                    Invalid Location (location must be at least 4 characters)
+                  </div>
+
                 <!--
                   <div class="input-group-append-4" (click)="changeType(location4, 4)"></div>
                   <div class="err" *ngIf="submitted && f.location.errors">
@@ -61,7 +71,11 @@
 
                 <!--Select Faculty-->
 
-                <select class="form-select" required placeholder="facultyId" name="facultyId" formControlName="facultyId">
+                <br />
+                <label>Select Faculty:</label>
+
+                <select class="form-select" required placeholder="facultyId" name="facultyId"
+                  formControlName="facultyId">
                   <option selected disabled value=''>Select Faculty...</option>
                   <option *ngFor="let faculty of faculties" [value]="faculty.id">
                     {{ faculty.name }}
@@ -80,30 +94,41 @@
 
                 <!--Mandatory or Not-->
 
-                <select class="form-select input" size="2" formControlName="mandatory">
+                <select class="form-select" size="2" formControlName="mandatory">
                   <option value="1" selected>Mandatory</option>
                   <option value="0">Not Mandatory</option>
                 </select>
 
                 <!--Type Of Exam-->
 
-                <select class="form-select input" size="3" formControlName="examType">
+                <select class="form-select" size="3" formControlName="examType">
                   <option value="0" selected>Essay exam</option>
                   <option value="1">Oral exam</option>
                   <option value="2">Practical exam</option>
                 </select>
 
+                <select class="form-select" size="2" formControlName="acceptsCommentaries">
+                  <option value="0" selected>Not accept comments</option>
+                  <option value="1">Accept comments</option>
+                </select>
+
                 <!--Year of Study-->
 
-                <select name="Year of Study" class="form-select" required #year6 formControlName="yearOfStudy">
-                  <option selected disabled value="">Select Year of Study</option>
-                  <option value="1">1</option>
+                <br />
+                <label>Select Year of Study:</label>
+                <select name="year" id="year" placeholder="yearOfStudy" class="form-select" required #year6
+                  formControlName="yearOfStudy">
+                  <option value="1" selected>1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
                 </select>
+
+                <label>Other details:</label>
+                <textarea class="form-select" formControlName="details"></textarea>
+
                 <!--
                   <div class="input-group-append-6" (click)="changeType(year6, 6)"></div>
                   <div class="err" *ngIf="submitted && f.year.errors">

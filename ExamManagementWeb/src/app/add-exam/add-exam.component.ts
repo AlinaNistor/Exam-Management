@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -34,6 +35,7 @@ export class AddExamComponent implements OnInit {
   formGroup: FormGroup;
   private subs: Subscription[];
   public faculties: FacultyModel[] = new Array<FacultyModel>();
+  public selected: Date = new Date();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,16 +44,22 @@ export class AddExamComponent implements OnInit {
   ) {
     this.formGroup = this.formBuilder.group({
       facultyId: ['', Validators.required],
-      yearOfStudy: ['', [Validators.required]],
+      yearOfStudy: ['1', [Validators.required]],
       mandatory: [1, [Validators.required]],
-      name: ['', [Validators.required]],
-      headProfessor: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      headProfessor: [JSON.parse(sessionStorage.getItem('identity')!)['id'], [Validators.required]],
       date: [null, [Validators.required]],
       examType: [0, [Validators.required]],
-      location: ['', [Validators.required]],
+      location: ['', [Validators.required, Validators.minLength(4)]],
+      details: ['', Validators.required],
+      acceptsCommentaries: [1, [Validators.required]],
     });
 
     this.subs = new Array<Subscription>();
+  }
+
+  public isInvalid(form: AbstractControl): boolean {
+    return form.invalid && form.dirty;
   }
 
   /*
@@ -67,8 +75,6 @@ export class AddExamComponent implements OnInit {
     }
   }
 
-
-
   changeType(input_field_password: { type: string }, num: number) {
     if (input_field_password.type == 'title')
       input_field_password.type = 'text';
@@ -81,7 +87,6 @@ export class AddExamComponent implements OnInit {
     if (num == 5) this.toggle5 = !this.toggle5;
     if (num == 6) this.toggle6 = !this.toggle6;
   }
-
   */
 
   ngOnInit(): void {
@@ -97,6 +102,12 @@ export class AddExamComponent implements OnInit {
 
   public addExam() {
     const examModel: ExamModel = this.formGroup.getRawValue();
+
+    var e = document.getElementById('date') as HTMLSelectElement;
+    var d = e.value;
+
+    this.formGroup.get('date')?.patchValue(new Date(d));
+    console.log(d);
 
     this.subs.push(
       this.examService.post(examModel).subscribe(
