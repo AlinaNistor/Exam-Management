@@ -16,7 +16,7 @@ namespace ExamManagement.Business.Exam.Services.Exam
 
         public Task<Result<ExamModel>> Add(ExamModel model);
 
-        public Task<Result<ExamModel>> Update(Guid examId);
+        public Task<Result<ExamModel>> Update(Guid examId, ExamModel model);
 
         public Task<Result<ExamModel>> Delete(Guid examId);
 
