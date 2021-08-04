@@ -94,6 +94,7 @@ namespace ExamManagement.WebApi
                 .AddTransient<IValidator<CommentModel>, CommentValidator>()
                 .AddTransient<IValidator<ExamModel>, ExamValidator>()
                 .AddTransient<IValidator<AttendanceModel>, AttendanceValidator>();
+
             services
                 .AddMvc();
             services.AddHttpContextAccessor();
