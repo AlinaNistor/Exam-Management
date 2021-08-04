@@ -29,4 +29,10 @@ export class UserService {
       observe: 'response',
     });
   }
+
+  public getAllUsers(): Observable<HttpResponse<unknown>> {
+    return this.httpClient.put<HttpResponse<unknown>>(this.userUrl + "users", {
+      observe: 'response',
+    });
+  }
 }
