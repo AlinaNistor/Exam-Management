@@ -18,6 +18,7 @@ import { AttendanceService } from 'src/app/shared/services/attendance.service';
 import { CommentModel } from 'src/app/shared/models/comment.model';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-exam-details',
@@ -45,7 +46,8 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
     private attendanceService: AttendanceService,
     private commentService: CommentService,
     private readonly router: Router,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly helper: JwtHelperService
   ) {
     this.userId = JSON.parse(sessionStorage.getItem('identity')!)['id'];
 
@@ -71,7 +73,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
         .getExam(params['id'])
         .subscribe((data: HttpResponse<any>) => {
           this.exam = data.body;
-
+          this.getAttendanceId();
           this.getName(this.exam);
 
           this.getComments();
@@ -92,7 +94,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
           );
           this.examType = this.examService.getExamType(this.exam.examType);
         });
-      this.getAttendanceId();
+
     });
   }
 
@@ -215,5 +217,15 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
       .subscribe((user: HttpResponse<any>) => {
         comment.user = user.body;
       });
+  }
+
+  public isAdmin(): boolean {
+    var decodedToken = this.helper.decodeToken(
+      sessionStorage.getItem('userToken')!
+    );
+    if ('isAdmin' in decodedToken) {
+      return true;
+    }
+    return false;
   }
 }
