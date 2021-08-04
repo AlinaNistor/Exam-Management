@@ -25,7 +25,7 @@ export class UserService {
   }
 
   public getUser(id: string): Observable<HttpResponse<unknown>> {
-    return this.httpClient.put<HttpResponse<unknown>>(this.userUrl + id, {
+    return this.httpClient.get<HttpResponse<unknown>>(this.userUrl + id, {
       observe: 'response',
     });
   }
