@@ -33,6 +33,12 @@ export class ExamService {
     });
   }
 
+  public delete(id: string): Observable<HttpResponse<unknown>> {
+    return this.httpClient.delete<HttpResponse<unknown>>(this.url +"/" + id, {
+      observe: 'response',
+    });
+  }
+
   public getExamType(examType: number): string {
     switch (examType) {
       case 0: {
