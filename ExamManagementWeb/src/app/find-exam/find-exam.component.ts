@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { FacultyService } from 'src/app/shared/services/faculty.service';
 import { FacultyModel } from 'src/app/shared/models/faculty.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-find-exam',
@@ -23,7 +24,8 @@ export class FindExamComponent implements OnInit, OnDestroy {
   constructor(
     private readonly examService: ExamService,
     private facultyService: FacultyService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
     this.subs = new Array<Subscription>();
   }
@@ -71,5 +73,13 @@ export class FindExamComponent implements OnInit, OnDestroy {
       this.filteredList = this.examsList.filter((c: ExamModel) =>
         c.headProfessor.toUpperCase().startsWith(this.searchText.toUpperCase())
       );
+  }
+
+  public getName(id: string) {
+    var user1;
+    this.userService.getUser(id).subscribe((user: HttpResponse<any>) => {
+      user1 = user.body;
+      console.log(user1);
+    });
   }
 }

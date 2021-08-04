@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpResponse, HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExamService } from 'src/app/shared/services/exam.service';
 import { ExamModel } from 'src/app/shared/models/exam.model';
 import { FacultyService } from 'src/app/shared/services/faculty.service';
@@ -42,7 +42,8 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
     private examService: ExamService,
     private facultyService: FacultyService,
     private attendanceService: AttendanceService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private readonly router: Router,
   ) {
     this.userId = JSON.parse(sessionStorage.getItem('identity')!)['id'];
 
@@ -171,6 +172,15 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
   public deleteComment(commentId: string){
     this.commentService.delete(commentId).subscribe((data: HttpResponse<any>) => {
       window.location.reload();
+    });
+  }
+
+  public deleteExam(){
+    this.examService.delete(this.exam.id).subscribe((res: HttpResponse<any>) => {
+      if(res.status == 200){
+        alert('Exam deleted!');
+        this.router.navigate(['exams']);
+      }
     });
   }
 

@@ -53,12 +53,18 @@
               </table>
             </div>
 
-            <div class="row">
+            <div *ngIf="!(exam.headProfessor==userId)" class="row">
               <button *ngIf="!attendanceId" type="button" class="btn btn-primary" (click)="attendToExam()">Attend
                 Exam</button>
 
               <button *ngIf="attendanceId" type="button" class="btn btn-danger" (click)="deleteAttendance()">Delete
                 attendance</button>
+            </div>
+
+            <div *ngIf="exam.headProfessor == userId" class="row">
+
+              <button type="button" class="btn btn-danger" (click)="deleteExam()">Delete
+                exam</button>
             </div>
 
           </div>
