@@ -61,8 +61,11 @@ namespace ExamManagement.WebApi
             {
                 config.UseSqlServer(Configuration.GetConnectionString("ExamConnection"));
             });
-           
+
+
             services.AddSwaggerGen();
+
+            
 
             services.AddAutoMapper(config => {
                 config.AddProfile<UsersMappingProfile>();
@@ -125,12 +128,14 @@ namespace ExamManagement.WebApi
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
+                
             using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
             var dbContext = serviceScope.ServiceProvider.GetService<ExamContext>();
             dbContext.Database.EnsureCreated();
 
             
         }
+        
         private void AddAuthentication(IServiceCollection services)
         {
             var jwtOptions = Configuration.GetSection("JwtOptions").Get<JwtOptions>();
@@ -157,6 +162,8 @@ namespace ExamManagement.WebApi
                         
                     };
                 });
+        
         }
+        
     }
 }

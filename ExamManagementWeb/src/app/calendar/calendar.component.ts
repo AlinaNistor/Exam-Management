@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, Input } from '@angular/core';
+import { ExamModel } from '../shared/models/exam.model';
 
 @Component({
   selector: 'app-calendar',
@@ -8,14 +9,15 @@ import { Component, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
 export class CalendarComponent implements OnInit {
   ngOnInit(): void {}
 
+  @Input() exams:ExamModel[] = Array<ExamModel>();
+
   //selected = new Date();
 
   constructor(private renderer: Renderer2) {}
   Today = [{ date: this.dateToString(new Date()), text: 'Today' }];
 
   dates = [
-    { date: '2021-08-01', text: 'Special Day 1' },
-    { date: '2021-08-20', text: 'Special Day 2' },
+    { date: '', text: '' },
   ];
   dateClass = (d: Date) => {
     if (d.getDate() == 1) this.displayMonth();
@@ -54,7 +56,6 @@ export class CalendarComponent implements OnInit {
       buttons.forEach((btn) =>
         this.renderer.listen(btn, 'click', () => {
           setTimeout(() => {
-            //debugger
             this.displayMonth();
           });
         })

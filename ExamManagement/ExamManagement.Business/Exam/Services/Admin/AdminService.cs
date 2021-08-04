@@ -2,6 +2,7 @@
 using CSharpFunctionalExtensions;
 using ExamManagement.Business.Exam.Models.Admin;
 using ExamManagement.Persistence.Auth;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,11 @@ namespace ExamManagement.Business.Exam.Services.Admin
        
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _accessor;
 
-        public AdminService( IMapper mapper, IUserRepository userRepository)
+        public AdminService( IMapper mapper, IUserRepository userRepository, IHttpContextAccessor accessor)
         {
-            
+            _accessor = accessor;
             _mapper = mapper;
 
             _userRepository = userRepository;
@@ -26,6 +28,12 @@ namespace ExamManagement.Business.Exam.Services.Admin
 
         public async Task<Result<UserModel>> Delete(Guid userId)
         {
+            var authId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var auth = await _userRepository.GetById(authId);
+            if (1 != auth.Role)
+            {
+                return Result.Failure<UserModel>("Unauthorised");
+            }
             var user = await _userRepository.GetById(userId);
             if (user == null)
             {
@@ -57,6 +65,12 @@ namespace ExamManagement.Business.Exam.Services.Admin
 
         public async Task<Result<UserModel>> Update(Guid userId)
         {
+            var authId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var auth = await _userRepository.GetById(userId);
+            if (1 != auth.Role)
+            {
+                return Result.Failure<UserModel>("Unauthorised");
+            }
             var user = await _userRepository.GetById(userId);
             if (user == null)
                 return Result.Failure<UserModel>("User does not exist!");
