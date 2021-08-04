@@ -39,20 +39,14 @@ namespace ExamManagement.Business.Exam.Services.Exam
         {
             // Check authority
             
-           /* var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+           var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
             if (1 != user.Role)
             {
                return Result.Failure<ExamModel>("Unauthorised");
             }
-           */
-            
-
-            //var examModel = await _examRepository.GetByName(model.Name);
-           // if (examModel != null)
-           // {
-          //      return Result.Failure<ExamModel>("Exam already exists !");
-           // }
+           
+           
 
             var examEntity = _mapper.Map<Entities.Exam>(model);
             examEntity.DateAdded = DateTime.Now.ToString();
@@ -65,7 +59,13 @@ namespace ExamManagement.Business.Exam.Services.Exam
 
         public async Task<Result<ExamModel>> Update(Guid examId, ExamModel model)
         {
-            
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            if (1 != user.Role)
+            {
+                return Result.Failure<ExamModel>("Unauthorised");
+            }
+
             var exam = await _examRepository.GetById(examId);
             if (exam == null)
             {
@@ -94,6 +94,12 @@ namespace ExamManagement.Business.Exam.Services.Exam
 
         public async Task<Result<ExamModel>> Delete(Guid examId)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            if (1 != user.Role)
+            {
+                return Result.Failure<ExamModel>("Unauthorised");
+            }
             var exam = await _examRepository.GetById(examId);
             if (exam == null)
             {

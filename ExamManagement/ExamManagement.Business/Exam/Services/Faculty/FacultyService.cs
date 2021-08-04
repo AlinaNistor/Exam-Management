@@ -3,6 +3,7 @@ using CSharpFunctionalExtensions;
 using ExamManagement.Business.Exam.Models.Faculty;
 using ExamManagement.Persistence.Auth;
 using ExamManagement.Persistence.Faculty;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,14 @@ namespace ExamManagement.Business.Exam.Services.Faculty
         private readonly IFacultyRepository _facultyRepository;
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _accessor;
 
-        public FacultyService(IFacultyRepository facultyRepository, IMapper mapper, IUserRepository userRepository)
+        public FacultyService(IFacultyRepository facultyRepository, IMapper mapper, IUserRepository userRepository, IHttpContextAccessor accessor)
         {
             _facultyRepository = facultyRepository;
             _mapper = mapper;
             _userRepository = userRepository;
+            _accessor = accessor;
         }
 
         public async Task<Result<IList<FacultyModel>>> GetAll()
@@ -44,7 +47,14 @@ namespace ExamManagement.Business.Exam.Services.Faculty
 
         public async Task<Result<FacultyModel>> Add(FacultyModel model)
         {
-            
+
+            var authId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var auth = await _userRepository.GetById(authId);
+            if (1 != auth.Role)
+            {
+                return Result.Failure<FacultyModel>("Unauthorised");
+            }
+
 
             var facultyEntity = _mapper.Map<Entities.Faculty>(model);
            
