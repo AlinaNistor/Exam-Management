@@ -32,6 +32,12 @@ using ExamManagement.Business.Exam.Services.Comment;
 using ExamManagement.Business.Exam.Services.Admin;
 using ExamManagement.Persistence.Repositories.Notifications;
 using ExamManagement.Business.Exam.Services.Notification;
+using ExamManagement.Business.Exam.Models.Admin;
+using FluentValidation;
+using ExamManagement.Business.Exam.Validators;
+using ExamManagement.Business.Exam.Models.Exam;
+using ExamManagement.Business.Exam.Models.Comment;
+using ExamManagement.Business.Exam.Models.Attendance;
 
 namespace ExamManagement.WebApi
 {
@@ -84,7 +90,10 @@ namespace ExamManagement.WebApi
                 .AddScoped<INotificationService, NotificationService>();
 
 
-
+            services.AddTransient<IValidator<UserModel>, UserValidator>()
+                .AddTransient<IValidator<CommentModel>, CommentValidator>()
+                .AddTransient<IValidator<ExamModel>, ExamValidator>()
+                .AddTransient<IValidator<AttendanceModel>, AttendanceValidator>();
             services
                 .AddMvc();
             services.AddHttpContextAccessor();
