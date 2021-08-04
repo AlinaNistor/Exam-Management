@@ -21,7 +21,6 @@ import { UserService } from '../../shared/services/user.service';
 })
 export class LoginComponent implements OnInit {
   toggle1: boolean = false;
-  password: string = '';
 
   public formGroup: FormGroup;
   private subs: Subscription[];
@@ -84,11 +83,17 @@ export class LoginComponent implements OnInit {
 
   private handleErrors(responseError: HttpErrorResponse): void {
     cleanErrors();
+
+    var errorElement = document.createElement('div');
+    errorElement.className = 'alert alert-danger';
+
     if (responseError.status == 400) {
       var error = responseError.error;
-      var errorElement = document.createElement('div');
-      errorElement.className = 'alert alert-danger';
       errorElement.innerHTML = error;
+      document.getElementById('errors')?.appendChild(errorElement);
+    }
+    else{
+      errorElement.innerHTML = 'Something went wrong!';
       document.getElementById('errors')?.appendChild(errorElement);
     }
   }

@@ -23,7 +23,6 @@ import { FacultyService } from 'src/app/shared/services/faculty.service';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   toggle1: boolean = false;
-  password: string = '';
 
   public formGroup: FormGroup;
   private subs: Subscription[];
@@ -44,8 +43,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private readonly facultyService: FacultyService
   ) {
     this.formGroup = this.formBuilder.group({
-      lastName: ['', [Validators.required, Validators.maxLength(150)]],
-      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.maxLength(150), Validators.minLength(2)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(100)],
@@ -96,14 +95,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   private handleErrors(responseError: HttpErrorResponse): void {
     cleanErrors();
-    if (responseError.status == 400) {
-      var error = responseError.error;
-      var errorElement = document.createElement('div');
-      errorElement.className = 'alert alert-danger';
-      errorElement.innerHTML = error;
-      document.getElementById('errors')?.appendChild(errorElement);
-    }
+
+    var errorElement = document.createElement('div');
+    errorElement.className = 'alert alert-danger';
+    errorElement.innerHTML = 'User can not be registred!';
+    document.getElementById('errors')?.appendChild(errorElement);
   }
+
+  public isInvalid(form: AbstractControl): boolean {
+    return form.invalid && form.dirty;
+  }
+
 }
 
 function cleanErrors(): void {
