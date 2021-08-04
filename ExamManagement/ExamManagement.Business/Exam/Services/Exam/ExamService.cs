@@ -63,9 +63,33 @@ namespace ExamManagement.Business.Exam.Services.Exam
             return _mapper.Map<ExamModel>(examEntity);
         }
 
-        public Task<Result<ExamModel>> Update(Guid examId)
+        public async Task<Result<ExamModel>> Update(Guid examId, ExamModel model)
         {
-            throw new NotImplementedException();
+            
+            var exam = await _examRepository.GetById(examId);
+            if (exam == null)
+            {
+                return Result.Failure<ExamModel>("Unavailable exam!");
+            }
+            if (model == null)
+            {
+                return Result.Failure<ExamModel>("Don't leave form empty !");
+            }
+
+            exam.AcceptsCommentaries = model.AcceptsCommentaries;
+            exam.Date = model.Date;
+            exam.Details = model.Details;
+            exam.ExamType = model.ExamType;
+            exam.HeadProfessor = model.HeadProfessor;
+            exam.Mandatory = model.Mandatory;
+            exam.YearOfStudy = model.YearOfStudy;
+            exam.Name = model.Name;
+            exam.Location = model.Location;
+            
+            _examRepository.Update(exam);
+            await _userRepository.SaveChanges();
+
+            return _mapper.Map<ExamModel>(exam);
         }
 
         public async Task<Result<ExamModel>> Delete(Guid examId)

@@ -64,6 +64,16 @@ namespace ExamManagement.WebApi.Controllers
             return Created(result.Name.ToString(), result);
         }
 
+        [HttpPut("{examId}")]
+        public async Task<IActionResult> Change([FromRoute] Guid examId, [FromBody] ExamModel model)
+        {
+            var (_, isFailure, result, error) = await _examService.Update(examId, model);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+            return Ok();
+        }
         // DELETE api/<ExamController>/5
         [HttpDelete("{examId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid examId)

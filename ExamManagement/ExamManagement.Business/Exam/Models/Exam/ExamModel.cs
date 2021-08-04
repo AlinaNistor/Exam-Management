@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,19 +27,37 @@ namespace ExamManagement.Business.Exam.Models.Exam
     }
         public Guid Id { get;  }
         public Guid FacultyId { get; set; }
+
+        [Required(ErrorMessage = "YearOfStudy is required")]
         public int YearOfStudy { get; set; }
-        public int Mandatory { get; set; } 
+
+        [Required(ErrorMessage = "Mandatory is required")]
+        public int Mandatory { get; set; }
+
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        public string HeadProfessor { get; set; }
-        public string Date { get; set; }    //DD-MM-YYYY
+        [Required(ErrorMessage = "HeadProfessor is required")]
 
-        public int ExamType { get; set; }    //restanta,normal,restanta1,restanta2 etc
-        public string Location { get; set; }    //fizic,online
+        public string HeadProfessor { get; set; }
+
+        [Required(ErrorMessage = "Date is required")]
+        public string Date { get; set; }
+
+        [Required(ErrorMessage = "ExamType is required")]
+
+        public int ExamType { get; set; }
+
+        [Required(ErrorMessage = "Location is required")]
+        public string Location { get; set; }
+
 
         public string Details { get; set; }
+        
 
-         public string DateAdded { get;  }
+        public string DateAdded { get;  }
+
+        [Required(ErrorMessage = "AcceptsCommentaries is required")]
         public int AcceptsCommentaries { get; set; }
 
     }
