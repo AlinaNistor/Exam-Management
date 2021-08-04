@@ -107,6 +107,10 @@ namespace ExamManagement.Business.Exam.Services
             var user = await _userRepository.GetById(model.Id);
             if (user == null)
                 return Result.Failure<string>("User does not exist!");
+            if(!_passwordHasher.Check(user.Password, model.OldPassword))
+            {
+                return Result.Failure<string>("Wrong old password !");
+            }
             var samePassword = _passwordHasher.Check(user.Password, model.NewPassword);
             if (samePassword)
             {
