@@ -1,3 +1,5 @@
+import { UserModel } from "./user.model";
+
 export type ExamModel ={
   id:string;
   facultyId:string;
@@ -10,6 +12,7 @@ export type ExamModel ={
   location: string,
   details: string,
   acceptsCommentaries: number
+  profesor?: UserModel
 };
 
 export * from "./exam.model";

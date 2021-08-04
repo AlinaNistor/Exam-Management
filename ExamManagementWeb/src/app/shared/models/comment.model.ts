@@ -1,3 +1,5 @@
+import { UserModel } from './user.model';
+
 export type CommentModel = {
   id: string;
   parentId: string;
@@ -5,6 +7,7 @@ export type CommentModel = {
   examId: string;
   text: string;
   dateAdded: string;
+  user?: UserModel;
 };
 
 export * from './comment.model';
