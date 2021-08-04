@@ -33,7 +33,8 @@ export class SettingsComponent implements OnInit {
         [Validators.required],
       ],
       newPassword: [null, [Validators.required, Validators.minLength(8)]],
-      confirmPassword: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
+      oldPassword:[null]
     });
   }
   get f() {
@@ -61,6 +62,7 @@ export class SettingsComponent implements OnInit {
     const pass: NewPasswordModel = {
       id: JSON.parse(sessionStorage.getItem('identity')!)['id'],
       newPassword: this.formGroup.get('newPassword')!.value,
+      oldPassword: this.formGroup.get('oldPassword')!.value,
     };
 
     this.userService
@@ -72,5 +74,9 @@ export class SettingsComponent implements OnInit {
         }
       });
     this.formGroup.reset();
+  }
+
+  public isInvalid(form: AbstractControl): boolean {
+    return form.invalid && form.dirty;
   }
 }
