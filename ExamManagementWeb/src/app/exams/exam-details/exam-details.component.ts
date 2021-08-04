@@ -17,6 +17,7 @@ import {
 import { AttendanceService } from 'src/app/shared/services/attendance.service';
 import { CommentModel } from 'src/app/shared/models/comment.model';
 import { CommentService } from 'src/app/shared/services/comment.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-exam-details',
@@ -44,6 +45,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
     private attendanceService: AttendanceService,
     private commentService: CommentService,
     private readonly router: Router,
+    private readonly userService: UserService
   ) {
     this.userId = JSON.parse(sessionStorage.getItem('identity')!)['id'];
 
@@ -54,8 +56,8 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
 
     this.commentForm = this.formBuilder.group({
       userId: [this.userId, Validators.required],
-      examId: ['' , Validators.required],
-      text: ['',  Validators.required],
+      examId: ['', Validators.required],
+      text: ['', Validators.required],
     });
   }
 
@@ -64,13 +66,16 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.examService
         .getExam(params['id'])
         .subscribe((data: HttpResponse<any>) => {
           this.exam = data.body;
+
+          this.getName(this.exam);
+
           this.getComments();
+
           this.formGroup.get('examId')?.patchValue(this.exam.id);
           this.commentForm.get('examId')?.patchValue(this.exam.id);
 
@@ -87,8 +92,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
           );
           this.examType = this.examService.getExamType(this.exam.examType);
         });
-        this.getAttendanceId();
-
+      this.getAttendanceId();
     });
   }
 
@@ -108,7 +112,7 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  public getAttendanceId(){
+  public getAttendanceId() {
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.attendanceService
         .getAllAttendance()
@@ -150,43 +154,66 @@ export class ExamDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public addComment()
-  {
+  public addComment() {
     const commentModel: CommentModel = this.commentForm.getRawValue();
 
-    this.commentService.postAttendance(commentModel).subscribe(
-      (res: HttpResponse<any>) => {
-        console.log(res.statusText);
-        if (res.status == 201) {
-          alert('Comment send');
-          window.location.reload();
+    if (commentModel.text != '') {
+      this.commentService.postAttendance(commentModel).subscribe(
+        (res: HttpResponse<any>) => {
+          console.log(res.statusText);
+          if (res.status == 201) {
+            alert('Comment send');
+            window.location.reload();
+          }
+        },
+        () => {
+          alert('Error! Try Again!');
         }
-      },
-      () => {
-        alert('Error! Try Again!');
-      }
-    );
-
+      );
+    }
   }
 
-  public deleteComment(commentId: string){
-    this.commentService.delete(commentId).subscribe((data: HttpResponse<any>) => {
-      window.location.reload();
-    });
+  public deleteComment(commentId: string) {
+    this.commentService
+      .delete(commentId)
+      .subscribe((data: HttpResponse<any>) => {
+        window.location.reload();
+      });
   }
 
-  public deleteExam(){
-    this.examService.delete(this.exam.id).subscribe((res: HttpResponse<any>) => {
-      if(res.status == 200){
-        alert('Exam deleted!');
-        this.router.navigate(['exams']);
-      }
-    });
+  public deleteExam() {
+    this.examService
+      .delete(this.exam.id)
+      .subscribe((res: HttpResponse<any>) => {
+        if (res.status == 200) {
+          alert('Exam deleted!');
+          this.router.navigate(['exams']);
+        }
+      });
   }
 
   private getComments() {
-    this.commentService.getAllComments(this.exam.id).subscribe((data: HttpResponse<any>) => {
-      this.comments = data.body;
-    });
+    this.commentService
+      .getAllComments(this.exam.id)
+      .subscribe((data: HttpResponse<any>) => {
+        this.comments = data.body;
+        this.comments.forEach((c:CommentModel) =>this.getUserCommentName(c) );
+      });
+  }
+
+  public getName(exam: ExamModel) {
+    this.userService
+      .getUser(exam.headProfessor)
+      .subscribe((user: HttpResponse<any>) => {
+        exam.profesor = user.body;
+      });
+  }
+
+  public getUserCommentName(comment: CommentModel) {
+    this.userService
+      .getUser(comment.userId)
+      .subscribe((user: HttpResponse<any>) => {
+        comment.user = user.body;
+      });
   }
 }

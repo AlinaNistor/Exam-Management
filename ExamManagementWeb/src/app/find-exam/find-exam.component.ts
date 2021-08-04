@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { FacultyService } from 'src/app/shared/services/faculty.service';
 import { FacultyModel } from 'src/app/shared/models/faculty.model';
 import { UserService } from '../shared/services/user.service';
+import { UserModel } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-find-exam',
@@ -35,6 +36,9 @@ export class FindExamComponent implements OnInit, OnDestroy {
       this.examService.getAllExams().subscribe((data: HttpResponse<any>) => {
         this.examsList = data.body;
         this.filteredList = data.body;
+
+        this.examsList.forEach((exam:ExamModel) =>
+        this.getName(exam));
 
         this.facultyService
           .getFaculties()
@@ -75,11 +79,9 @@ export class FindExamComponent implements OnInit, OnDestroy {
       );
   }
 
-  public getName(id: string) {
-    var user1;
-    this.userService.getUser(id).subscribe((user: HttpResponse<any>) => {
-      user1 = user.body;
-      console.log(user1);
+  public getName(exam: ExamModel) {
+     this.userService.getUser(exam.headProfessor).subscribe((user: HttpResponse<any>) => {
+      exam.profesor = user.body;
     });
   }
 }

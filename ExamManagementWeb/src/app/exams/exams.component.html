@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row row-cols-3">
 
-          <app-exam-tile *ngFor="let exam of examsList" title="{{ exam.name }}" prof="{{ exam.headProfessor }}"
+          <app-exam-tile *ngFor="let exam of examsList" title="{{ exam.name }}" prof="{{ exam.profesor?.firstName + ' ' + exam.profesor?.lastName }}"
             date="{{ exam.date }}" description="{{ getFacultyName(exam.facultyId) }}" link="{{ 'details/' + exam.id }}"></app-exam-tile>
 
         </div>

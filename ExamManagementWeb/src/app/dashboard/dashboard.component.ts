@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 })
             );
 
-            /*
+
             this.upcomingExamsList = this.examsList.sort(function (
               d1: ExamModel,
               d2: ExamModel
@@ -67,9 +67,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             });
 
             //console.log(this.upcomingExamsList);
+            console.log('test');
             console.log(this.examsList);
             console.log(this.examsList[0]);
-            */
+
           })
 
       );

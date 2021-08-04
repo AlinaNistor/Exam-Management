@@ -9,6 +9,8 @@ import { FacultyModel } from 'src/app/shared/models/faculty.model';
 import { AttendanceModel } from '../shared/models/attendance.model';
 import { AttendanceService } from '../shared/services/attendance.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserModel } from '../shared/models/user.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-exams',
@@ -26,6 +28,7 @@ export class ExamsComponent implements OnInit, OnDestroy {
     private readonly examService: ExamService,
     private readonly facultyService: FacultyService,
     private readonly attendanceService: AttendanceService,
+    private readonly userService: UserService,
     private readonly helper: JwtHelperService,
     private readonly router: Router
   ) {
@@ -45,6 +48,7 @@ export class ExamsComponent implements OnInit, OnDestroy {
               this.examsList = data.body.filter(
                 (c: ExamModel) => c.headProfessor == this.userId
               );
+              this.examsList.forEach((exam: ExamModel) => this.getName(exam));
             }),
 
           this.facultyService
@@ -67,6 +71,10 @@ export class ExamsComponent implements OnInit, OnDestroy {
                   .getExam(c.examId)
                   .subscribe((data: HttpResponse<any>) => {
                     this.examsList.push(data.body);
+
+                    this.examsList.forEach((exam: ExamModel) =>
+                      this.getName(exam)
+                    );
                   })
               );
 
@@ -99,5 +107,13 @@ export class ExamsComponent implements OnInit, OnDestroy {
       return true;
     }
     return false;
+  }
+
+  public getName(exam: ExamModel) {
+    this.userService
+      .getUser(exam.headProfessor)
+      .subscribe((user: HttpResponse<any>) => {
+        exam.profesor = user.body;
+      });
   }
 }
